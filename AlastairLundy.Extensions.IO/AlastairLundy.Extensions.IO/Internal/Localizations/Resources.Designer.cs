@@ -60,7 +60,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to find directory with file path of {directory}..
+        ///   Looks up a localized string similar to Unable to find directory with file path of {x}..
         /// </summary>
         internal static string Exceptions_IO_DirectoryNotFound {
             get {
@@ -69,7 +69,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to find file with file path of {file}..
+        ///   Looks up a localized string similar to Unable to find file with file path of {x}..
         /// </summary>
         internal static string Exceptions_IO_FileNotFound {
             get {
@@ -78,7 +78,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to A file was expected but not provided..
         /// </summary>
         internal static string Exceptions_IO_NoFileProfiled {
             get {
@@ -87,7 +87,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The target file path of {file} was null or empty..
+        ///   Looks up a localized string similar to The target file path of {x} was null or empty..
         /// </summary>
         internal static string Exceptions_IO_TargetFile_NullOrEmpty {
             get {
@@ -132,7 +132,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File {file} was deleted..
+        ///   Looks up a localized string similar to File {x} was deleted..
         /// </summary>
         internal static string IO_File_Deleted {
             get {

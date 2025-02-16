@@ -15,6 +15,7 @@ public interface IRecursiveDirectoryRemover
 {
     event EventHandler<string> DirectoryDeleted; 
     event EventHandler<string> FileDeleted;
+    
     void DeleteDirectoryRecursively(string directory, bool deleteEmptyDirectory);
     
     bool TryDeleteDirectoryRecursively(string directory, bool deleteEmptyDirectories);

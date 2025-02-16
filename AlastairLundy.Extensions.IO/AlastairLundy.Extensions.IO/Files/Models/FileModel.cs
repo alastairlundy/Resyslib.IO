@@ -8,6 +8,7 @@
  */
 
 using System.IO;
+// ReSharper disable ConvertToPrimaryConstructor
 
 namespace AlastairLundy.Extensions.IO.Files;
 

@@ -69,6 +69,6 @@ public class FilePathResolver : IFilePathResolver
             }
         }
         
-        throw new FileNotFoundException(Resources.Exceptions_IO_FileNotFound.Replace("{file}", inputFilePath));
+        throw new FileNotFoundException(Resources.Exceptions_IO_FileNotFound.Replace("{x}", inputFilePath));
     }
 }
