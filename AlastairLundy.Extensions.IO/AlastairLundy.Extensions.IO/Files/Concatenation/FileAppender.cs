@@ -47,8 +47,12 @@ public class FileAppender : IFileAppender
         {
             try
             {
+#if NET6_0_OR_GREATER
                 string[] lines = await File.ReadAllLinesAsync(fileToBeAppended.FilePath);
-
+#else
+                string[] lines = await Task.FromResult(File.ReadAllLines(fileToBeAppended.FilePath));
+#endif
+                
                 foreach (var line in lines)
                 {
                     _appendedFileContents.AppendLine(line);
@@ -120,8 +124,12 @@ public class FileAppender : IFileAppender
         {
             try
             {
+#if NET6_0_OR_GREATER
                 string[] lines = await File.ReadAllLinesAsync(fileToBeAppended);
-
+#else
+                string[] lines = await Task.FromResult(File.ReadAllLines(fileToBeAppended));
+#endif
+                
                 foreach (string line in lines)
                 {
                     _appendedFileContents.AppendLine(line);
@@ -225,7 +233,11 @@ public class FileAppender : IFileAppender
     /// <returns>the list of appended strings as an enumerable.</returns>
     public IEnumerable<string> ToEnumerable()
     {
+#if NET6_0_OR_GREATER
         return _appendedFileContents.ToString().Split(Environment.NewLine);
+#else
+        return _appendedFileContents.ToString().Split(Convert.ToChar(Environment.NewLine));
+#endif
     }
 
     public override string ToString()

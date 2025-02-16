@@ -13,8 +13,15 @@ namespace AlastairLundy.Extensions.IO.Directories.Creator;
 
 public interface IDirectoryCreator
 {
+#if NET8_0_OR_GREATER
     public bool TryCreateDirectory(string directoryPath,string newDirectoryName, UnixFileMode unixFileMode, bool createParentPaths);
     public void CreateDirectory(string directoryPath, string newDirectoryName, UnixFileMode unixFileMode, bool createParentPaths);
     public bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFileMode);
     public void CreateParentDirectory(string parentDirectory, UnixFileMode unixFileMode);
+#else
+    public bool TryCreateDirectory(string directoryPath,string newDirectoryName, bool createParentPaths);
+    public void CreateDirectory(string directoryPath, string newDirectoryName, bool createParentPaths);
+    public bool TryCreateParentDirectory(string directoryPath);
+    public void CreateParentDirectory(string parentDirectory);
+#endif
 }

@@ -32,7 +32,11 @@ public class FileFinder : IFileFinder
                 if (filePath.Length - 4 >= 0 && filePath.Length - 4 < filePath.Length)
                 {
                     // Uses new .NET 6 and newer ^ Index
+#if NET6_0_OR_GREATER
                     if (filePath[^4].Equals('.'))
+#else
+                    if (filePath[filePath.Length - 4].Equals('.'))
+#endif
                     {
                         return true;
                     }
@@ -40,7 +44,7 @@ public class FileFinder : IFileFinder
                 if (filePath.Length - 3 >= 0 && filePath.Length - 3 < filePath.Length)
                 {
                     // Uses new .NET 6 and newer ^ Index
-                    if (filePath[^3].Equals('.') || filePath[^2].Equals('.'))
+                    if (filePath[filePath.Length - 3].Equals('.') || filePath[filePath.Length - 2].Equals('.'))
                     {
                         return true;
                     }
@@ -49,7 +53,7 @@ public class FileFinder : IFileFinder
                 if (filePath.Length - 2 >= 0 && filePath.Length - 2 < filePath.Length)
                 {
                     // Uses new .NET 6 and newer ^ Index
-                    if (filePath[^2].Equals('.'))
+                    if (filePath[filePath.Length - 2].Equals('.'))
                     {
                         return true;
                     }
