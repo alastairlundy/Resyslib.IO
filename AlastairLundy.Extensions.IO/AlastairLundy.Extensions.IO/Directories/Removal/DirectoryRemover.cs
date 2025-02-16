@@ -20,9 +20,15 @@ namespace AlastairLundy.Extensions.IO.Directories.Removal;
 
 public class DirectoryRemover : IDirectoryRemover, IRecursiveDirectoryRemover
 {
-    public DirectoryRemover()
+    private readonly IDirectoryExplorer _directoryExplorer;
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="directoryExplorer"></param>
+    public DirectoryRemover(IDirectoryExplorer directoryExplorer)
     {
-        
+        _directoryExplorer = directoryExplorer;
     }
     
     public event EventHandler<string> DirectoryDeleted; 
@@ -59,7 +65,7 @@ public class DirectoryRemover : IDirectoryRemover, IRecursiveDirectoryRemover
     {
         if (Directory.Exists(directory))
         {
-            if ((DirectoryHelper.IsDirectoryEmpty(directory) && deleteEmptyDirectory) || !deleteEmptyDirectory)
+            if ((_directoryExplorer.IsDirectoryEmpty(directory) && deleteEmptyDirectory) || !deleteEmptyDirectory)
             {
                 Directory.Delete(directory);
                 // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
@@ -106,7 +112,7 @@ public class DirectoryRemover : IDirectoryRemover, IRecursiveDirectoryRemover
     {
         if (Directory.Exists(directory))
         {
-            if (DirectoryHelper.IsDirectoryEmpty(directory) && deleteEmptyDirectory || DirectoryHelper.IsDirectoryEmpty(directory) == false)
+            if (_directoryExplorer.IsDirectoryEmpty(directory) && deleteEmptyDirectory || _directoryExplorer.IsDirectoryEmpty(directory) == false)
             {
                 string? parentDirectory = Directory.GetParent(directory)?.FullName;
 

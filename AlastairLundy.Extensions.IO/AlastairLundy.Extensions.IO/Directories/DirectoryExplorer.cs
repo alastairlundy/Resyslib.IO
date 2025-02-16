@@ -22,7 +22,7 @@ namespace AlastairLundy.Extensions.IO.Directories;
 /// <summary>
 /// 
 /// </summary>
-public class DirectoryExplorer : IRecursiveDirectoryExplorer
+public class DirectoryExplorer : IDirectoryExplorer, IRecursiveDirectoryExplorer
 {
     protected DirectoryCreator DirectoryCreator;
 
@@ -52,7 +52,7 @@ public class DirectoryExplorer : IRecursiveDirectoryExplorer
         {
             string dir = subDirectories[i];
                     
-            if (DirectoryHelper.IsDirectoryEmpty(dir))
+            if (IsDirectoryEmpty(dir))
             {
                 allowRecursiveEmptyDirectoryDeletion[i] = true;
             }
@@ -111,7 +111,7 @@ public class DirectoryExplorer : IRecursiveDirectoryExplorer
                     {
                         directories.Add(subDirectory);
                     }
-                    else if (includeEmptyDirectories == true && DirectoryHelper.IsDirectoryEmpty(directory))
+                    else if (includeEmptyDirectories == true && IsDirectoryEmpty(directory))
                     {
                         emptyDirectories.Add(subDirectory);
                     }
@@ -159,5 +159,23 @@ public class DirectoryExplorer : IRecursiveDirectoryExplorer
     public IEnumerable<string> GetFolderRecursively(string directory)
     {
         return GetRecursiveDirectoryContents(directory, false).directories;
+    }
+
+    /// <summary>
+    /// Checks if a Directory is empty or not.
+    /// </summary>
+    /// <param name="directory">The directory to be searched.</param>
+    /// <returns>true if the directory is empty; returns false otherwise.</returns>
+    /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
+    public bool IsDirectoryEmpty(string directory)
+    {
+        if (Directory.Exists(directory))
+        {
+            return Directory.GetFiles(directory).Length == 0 && Directory.GetDirectories(directory).Length == 0;
+        }
+        else
+        {
+            throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));
+        }
     }
 }
