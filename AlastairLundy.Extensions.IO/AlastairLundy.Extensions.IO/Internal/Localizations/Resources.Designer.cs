@@ -78,11 +78,56 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Exceptions_IO_NoFileProfiled {
+            get {
+                return ResourceManager.GetString("Exceptions_IO_NoFileProfiled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The target file path of {file} was null or empty..
         /// </summary>
         internal static string Exceptions_IO_TargetFile_NullOrEmpty {
             get {
                 return ResourceManager.GetString("Exceptions_IO_TargetFile_NullOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Exceptions_Permisions_InvalidNumericNotation {
+            get {
+                return ResourceManager.GetString("Exceptions_Permisions_InvalidNumericNotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Exceptions_Permissions_InvalidSymbolicNotation {
+            get {
+                return ResourceManager.GetString("Exceptions_Permissions_InvalidSymbolicNotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory {x} was deleted..
+        /// </summary>
+        internal static string IO_Directory_Deleted {
+            get {
+                return ResourceManager.GetString("IO_Directory_Deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory {x}, which was empty, was deleted..
+        /// </summary>
+        internal static string IO_EmptyDirectory_Deleted {
+            get {
+                return ResourceManager.GetString("IO_EmptyDirectory_Deleted", resourceCulture);
             }
         }
         

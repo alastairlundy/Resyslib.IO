@@ -129,4 +129,19 @@
   <data name="IO_File_Deleted" xml:space="preserve">
     <value>File {file} was deleted.</value>
   </data>
+  <data name="Exceptions_Permissions_InvalidSymbolicNotation" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Exceptions_Permisions_InvalidNumericNotation" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IO_Directory_Deleted" xml:space="preserve">
+    <value>Directory {x} was deleted.</value>
+  </data>
+  <data name="IO_EmptyDirectory_Deleted" xml:space="preserve">
+    <value>Directory {x}, which was empty, was deleted.</value>
+  </data>
+  <data name="Exceptions_IO_NoFileProfiled" xml:space="preserve">
+    <value />
+  </data>
 </root>
