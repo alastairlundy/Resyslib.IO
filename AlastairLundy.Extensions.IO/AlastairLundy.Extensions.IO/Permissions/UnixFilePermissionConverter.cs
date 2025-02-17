@@ -8,6 +8,7 @@
  */
 
 using System;
+
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 
 namespace AlastairLundy.Extensions.IO.Permissions;
