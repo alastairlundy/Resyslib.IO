@@ -17,10 +17,10 @@ This can be added to any .NET Standard 2.0, .NET Standard 2.1, or .NET 8 compati
 
 ### Compatibility 
 
-| IO Extensions Version series | .NET Targets supported | 
-|------------------------------|------------------------|
-| 2.x                        | .NET Standard 2.0, .NET Standard 2.1, and .NET 8 and newer       |
-| 1.x                      | .NET 8 and newer       |
+| IO Extensions Version series | .NET Targets supported                                     | 
+|------------------------------|------------------------------------------------------------|
+| 2.x                          | .NET Standard 2.0, .NET Standard 2.1, and .NET 8 and newer |
+| 1.x                          | .NET 8 and newer                                           |
 
 ## License
 
