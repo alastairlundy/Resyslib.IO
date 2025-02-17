@@ -1,5 +1,5 @@
 ﻿/*
-    IOExtensions
+    IOExtensions 
     Copyright (c) 2024-2025 Alastair Lundy
 
     This Source Code Form is subject to the terms of the Mozilla Public
@@ -7,9 +7,10 @@
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-namespace AlastairLundy.Extensions.IO.Files;
 
-public interface IFileFinder
+namespace AlastairLundy.Extensions.IO.Files.Abstractions;
+
+public interface IFilePathResolver
 {
-    public bool IsAFile(string filePath);
+    void ResolveFilePath(string inputFilePath, out string resolvedFilePath);
 }

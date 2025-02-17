@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AlastairLundy.Extensions.IO.Files.Concatenation;
+namespace AlastairLundy.Extensions.IO.Files.Concatenation.Abstractions;
 
 public interface IFileAppender
 {

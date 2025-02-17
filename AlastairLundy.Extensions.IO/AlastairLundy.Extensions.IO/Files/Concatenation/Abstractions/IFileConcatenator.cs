@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.IO.Files.Concatenation;
+namespace AlastairLundy.Extensions.IO.Files.Concatenation.Abstractions;
 
 public interface IFileConcatenator
 {

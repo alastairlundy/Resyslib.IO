@@ -10,6 +10,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using AlastairLundy.Extensions.IO.Files.Concatenation.Abstractions;
+
+// ReSharper disable UnusedType.Global
 
 namespace AlastairLundy.Extensions.IO.Files.Concatenation;
 
@@ -46,23 +49,15 @@ public class FileConcatenator : IFileConcatenator
     /// <exception cref="Exception">Thrown if an exception occurs when trying to save the file.</exception>
     public void ConcatenateFilesToNewFile(string filePath, string newFileName, IEnumerable<string> files)
     {
-        try
-        {
-            string newFile = $"{filePath}{Path.DirectorySeparatorChar}{newFileName}";
+        string newFile = $"{filePath}{Path.DirectorySeparatorChar}{newFileName}";
 
-            if (filePath.Contains(newFileName) == false)
-            {
-                File.WriteAllLines(newFile, ConcatenateFilesToEnumerable(files));
-            }
-            else
-            {
-                File.WriteAllLines(newFileName, ConcatenateFilesToEnumerable(files));
-            }
-
-        }
-        catch (Exception ex)
+        if (filePath.Contains(newFileName) == false)
         {
-            throw new Exception(ex.Message, ex);
+            File.WriteAllLines(newFile, ConcatenateFilesToEnumerable(files));
         }
+        else
+        {
+            File.WriteAllLines(newFileName, ConcatenateFilesToEnumerable(files));
+        }     
     }
 }

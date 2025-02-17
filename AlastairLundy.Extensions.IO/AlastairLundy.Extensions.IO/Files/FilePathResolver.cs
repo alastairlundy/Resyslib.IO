@@ -12,12 +12,13 @@
 
 #if NETSTANDARD2_0 || NETSTANDARD2_1
 using OperatingSystem = Polyfills.OperatingSystemPolyfill;
-#else
 #endif
 
 using System;
 using System.IO;
 using System.Linq;
+
+using AlastairLundy.Extensions.IO.Files.Abstractions;
 
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 
