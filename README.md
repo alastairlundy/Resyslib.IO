@@ -16,7 +16,8 @@ This can be added to any .NET Standard 2.0, .NET Standard 2.1, or .NET 8 compati
 
 | IO Extensions Version series | .NET Targets supported | 
 |------------------------------|------------------------|
-| 1.0.0                        | .NET 8 and newer       |
+| 2.x                        | .NET Standard 2.0, .NET Standard 2.1, and .NET 8 and newer       |
+| 1.x                      | .NET 8 and newer       |
 
 ## License
 
