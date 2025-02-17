@@ -20,7 +20,6 @@ public interface IDirectoryRemover
     
     void DeleteDirectory(string directory, bool deleteEmptyDirectory, bool deleteParentDirectory);
 
-    void DeleteParentDirectory(string directory, bool deleteEmptyDirectory);
 
     void DeleteDirectories(IEnumerable<string> directories, bool deleteEmptyDirectory,
         bool deleteParentDirectory);
