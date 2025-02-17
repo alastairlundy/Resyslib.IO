@@ -1,4 +1,5 @@
 # AlastairLundy.Extensions.IO
+ Classes, Interfaces, and extension methods that make working with Files and Directories easier. 
 
 ## Features
 * Support for creating, deleting (including recursively), or finding directories
@@ -20,3 +21,5 @@ This can be added to any .NET Standard 2.0, .NET Standard 2.1, or .NET 8 compati
 ## License
 
 This library is licensed under the MPL 2.0 license.
+
+## Acknowledgements
