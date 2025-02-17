@@ -1,37 +1,15 @@
-﻿/*
-    IOExtensions 
-    Copyright (c) 2024-2025 Alastair Lundy
-
-    This Source Code Form is subject to the terms of the Mozilla Public
-    License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
-using AlastairLundy.Extensions.IO.Directories.Creator;
-
+using AlastairLundy.Extensions.IO.Directories.Abstractions;
 using AlastairLundy.Extensions.IO.Internal.Localizations;
-
 // ReSharper disable RedundantBoolCompare
 
 namespace AlastairLundy.Extensions.IO.Directories;
 
-/// <summary>
-/// 
-/// </summary>
-public class DirectoryExplorer : IDirectoryExplorer, IRecursiveDirectoryExplorer
+public class RecursiveDirectoryManager : IRecursiveDirectoryManager
 {
-    protected DirectoryCreator DirectoryCreator;
-
-    public DirectoryExplorer()
-    {
-        DirectoryCreator = new DirectoryCreator();
-    }
-    
-    /// <summary>
+        /// <summary>
     /// Determines whether subdirectories of a directory are empty.
     /// </summary>
     /// <param name="directory">The directory to be searched.</param>
@@ -52,7 +30,9 @@ public class DirectoryExplorer : IDirectoryExplorer, IRecursiveDirectoryExplorer
         {
             string dir = subDirectories[i];
                     
-            if (IsDirectoryEmpty(dir))
+            DirectoryInfo directoryInfo = new DirectoryInfo(dir);
+            
+            if (directoryInfo.IsDirectoryEmpty())
             {
                 allowRecursiveEmptyDirectoryDeletion[i] = true;
             }
@@ -107,11 +87,13 @@ public class DirectoryExplorer : IDirectoryExplorer, IRecursiveDirectoryExplorer
 
                     int numberOfFiles = Directory.GetFiles(subDirectory).Length;
 
+                    DirectoryInfo directoryInfo = new DirectoryInfo(subDirectory);
+                    
                     if (numberOfFiles > 0)
                     {
                         directories.Add(subDirectory);
                     }
-                    else if (includeEmptyDirectories == true && IsDirectoryEmpty(directory))
+                    else if (includeEmptyDirectories == true && directoryInfo.IsDirectoryEmpty())
                     {
                         emptyDirectories.Add(subDirectory);
                     }
@@ -161,21 +143,65 @@ public class DirectoryExplorer : IDirectoryExplorer, IRecursiveDirectoryExplorer
         return GetRecursiveDirectoryContents(directory, false).directories;
     }
 
+
     /// <summary>
-    /// Checks if a Directory is empty or not.
+    /// Attempts to delete a directory recursively by deleting sub-folders and files before deleting the directory.
     /// </summary>
-    /// <param name="directory">The directory to be searched.</param>
-    /// <returns>true if the directory is empty; returns false otherwise.</returns>
-    /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
-    public bool IsDirectoryEmpty(string directory)
+    /// <param name="directory">The parent directory to be deleted.</param>
+    /// <param name="deleteEmptyDirectories">Whether to delete empty sub-folders or not.</param>
+    /// <returns>true if the directory was recursively deleted successfully; returns false otherwise.</returns>
+    public bool TryDeleteDirectoryRecursively(string directory, bool deleteEmptyDirectories)
+    {
+        try
+        {
+            DeleteDirectoryRecursively(directory, deleteEmptyDirectories);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+    
+    /// <summary>
+    /// Deletes a directory recursively by deleting one directory at a time.
+    /// </summary>
+    /// <param name="directory">The directory to be recursively deleted.</param>
+    /// <param name="deleteEmptyDirectory">Whether to delete empty directories or not.</param>
+    /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist or could not be located.</exception>
+    public void DeleteDirectoryRecursively(string directory, bool deleteEmptyDirectory)
     {
         if (Directory.Exists(directory))
         {
-            return Directory.GetFiles(directory).Length == 0 && Directory.GetDirectories(directory).Length == 0;
+            if (Directory.GetDirectories(directory).Length > 0)
+            {
+                foreach (string subDirectory in Directory.GetDirectories(directory))
+                {
+                    if (Directory.GetFiles(subDirectory).Length > 0)
+                    {
+                        foreach (string file in Directory.GetFiles(subDirectory))
+                        {
+                            File.Delete(file);
+                        }
+                    }
+
+                    int numberOfFiles = Directory.GetFiles(directory).Length;
+
+                    if (deleteEmptyDirectory == true && numberOfFiles == 0 || numberOfFiles > 0)
+                    {
+                        Directory.Delete(subDirectory);
+                    }
+                }
+            }
+            else
+            {
+                if (deleteEmptyDirectory)
+                {
+                    Directory.Delete(directory);
+                }
+            }
         }
-        else
-        {
-            throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));
-        }
+
+        throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));
     }
 }
