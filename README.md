@@ -23,3 +23,7 @@ This can be added to any .NET Standard 2.0, .NET Standard 2.1, or .NET 8 compati
 This library is licensed under the MPL 2.0 license.
 
 ## Acknowledgements
+This project would like to thank the following projects for their work:
+* [Polyfill](https://github.com/SimonCropp/Polyfill) for simplifying .NET Standard 2.0 & 2.1 support
+
+For more information, please see the [THIRD_PARTY_NOTICES file](https://github.com/alastairlundy/IOExtensions/blob/main/THIRD_PARTY_NOTICES.txt).
