@@ -5,8 +5,8 @@
 [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.Extensions.IO.svg)](https://www.nuget.org/packages/AlastairLundy.Extensions.IO/)
 
 ## Features
-* Support for creating, deleting (including recursively), or finding directories
-* Support for deleting or finding files
+* Support for creating, deleting (including recursively), or finding parent or recursive directories
+* Support for determining if a path is a file path
 * Support for checking if a directory is empty
 * Support for appending files
 * Support for concatenating files
