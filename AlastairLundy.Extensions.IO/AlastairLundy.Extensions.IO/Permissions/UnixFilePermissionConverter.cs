@@ -46,7 +46,7 @@ public static class UnixFilePermissionConverter
     }
 
     /// <summary>
-    /// Converts a Unix file permission in symbolic notation to Octal notation.
+    /// Converts a Unix file permission in octal notation to symbolic notation.
     /// </summary>
     /// <param name="numericNotation">The octal notation to be converted to symbolic notation.</param>
     /// <returns>the symbolic notation equivalent of the specified octal notation.</returns>
