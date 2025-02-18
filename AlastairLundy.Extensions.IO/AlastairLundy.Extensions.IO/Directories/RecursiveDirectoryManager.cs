@@ -9,11 +9,11 @@ namespace AlastairLundy.Extensions.IO.Directories;
 
 public class RecursiveDirectoryManager : IRecursiveDirectoryManager
 {
-        /// <summary>
+    /// <summary>
     /// Determines whether subdirectories of a directory are empty.
     /// </summary>
     /// <param name="directory">The directory to be searched.</param>
-    /// <returns>true if all subdirectories in a directory are empty; returns false otherwise.</returns>
+    /// <returns>True if all subdirectories in a directory are empty; false otherwise.</returns>
     /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist or could not be located.</exception>
     public bool AreSubdirectoriesEmpty(string directory)
     {
@@ -49,7 +49,7 @@ public class RecursiveDirectoryManager : IRecursiveDirectoryManager
     /// Gets the directories and files within a parent directory.
     /// </summary>
     /// <param name="directory">The directory to be searched.</param>
-    /// <returns>the directories and files within a parent directory.</returns>
+    /// <returns>The directories and files within a parent directory.</returns>
     public (IEnumerable<string> files, IEnumerable<string> directories) GetRecursiveDirectoryContents(string directory)
     {
         var output = GetRecursiveDirectoryContents(directory, true);
@@ -61,7 +61,7 @@ public class RecursiveDirectoryManager : IRecursiveDirectoryManager
     /// </summary>
     /// <param name="directory">The directory to be searched.</param>
     /// <param name="includeEmptyDirectories">Whether to include empty directories or not.</param>
-    /// <returns>the directories and files within a parent directory.</returns>
+    /// <returns>The directories and files within a parent directory.</returns>
     /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
     public (IEnumerable<string> files, IEnumerable<string> directories, IEnumerable<string> emptyDirectories)
         GetRecursiveDirectoryContents(string directory,
@@ -149,7 +149,7 @@ public class RecursiveDirectoryManager : IRecursiveDirectoryManager
     /// </summary>
     /// <param name="directory">The parent directory to be deleted.</param>
     /// <param name="deleteEmptyDirectories">Whether to delete empty sub-folders or not.</param>
-    /// <returns>true if the directory was recursively deleted successfully; returns false otherwise.</returns>
+    /// <returns>True if the directory was recursively deleted successfully; returns false otherwise.</returns>
     public bool TryDeleteDirectoryRecursively(string directory, bool deleteEmptyDirectories)
     {
         try

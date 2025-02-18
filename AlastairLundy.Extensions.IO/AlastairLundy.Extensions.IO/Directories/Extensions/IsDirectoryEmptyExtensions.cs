@@ -19,7 +19,7 @@ public static class IsDirectoryEmptyExtensions
     /// Checks if a Directory is empty or not.
      /// </summary>
     /// <param name="directory">The directory to be searched.</param>
-    /// <returns>true if the directory is empty; returns false otherwise.</returns>
+    /// <returns>True if the directory is empty; false otherwise.</returns>
     /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
     public static bool IsDirectoryEmpty(this DirectoryInfo directory)
     {
