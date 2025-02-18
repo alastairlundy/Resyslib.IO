@@ -32,6 +32,10 @@ public class FileAppender : IFileAppender
         
     private readonly IFileFinder _fileFinder;
     
+    /// <summary>
+    /// Instantiates the FileAppender's internal String builder.
+    /// </summary>
+    /// <param name="fileFinder">The file finder instance to be used.</param>
     public FileAppender(IFileFinder fileFinder)
     {
         _fileFinder = fileFinder;

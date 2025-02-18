@@ -12,6 +12,9 @@ using System.IO;
 
 namespace AlastairLundy.Extensions.IO.Files;
 
+/// <summary>
+/// 
+/// </summary>
 public class FileModel
 {
     public string FileName { get; protected set; }
@@ -21,6 +24,10 @@ public class FileModel
     public string FilePath { get; protected set; }
     
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="filePath"></param>
     public FileModel(string filePath)
     {
         FileExtension = Path.HasExtension(filePath) ? Path.GetExtension(filePath) : string.Empty;
