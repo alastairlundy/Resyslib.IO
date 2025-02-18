@@ -32,12 +32,6 @@ public class FileAppender : IFileAppender
         
     private readonly IFileFinder _fileFinder;
     
-    public FileAppender()
-    {
-        _appendedFileContents = new StringBuilder();
-        _fileFinder = new FileFinder();
-    }
-
     public FileAppender(IFileFinder fileFinder)
     {
         _fileFinder = fileFinder;
