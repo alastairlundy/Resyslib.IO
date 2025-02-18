@@ -10,6 +10,7 @@
 
 using System;
 using System.IO;
+
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 
 namespace AlastairLundy.Extensions.IO.Permissions;
@@ -21,7 +22,7 @@ public static class UnixFilePermissionParser
     /// Parse a Unix file permission in octal notation to a UnixFileMode enum.
     /// </summary>
     /// <param name="permissionNotation">The octal notation to be parsed.</param>
-    /// <returns>the UnixFileMode enum equivalent to the specified octal notation.</returns>
+    /// <returns>The UnixFileMode enum equivalent to the specified octal notation.</returns>
     /// <exception cref="ArgumentException">Thrown if an invalid octal notation is specified.</exception>
     public static UnixFileMode ParseNumericValue(string permissionNotation)
     {
@@ -56,7 +57,7 @@ public static class UnixFilePermissionParser
     /// </summary>
     /// <param name="permissionNotation">The Unix file permission octal notation to be parsed.</param>
     /// <param name="fileMode">The UnixFileMode equivalent value to the octal notation if a valid octal notation was specified; null otherwise.</param>
-    /// <returns>true if a valid Unix file permission octal notation was specified; returns false otherwise.</returns>
+    /// <returns>True if a valid Unix file permission octal notation was specified; false otherwise.</returns>
     public static bool TryParseNumericValue(string permissionNotation, out UnixFileMode? fileMode)
     {
         try
@@ -75,7 +76,7 @@ public static class UnixFilePermissionParser
     /// Parse a Unix file permission in symbolic notation to a UnixFileMode enum.
     /// </summary>
     /// <param name="permissionNotation">The symbolic notation to be compared.</param>
-    /// <returns>the UnixFileMode enum equivalent to the specified symbolic notation.</returns>
+    /// <returns>The UnixFileMode enum equivalent to the specified symbolic notation.</returns>
     /// <exception cref="ArgumentException">Thrown if an invalid symbolic notation is specified.</exception>
     public static UnixFileMode ParseSymbolicValue(string permissionNotation)
     {
@@ -110,7 +111,7 @@ public static class UnixFilePermissionParser
     /// </summary>
     /// <param name="permissionNotation">The Unix file permission symbolic notation to be parsed.</param>
     /// <param name="fileMode">The UnixFileMode equivalent value to the symbolic notation if a valid symbolic notation was specified; null otherwise.</param>
-    /// <returns>true if a valid Unix file permission symbolic notation was specified; returns false otherwise.</returns>
+    /// <returns>True if a valid Unix file permission symbolic notation was specified; false otherwise.</returns>
     public static bool TryParseSymbolicValue(string permissionNotation, out UnixFileMode? fileMode)
     {
         try
@@ -128,10 +129,9 @@ public static class UnixFilePermissionParser
     /// <summary>
     /// Attempts to parse a Unix file permission in either Numeric or Symbolic notation to a UnixFileMode enum. 
     /// </summary>
-    /// 
     /// <param name="permissionNotation">The Unix file permission symbolic notation to be parsed.</param>
     /// <param name="fileMode">The unix file mode if a valid permission notation was parsed; null otherwise.</param>
-    /// <returns>true if the file mode notation was parsed successfully; returns false otherwise.</returns>
+    /// <returns>True if the file mode notation was parsed successfully; false otherwise.</returns>
     public static bool TryParse(string permissionNotation, out UnixFileMode? fileMode)
     {
         bool isNumericNotation = IsNumericNotation(permissionNotation);
@@ -165,7 +165,7 @@ public static class UnixFilePermissionParser
     /// Detects whether a Unix Octal file permission notation is valid.
     /// </summary>
     /// <param name="notation">The numeric notation to be compared.</param>
-    /// <returns>true if a valid unix file permission octal notation has been provided; returns false otherwise.</returns>
+    /// <returns>True if a valid unix file permission octal notation has been provided; false otherwise.</returns>
     public static bool IsNumericNotation(string notation)
     {
         if (notation.Length == 4 && int.TryParse(notation, out int result))
@@ -197,7 +197,7 @@ public static class UnixFilePermissionParser
     /// Detects whether a Unix symbolic file permission is valid.
     /// </summary>
     /// <param name="notation">The symbolic notation to be compared.</param>
-    /// <returns>true if a valid unix file permission symbolic notation has been provided; returns false otherwise.</returns>
+    /// <returns>True if a valid unix file permission symbolic notation has been provided; false otherwise.</returns>
     public static bool IsSymbolicNotation(string notation)
     {
         if (notation.Length == 10)

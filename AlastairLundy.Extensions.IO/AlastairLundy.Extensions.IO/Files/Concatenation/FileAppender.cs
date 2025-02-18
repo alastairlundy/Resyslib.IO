@@ -43,6 +43,12 @@ public class FileAppender : IFileAppender
         _appendedFileContents = new StringBuilder();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="fileToBeAppended"></param>
+    /// <exception cref="Exception"></exception>
+    /// <exception cref="FileNotFoundException"></exception>
     public async Task AppendFileAsync(FileModel fileToBeAppended)
     {
         if (_fileFinder.IsAFile(fileToBeAppended.FilePath) || File.Exists(fileToBeAppended.FilePath))
@@ -75,7 +81,7 @@ public class FileAppender : IFileAppender
     /// Attempts to append the contents of a file to an existing list.
     /// </summary>
     /// <param name="fileToBeAppended">The file to have its contents appended to the existing file contents. If no existing file contents exists, this will become the contents appended to in the future.</param>
-    /// <returns>true if the file was successfully appended; returns false otherwise.</returns>
+    /// <returns>True if the file was successfully appended; false otherwise.</returns>
     public bool TryAppendFile(string fileToBeAppended)
     {
         try
@@ -120,6 +126,12 @@ public class FileAppender : IFileAppender
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="fileToBeAppended"></param>
+    /// <exception cref="Exception"></exception>
+    /// <exception cref="FileNotFoundException"></exception>
     public async Task AppendFileAsync(string fileToBeAppended)
     {
         if (_fileFinder.IsAFile(fileToBeAppended) || File.Exists(fileToBeAppended))
@@ -215,7 +227,7 @@ public class FileAppender : IFileAppender
     /// Attempts to append the contents of files to an existing list.
     /// </summary>
     /// <param name="filesToBeAppended">The files to be appended to the existing file contents. If no existing file contents exists, this will become the contents appended to in the future.</param>
-    /// <returns>true if the files were successfully appended; returns false otherwise.</returns>
+    /// <returns>True if the files were successfully appended; false otherwise.</returns>
     public bool TryAppendFiles(IEnumerable<string> filesToBeAppended)
     {
         try
@@ -232,7 +244,7 @@ public class FileAppender : IFileAppender
     /// <summary>
     /// Returns the appended contents as an IEnumerable.
     /// </summary>
-    /// <returns>the list of appended strings as an enumerable.</returns>
+    /// <returns>The list of appended strings as an enumerable.</returns>
     public IEnumerable<string> ToEnumerable()
     {
 #if NET6_0_OR_GREATER
@@ -242,6 +254,10 @@ public class FileAppender : IFileAppender
 #endif
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public override string ToString()
     {
         return _appendedFileContents.ToString();

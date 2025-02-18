@@ -19,7 +19,7 @@ public static class UnixFilePermissionConverter
     /// Converts a Unix file permission in symbolic notation to Octal notation.
     /// </summary>
     /// <param name="symbolicNotation">The symbolic notation to be converted to octal notation.</param>
-    /// <returns>the octal notation equivalent of the specified symbolic notation.</returns>
+    /// <returns>The octal notation equivalent of the specified symbolic notation.</returns>
     /// <exception cref="ArgumentException">Thrown if an invalid symbolic notation is specified.</exception>
     public static string ToNumericNotation(string symbolicNotation)
     {
@@ -49,7 +49,7 @@ public static class UnixFilePermissionConverter
     /// Converts a Unix file permission in octal notation to symbolic notation.
     /// </summary>
     /// <param name="numericNotation">The octal notation to be converted to symbolic notation.</param>
-    /// <returns>the symbolic notation equivalent of the specified octal notation.</returns>
+    /// <returns>The symbolic notation equivalent of the specified octal notation.</returns>
     /// <exception cref="ArgumentException">Thrown if an invalid octal notation is specified.</exception>
     public static string ToSymbolicNotation(string numericNotation)
     {

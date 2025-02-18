@@ -21,7 +21,7 @@ public class FileFinder : IFileFinder
     /// Determines whether a string is the name of a file.
     /// </summary>
     /// <param name="filePath">The string to be searched.</param>
-    /// <returns>true if the string is a file; return false otherwise.</returns>
+    /// <returns>True if the string is a file; false otherwise.</returns>
     public bool IsAFile(string filePath)
     {
         try
