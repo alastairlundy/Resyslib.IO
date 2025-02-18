@@ -61,7 +61,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="..\LICENSE.txt">
+        <Content Include="..\..\LICENSE.txt">
             <Link>LICENSE.txt</Link>
             <PackagePath>LICENSE.txt</PackagePath>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
