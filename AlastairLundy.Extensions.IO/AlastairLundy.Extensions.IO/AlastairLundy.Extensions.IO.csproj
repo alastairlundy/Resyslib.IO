@@ -16,7 +16,7 @@
         <Title>AlastairLundy.Extensions.IO</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
-        <PackageTags>io</PackageTags>
+        <PackageTags>IO</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
