@@ -256,9 +256,9 @@ public class FileAppender : IFileAppender
     }
 
     /// <summary>
-    /// 
+    /// Converts the appended file contents to a string.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The appended file contents as a string.</returns>
     public override string ToString()
     {
         return _appendedFileContents.ToString();
