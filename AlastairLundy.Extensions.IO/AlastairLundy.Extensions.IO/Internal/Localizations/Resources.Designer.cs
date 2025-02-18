@@ -96,7 +96,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to An Invalid Unix Numeric file permission notation of {x} was provided..
         /// </summary>
         internal static string Exceptions_Permisions_InvalidNumericNotation {
             get {
@@ -105,7 +105,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to An Invalid Unix Symbolic file permission notation of {x} was provided..
         /// </summary>
         internal static string Exceptions_Permissions_InvalidSymbolicNotation {
             get {

@@ -38,11 +38,11 @@ public static class UnixFilePermissionConverter
                 "-rwxr-----" => "0740",
                 "-rwxrwx---" => "0770",
                 "-rwxrwxrwx" => "0777",
-                _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation)
+                _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", symbolicNotation))
             };
         }
 
-        throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation);
+        throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", symbolicNotation));
     }
 
     /// <summary>
@@ -68,10 +68,10 @@ public static class UnixFilePermissionConverter
                 740 => "-rwxr-----",
                 770 => "-rwxrwx---",
                 777 => "-rwxrwxrwx",
-                _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation)
+                _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", numericNotation))
             };
         }
 
-        throw new ArgumentException(Resources.Exceptions_Permisions_InvalidNumericNotation);
+        throw new ArgumentException(Resources.Exceptions_Permisions_InvalidNumericNotation.Replace("{x}", numericNotation));
     }
 }

@@ -130,10 +130,10 @@
     <value>File {x} was deleted.</value>
   </data>
   <data name="Exceptions_Permissions_InvalidSymbolicNotation" xml:space="preserve">
-    <value />
+    <value>An Invalid Unix Symbolic file permission notation of {x} was provided.</value>
   </data>
   <data name="Exceptions_Permisions_InvalidNumericNotation" xml:space="preserve">
-    <value />
+    <value>An Invalid Unix Numeric file permission notation of {x} was provided.</value>
   </data>
   <data name="IO_Directory_Deleted" xml:space="preserve">
     <value>Directory {x} was deleted.</value>
