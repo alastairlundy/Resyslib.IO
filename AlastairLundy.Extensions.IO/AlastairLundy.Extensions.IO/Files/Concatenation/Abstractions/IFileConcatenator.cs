@@ -18,7 +18,7 @@ public interface IFileConcatenator
     /// Concatenated the contents of files in the style of the Unix Cat command.
     /// </summary>
     /// <param name="files">The files to be concatenated.</param>
-    /// <returns>the concatenated files as an IEnumerable of strings.</returns>
+    /// <returns>The concatenated files as an IEnumerable of strings.</returns>
     IEnumerable<string> ConcatenateFilesToEnumerable(IEnumerable<string> files);
 
     /// <summary>
