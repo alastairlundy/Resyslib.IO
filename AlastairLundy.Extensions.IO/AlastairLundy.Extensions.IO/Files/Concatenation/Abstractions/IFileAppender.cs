@@ -9,6 +9,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AlastairLundy.Extensions.IO.Files.Concatenation.Abstractions;
@@ -18,8 +19,8 @@ public interface IFileAppender
     void AppendFile(string fileToBeAppended);
     void AppendFile(FileModel fileToBeAppended);
     
-    Task AppendFileAsync(string fileToBeAppended);
-    Task AppendFileAsync(FileModel fileToBeAppended);
+    Task AppendFileAsync(string fileToBeAppended, CancellationToken cancellationToken = default);
+    Task AppendFileAsync(FileModel fileToBeAppended, CancellationToken cancellationToken = default);
     
     bool TryAppendFile(string fileToBeAppended);
         

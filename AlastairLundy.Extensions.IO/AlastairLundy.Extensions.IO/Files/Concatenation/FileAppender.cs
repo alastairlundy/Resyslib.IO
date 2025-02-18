@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using AlastairLundy.Extensions.IO.Files.Abstractions;
@@ -42,21 +43,22 @@ public class FileAppender : IFileAppender
         _fileFinder = fileFinder;
         _appendedFileContents = new StringBuilder();
     }
-
+    
     /// <summary>
-    /// 
+    /// Asynchronously appends the contents of a file to an existing list of strings.
     /// </summary>
-    /// <param name="fileToBeAppended"></param>
-    /// <exception cref="Exception"></exception>
-    /// <exception cref="FileNotFoundException"></exception>
-    public async Task AppendFileAsync(FileModel fileToBeAppended)
+    /// <param name="fileToBeAppended">The file to be appended.</param>
+    /// <param name="cancellationToken">The cancellation token to be used in case of cancellation.</param>
+    /// <exception cref="Exception">Thrown if the file appending fails.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the file specified is not found.</exception>
+    public async Task AppendFileAsync(FileModel fileToBeAppended, CancellationToken cancellationToken = default)
     {
         if (_fileFinder.IsAFile(fileToBeAppended.FilePath) || File.Exists(fileToBeAppended.FilePath))
         {
             try
             {
 #if NET6_0_OR_GREATER
-                string[] lines = await File.ReadAllLinesAsync(fileToBeAppended.FilePath);
+                string[] lines = await File.ReadAllLinesAsync(fileToBeAppended.FilePath, cancellationToken);
 #else
                 string[] lines = await Task.FromResult(File.ReadAllLines(fileToBeAppended.FilePath));
 #endif
@@ -127,19 +129,20 @@ public class FileAppender : IFileAppender
     }
 
     /// <summary>
-    /// 
+    /// Asynchronously appends the contents of a file to an existing list of strings.
     /// </summary>
-    /// <param name="fileToBeAppended"></param>
-    /// <exception cref="Exception"></exception>
-    /// <exception cref="FileNotFoundException"></exception>
-    public async Task AppendFileAsync(string fileToBeAppended)
+    /// <param name="fileToBeAppended">The file to be appended.</param>
+    /// <param name="cancellationToken">The cancellation token to be used in case of cancellation.</param>
+    /// <exception cref="Exception">Thrown if the file appending fails.</exception>
+    /// <exception cref="FileNotFoundException">Thrown if the file specified is not found.</exception>
+    public async Task AppendFileAsync(string fileToBeAppended, CancellationToken cancellationToken = default)
     {
         if (_fileFinder.IsAFile(fileToBeAppended) || File.Exists(fileToBeAppended))
         {
             try
             {
 #if NET6_0_OR_GREATER
-                string[] lines = await File.ReadAllLinesAsync(fileToBeAppended);
+                string[] lines = await File.ReadAllLinesAsync(fileToBeAppended, cancellationToken);
 #else
                 string[] lines = await Task.FromResult(File.ReadAllLines(fileToBeAppended));
 #endif
@@ -161,7 +164,7 @@ public class FileAppender : IFileAppender
     }
 
     /// <summary>
-    /// Appends the contents of a file to an existing list.
+    /// Appends the contents of a file to an existing list of strings.
     /// </summary>
     /// <param name="fileToBeAppended">The file to be appended.</param>
     /// <exception cref="Exception">Thrown if the file appending fails.</exception>

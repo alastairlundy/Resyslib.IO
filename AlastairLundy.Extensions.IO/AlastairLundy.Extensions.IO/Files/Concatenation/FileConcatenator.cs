@@ -22,7 +22,11 @@ namespace AlastairLundy.Extensions.IO.Files.Concatenation;
 public class FileConcatenator : IFileConcatenator
 {
     private readonly IFileAppender _fileAppender;
-        
+    
+    /// <summary>
+    /// Instantiates the File Concatenator with the specified IFileAppender.
+    /// </summary>
+    /// <param name="fileAppender">The IFileAppender instance to be used.</param>
     public FileConcatenator(IFileAppender fileAppender)
     {
         _fileAppender = fileAppender;
