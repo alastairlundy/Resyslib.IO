@@ -36,4 +36,10 @@ public class FileModel
         
         FilePath = Path.GetFullPath(filePath);
     }
+
+    
+    public override string ToString()
+    {
+        return FilePath;
+    }
 }
