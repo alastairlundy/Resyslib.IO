@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace AlastairLundy.Extensions.IO.Files;
+namespace AlastairLundy.Extensions.IO.Files.Abstractions;
 
 public interface IFilePathResolver
 {
