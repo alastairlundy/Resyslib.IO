@@ -8,69 +8,79 @@
  */
 
 
-#nullable enable
-
-#if NETSTANDARD2_0 || NETSTANDARD2_1
-using OperatingSystem = Polyfills.OperatingSystemPolyfill;
-#endif
-
-using System;
 using System.IO;
 using System.Linq;
 
 using AlastairLundy.Extensions.IO.Files.Abstractions;
 
-using AlastairLundy.Extensions.IO.Internal.Localizations;
-
 namespace AlastairLundy.Extensions.IO.Files;
 
 public class FilePathResolver : IFilePathResolver
 {
-    
     /// <summary>
-    /// Resolves the file path to a specific file if the file path is part of a PATH environment variable.
+    /// Resolves the file path to a specific file.
     /// </summary>
     /// <param name="inputFilePath">The input file path to resolve.</param>
-    /// <param name="outputFilePath">The resolved file path if the file path is in the PATH environment variable; the original input file path otherwise.</param>
+    /// <param name="outputFilePath">The resolved file path.</param>
     /// <exception cref="FileNotFoundException">Thrown if the input file path is null or empty.</exception>
-    public void ResolveFilePath(string inputFilePath, out string outputFilePath)
+    public void ResolveFilePath(string inputFilePath, out string resolvedFilePath)
     {
-        if (string.IsNullOrEmpty(inputFilePath))
-        {
-            throw new ArgumentNullException(Resources.Exceptions_IO_TargetFile_NullOrEmpty);
-        }
-
-        if (File.Exists(inputFilePath))
-        {
-            outputFilePath = inputFilePath;
-            return;
-        }
+        int recursionNumber = 0;
         
-        string? path = Environment.GetEnvironmentVariable("PATH");
+        string newPath = string.Join(string.Empty, inputFilePath.Where(x => Path.GetInvalidPathChars().Contains(x) == false && Path.GetInvalidFileNameChars().Contains(x) == false)
+            .ToArray()); 
             
-        char pathSeparator = OperatingSystem.IsWindows() ? ';' : ':';
-
-        if (path == null)
+        while (recursionNumber < 3)
         {
-            outputFilePath = inputFilePath;
-            return;
-        }
-            
-        string[] paths = path.Split(pathSeparator);
-
-        foreach (string pathLine in paths)
-        {
-            string[] files = Directory.EnumerateFiles(pathLine,
-                $"{Path.GetFileName(inputFilePath)}.*",
-                SearchOption.TopDirectoryOnly).ToArray();
-            
-            if (files.Length > 0)
+#if NET6_0_OR_GREATER || NETSTANDARD2_1
+            if (Path.IsPathFullyQualified(newPath))
+#else
+            if(Path.IsPathRooted(newPath))
+#endif
             {
-                outputFilePath = files.First();
+                resolvedFilePath = newPath;
+                return;
+            }
+
+#if NET6_0_OR_GREATER
+            if (Path.Exists(Path.GetFullPath(inputFilePath)) == false)
+#else
+            if (File.Exists(Path.GetFullPath(inputFilePath)) == false)
+#endif
+            {
+                string[] directoryComponents = Path.GetFullPath(inputFilePath).Split(Path.DirectorySeparatorChar);
+
+                string lastDirectory = Directory.Exists(directoryComponents.Last())
+                    ? directoryComponents.Last()
+                    : directoryComponents.SkipLast(1).Last();
+                
+                string targetFileName = Path.GetFileName(newPath);
+                
+                if (Directory.Exists(Path.GetFullPath(lastDirectory)))
+                {
+                    string[] files = Directory.EnumerateFiles(Path.GetFullPath(inputFilePath)).ToArray();
+
+                    foreach (string file in files)
+                    {
+                        FileInfo fileInfo = new(file);
+
+                        if (fileInfo.FullName.Equals(Path.GetFullPath(lastDirectory)) ||
+                            fileInfo.Name.Equals(targetFileName)){
+                            resolvedFilePath = fileInfo.FullName;
+                            return;
+                        }
+                    }
+                }
+                
+                recursionNumber += 1;
+            }
+            else
+            {
+                resolvedFilePath = Path.GetFullPath(newPath);
                 return;
             }
         }
         
-        outputFilePath = Path.GetFullPath(inputFilePath);
+        resolvedFilePath = newPath;
     }
 }
