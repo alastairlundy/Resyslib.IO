@@ -21,7 +21,7 @@ public class FilePathResolver : IFilePathResolver
     /// Resolves the file path to a specific file.
     /// </summary>
     /// <param name="inputFilePath">The input file path to resolve.</param>
-    /// <param name="outputFilePath">The resolved file path.</param>
+    /// <param name="resolvedFilePath">The resolved file path.</param>
     /// <exception cref="FileNotFoundException">Thrown if the input file path is null or empty.</exception>
     public void ResolveFilePath(string inputFilePath, out string resolvedFilePath)
     {
