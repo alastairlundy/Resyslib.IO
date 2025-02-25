@@ -18,28 +18,12 @@
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <PackageTags>IO</PackageTags>
-        <PackageVersion>2.0.0</PackageVersion>
+        <PackageVersion>2.1.0</PackageVersion>
         <Description> A library to make programmatic directory deletion and creation in .NET easier. </Description>
-        <PackageReleaseNotes>## Changes since 1.2.0
-
-### Additions
-* Added .NET 9 TFM
-* Added ``IFilePathResolver`` interface and implementing  ``FilePathResolver`` class
-
-### Changes
-* Changed namespaces for some files
-* Made ``FileConcatenator`` a non-static class that inherits from the interface extracted from it ``IFileConcatenator``
-* Merged recursive directory related code into a new ``RecursiveDirectoryManager`` class and corresponding interface.
-* Merged parent directory related code into a new ``ParentDirectoryManager`` class and corresponding interface
-
-### Removals
-* Removed ``IFileRemover`` and ``FileRemover``
-* Removed ``DirectoryCreator`` and ``IDirectoryCreator``
-* Removed ``IDirectoryExplorer`` - Moved ``IsDirectoryEmpty`` method to an extension method
-* Removed ``IRecursiveDirectoryExplorer`` and ``RecursiveDirectoryExplorer`` - This has been mostly merged into ``IRecursiveDirectoryManager`` and ``RecursiveDirectoryManager`` respectively
-
-### Fixes
-* Fixed a mistake in an xml doc comment</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes
+* Added ``PathType`` enum
+* Added missing license notice to ``RecursiveDirectoryManager``
+* Improved ``FilePathResolver``</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
