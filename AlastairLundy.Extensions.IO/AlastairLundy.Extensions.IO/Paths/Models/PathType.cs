@@ -9,6 +9,9 @@
 
 namespace AlastairLundy.Extensions.IO.Paths;
 
+/// <summary>
+/// An enum representing the types of paths.
+/// </summary>
 public enum PathType
 {
     File,
