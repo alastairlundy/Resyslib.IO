@@ -33,7 +33,7 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-        working-directory: AlastairLundy.Extensions.Processes/AlastairLundy.Extensions.Processes/
+        working-directory: AlastairLundy.Extensions.IO/AlastairLundy.Extensions.IO/
     - name: Restore dependencies
       run: dotnet restore
     - name: Create packages
