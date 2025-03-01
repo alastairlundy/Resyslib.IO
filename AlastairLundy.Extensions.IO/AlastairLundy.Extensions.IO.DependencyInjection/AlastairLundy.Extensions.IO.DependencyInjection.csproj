@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <LangVersion>13</LangVersion>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>2.1.0</Version>
+        <Title>AlastairLundy.Extensions.IO.DependencyInjection</Title>
+        <Authors>AlastairLundy</Authors>
+        <Description>Enables easier setup of IO Extensions' interfaces for dependency injection when using Microsoft.Extensions.DependencyInjection.</Description>
+        <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/Extensions.IO/</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>io, files, directories, directory, extension-methods </PackageTags>
+        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <IncludePackageSymbols>true</IncludePackageSymbols>
+        <PackageSymbolFormat>.snupkg</PackageSymbolFormat>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <TargetFrameworks>netstandard2.0;net8.0;netstandard2.1</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AlastairLundy.Extensions.IO" Version="[2.1.0, 3.0.0)"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[9.0.2, 10.0.0)"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\LICENSE.txt">
+        <Link>LICENSE.txt</Link>
+          <PackagePath>LICENSE.txt</PackagePath>
+      </Content>
+      <None Remove="README.md" />
+        <Content Include="README.md" >
+            <PackagePath>README.md</PackagePath>
+        </Content>
+    </ItemGroup>
+    
+</Project>
