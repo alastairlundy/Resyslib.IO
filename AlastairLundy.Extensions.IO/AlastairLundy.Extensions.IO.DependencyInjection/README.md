@@ -48,10 +48,10 @@ Releases that add major breaking changes or significantly affect the API should 
 ### Building for Testing
 You can build for testing by building the project within your IDE or VS Code, or manually by entering the following command: ``dotnet build -c Debug``.
 
-If you encounter any bugs or issues, try testing your code with breakpoints in the affected code where appropriate. Failing that, please [report the issue](https://github.com/alastairlundy/IOExtensions/issues/new/) if one doesn't already exist for the bug(s).
+If you encounter any bugs or issues, try testing your code with breakpoints in the affected code where appropriate. Failing that, please [report the issue](https://github.com/alastairlundy/Extensions.IO/issues/new/) if one doesn't already exist for the bug(s).
 
 ### Building for Release
-Before building a release build, ensure you apply the relevant changes to the ``AlastairLundy.Extensions.IO.csproj`` file:
+Before building a release build, ensure you apply the relevant changes to the ``AlastairLundy.Extensions.IO.DependencyInjection.csproj`` file:
 * Update the Package Version variable
 * Update the project file's Changelog
 
@@ -67,8 +67,8 @@ Thank you in advance for considering contributing to IOExtensions.
 
 Please see the [CONTRIBUTING.md file](https://github.com/alastairlundy/IOExtensions/blob/main/CONTRIBUTING.md) for code and localization contributions.
 
-If you want to file a bug report or suggest a potential feature to add, please check out the [GitHub issues page](https://github.com/alastairlundy/IOExtensions/issues/) to see if a similar or identical issue is already open.
-If there is not already a relevant issue filed, please [file one here](https://github.com/alastairlundy/IOExtensions/issues/new) and follow the respective guidance from the appropriate issue template.
+If you want to file a bug report or suggest a potential feature to add, please check out the [GitHub issues page](https://github.com/alastairlundy/Extensions.IO/issues/) to see if a similar or identical issue is already open.
+If there is not already a relevant issue filed, please [file one here](https://github.com/alastairlundy/Extensions.IO/issues/new) and follow the respective guidance from the appropriate issue template.
 
 Thanks.
 
