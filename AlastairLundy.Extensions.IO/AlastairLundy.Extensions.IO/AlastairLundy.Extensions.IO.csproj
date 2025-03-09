@@ -18,12 +18,10 @@
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <PackageTags>IO</PackageTags>
-        <PackageVersion>2.1.0</PackageVersion>
+        <PackageVersion>2.2.0</PackageVersion>
         <Description> A library to make programmatic directory deletion and creation in .NET easier. </Description>
         <PackageReleaseNotes>## Changes
-* Added ``PathType`` enum
-* Added missing license notice to ``RecursiveDirectoryManager``
-* Improved ``FilePathResolver``</PackageReleaseNotes>
+* Removed dependency on Polyfill</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
