@@ -5,6 +5,17 @@
         <LangVersion>13</LangVersion>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>2.2.0</Version>
+        <Title>AlastairLundy.Extensions.IO.Abstractions</Title>
+        <Authors>AlastairLundy</Authors>
+        <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/Extensions.IO</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>Initial Release as separate package</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Description>Abstractions and common types for AlastairLundy.Extensions.IO </Description>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
     </PropertyGroup>
 
 </Project>
