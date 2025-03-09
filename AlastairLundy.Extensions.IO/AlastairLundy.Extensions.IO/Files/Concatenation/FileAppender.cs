@@ -61,7 +61,7 @@ public class FileAppender : IFileAppender
                 string[] lines = await Task.FromResult(File.ReadAllLines(fileToBeAppended.FilePath));
 #endif
                 
-                foreach (var line in lines)
+                foreach (string line in lines)
                 {
                     _appendedFileContents.AppendLine(line);
                 }
@@ -110,7 +110,7 @@ public class FileAppender : IFileAppender
             {
                 string[] lines = File.ReadAllLines(fileToBeAppended.FilePath);
 
-                foreach (var line in lines)
+                foreach (string line in lines)
                 {
                     _appendedFileContents.AppendLine(line);
                 }
