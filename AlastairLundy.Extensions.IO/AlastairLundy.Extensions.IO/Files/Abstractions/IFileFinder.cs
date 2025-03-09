@@ -7,9 +7,10 @@
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-namespace AlastairLundy.Extensions.IO.Files.Abstractions;
-
-public interface IFileFinder
+namespace AlastairLundy.Extensions.IO.Files.Abstractions
 {
-    public bool IsAFile(string filePath);
+    public interface IFileFinder
+    {
+         bool IsAFile(string filePath);
+    }
 }

@@ -10,36 +10,37 @@
 using System.IO;
 // ReSharper disable ConvertToPrimaryConstructor
 
-namespace AlastairLundy.Extensions.IO.Files;
-
-/// <summary>
-/// 
-/// </summary>
-public class FileModel
+namespace AlastairLundy.Extensions.IO.Files
 {
-    public string FileName { get; protected set; }
-
-    public string FileExtension { get; protected set; }
-    
-    public string FilePath { get; protected set; }
-    
-
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="filePath"></param>
-    public FileModel(string filePath)
+    public class FileModel
     {
-        FileExtension = Path.HasExtension(filePath) ? Path.GetExtension(filePath) : string.Empty;
+        public string FileName { get; protected set; }
 
-        FileName = Path.GetFileNameWithoutExtension(filePath);
+        public string FileExtension { get; protected set; }
+    
+        public string FilePath { get; protected set; }
+    
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filePath"></param>
+        public FileModel(string filePath)
+        {
+            FileExtension = Path.HasExtension(filePath) ? Path.GetExtension(filePath) : string.Empty;
+
+            FileName = Path.GetFileNameWithoutExtension(filePath);
         
-        FilePath = Path.GetFullPath(filePath);
-    }
+            FilePath = Path.GetFullPath(filePath);
+        }
 
     
-    public override string ToString()
-    {
-        return FilePath;
+        public override string ToString()
+        {
+            return FilePath;
+        }
     }
 }

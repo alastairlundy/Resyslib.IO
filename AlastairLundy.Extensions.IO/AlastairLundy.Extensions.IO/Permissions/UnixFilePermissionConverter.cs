@@ -11,67 +11,68 @@ using System;
 
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 
-namespace AlastairLundy.Extensions.IO.Permissions;
-
-public static class UnixFilePermissionConverter
+namespace AlastairLundy.Extensions.IO.Permissions
 {
-    /// <summary>
-    /// Converts a Unix file permission in symbolic notation to Octal notation.
-    /// </summary>
-    /// <param name="symbolicNotation">The symbolic notation to be converted to octal notation.</param>
-    /// <returns>The octal notation equivalent of the specified symbolic notation.</returns>
-    /// <exception cref="ArgumentException">Thrown if an invalid symbolic notation is specified.</exception>
-    public static string ToNumericNotation(string symbolicNotation)
+    public static class UnixFilePermissionConverter
     {
-        if (symbolicNotation.Length == 10)
+        /// <summary>
+        /// Converts a Unix file permission in symbolic notation to Octal notation.
+        /// </summary>
+        /// <param name="symbolicNotation">The symbolic notation to be converted to octal notation.</param>
+        /// <returns>The octal notation equivalent of the specified symbolic notation.</returns>
+        /// <exception cref="ArgumentException">Thrown if an invalid symbolic notation is specified.</exception>
+        public static string ToNumericNotation(string symbolicNotation)
         {
-            return symbolicNotation switch
+            if (symbolicNotation.Length == 10)
             {
-                "----------" => "0000",
-                "---x--x--x" => "0111",
-                "--w--w--w-" => "0222",
-                "--wx-wx-wx" => "0333",
-                "-r--r--r--" => "0444",
-                "-r-xr-xr-x" => "0555",
-                "-rw-rw-rw-" => "0666",
-                "-rwx------" => "0700",
-                "-rwxr-----" => "0740",
-                "-rwxrwx---" => "0770",
-                "-rwxrwxrwx" => "0777",
-                _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", symbolicNotation))
-            };
+                return symbolicNotation switch
+                {
+                    "----------" => "0000",
+                    "---x--x--x" => "0111",
+                    "--w--w--w-" => "0222",
+                    "--wx-wx-wx" => "0333",
+                    "-r--r--r--" => "0444",
+                    "-r-xr-xr-x" => "0555",
+                    "-rw-rw-rw-" => "0666",
+                    "-rwx------" => "0700",
+                    "-rwxr-----" => "0740",
+                    "-rwxrwx---" => "0770",
+                    "-rwxrwxrwx" => "0777",
+                    _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", symbolicNotation))
+                };
+            }
+
+            throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", symbolicNotation));
         }
 
-        throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", symbolicNotation));
-    }
-
-    /// <summary>
-    /// Converts a Unix file permission in octal notation to symbolic notation.
-    /// </summary>
-    /// <param name="numericNotation">The octal notation to be converted to symbolic notation.</param>
-    /// <returns>The symbolic notation equivalent of the specified octal notation.</returns>
-    /// <exception cref="ArgumentException">Thrown if an invalid octal notation is specified.</exception>
-    public static string ToSymbolicNotation(string numericNotation)
-    {
-        if (numericNotation.Length == 4 && int.TryParse(numericNotation, out int result))
+        /// <summary>
+        /// Converts a Unix file permission in octal notation to symbolic notation.
+        /// </summary>
+        /// <param name="numericNotation">The octal notation to be converted to symbolic notation.</param>
+        /// <returns>The symbolic notation equivalent of the specified octal notation.</returns>
+        /// <exception cref="ArgumentException">Thrown if an invalid octal notation is specified.</exception>
+        public static string ToSymbolicNotation(string numericNotation)
         {
-            return result switch
+            if (numericNotation.Length == 4 && int.TryParse(numericNotation, out int result))
             {
-                0 => "----------",
-                111 => "---x--x--x",
-                222 => "--w--w--w-",
-                333 => "--wx-wx-wx",
-                444 => "-r--r--r--",
-                555 => "-r-xr-xr-x",
-                666 => "-rw-rw-rw-",
-                700 => "-rwx------",
-                740 => "-rwxr-----",
-                770 => "-rwxrwx---",
-                777 => "-rwxrwxrwx",
-                _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", numericNotation))
-            };
-        }
+                return result switch
+                {
+                    0 => "----------",
+                    111 => "---x--x--x",
+                    222 => "--w--w--w-",
+                    333 => "--wx-wx-wx",
+                    444 => "-r--r--r--",
+                    555 => "-r-xr-xr-x",
+                    666 => "-rw-rw-rw-",
+                    700 => "-rwx------",
+                    740 => "-rwxr-----",
+                    770 => "-rwxrwx---",
+                    777 => "-rwxrwxrwx",
+                    _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", numericNotation))
+                };
+            }
 
-        throw new ArgumentException(Resources.Exceptions_Permisions_InvalidNumericNotation.Replace("{x}", numericNotation));
+            throw new ArgumentException(Resources.Exceptions_Permisions_InvalidNumericNotation.Replace("{x}", numericNotation));
+        }
     }
 }

@@ -7,13 +7,14 @@
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-namespace AlastairLundy.Extensions.IO.Paths;
-
-/// <summary>
-/// An enum representing the types of paths.
-/// </summary>
-public enum PathType
+namespace AlastairLundy.Extensions.IO.Paths
 {
-    File,
-    Directory
+    /// <summary>
+    /// An enum representing the types of paths.
+    /// </summary>
+    public enum PathType
+    {
+        File,
+        Directory
+    }
 }

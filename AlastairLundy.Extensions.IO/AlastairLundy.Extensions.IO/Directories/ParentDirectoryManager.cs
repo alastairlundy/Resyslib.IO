@@ -16,12 +16,12 @@ using AlastairLundy.Extensions.IO.Directories.Abstractions;
 
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 
-namespace AlastairLundy.Extensions.IO.Directories;
-
-public class ParentDirectoryManager : IParentDirectoryManager
+namespace AlastairLundy.Extensions.IO.Directories
 {
+    public class ParentDirectoryManager : IParentDirectoryManager
+    {
     
-    #if NET8_0_OR_GREATER 
+#if NET8_0_OR_GREATER 
     /// <summary>
     /// 
     /// </summary>
@@ -30,29 +30,29 @@ public class ParentDirectoryManager : IParentDirectoryManager
     /// <returns></returns>    
 public bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFileMode)
 #else
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="directoryPath"></param>
-    /// <returns></returns>
-    public bool TryCreateParentDirectory(string directoryPath)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <returns></returns>
+        public bool TryCreateParentDirectory(string directoryPath)
 #endif
-    {
-        try
         {
+            try
+            {
 #if NET8_0_OR_GREATER
             CreateParentDirectory(directoryPath, unixFileMode);
 #else
-            CreateParentDirectory(directoryPath);
+                CreateParentDirectory(directoryPath);
 #endif
 
-            return true;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
-        catch
-        {
-            return false;
-        }
-    }
 
 
 
@@ -64,33 +64,33 @@ public bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFile
     /// <param name="unixFileMode"></param>
     public void CreateParentDirectory(string parentDirectory, UnixFileMode unixFileMode)
 #else
-    /// <summary>
-    /// Recursively creates the parent directory as needed.
-    /// </summary>
-    /// <param name="parentDirectory">The parent directory to be created.</param>
-    public void CreateParentDirectory(string parentDirectory)
+        /// <summary>
+        /// Recursively creates the parent directory as needed.
+        /// </summary>
+        /// <param name="parentDirectory">The parent directory to be created.</param>
+        public void CreateParentDirectory(string parentDirectory)
 #endif
-    {
-        string[] directories = parentDirectory.Split(Path.DirectorySeparatorChar);
-
-        List<string> directoriesToCreate = new List<string>();
-
-        for (int i = 0; i < directories.Length; i++)
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            string[] directories = parentDirectory.Split(Path.DirectorySeparatorChar);
 
-            for (int j = 0; j < i; j++)
+            List<string> directoriesToCreate = new List<string>();
+
+            for (int i = 0; i < directories.Length; i++)
             {
-                stringBuilder.Append(directories[i][j]);
+                StringBuilder stringBuilder = new StringBuilder();
+
+                for (int j = 0; j < i; j++)
+                {
+                    stringBuilder.Append(directories[i][j]);
+                }
+
+                directoriesToCreate.Add(stringBuilder.ToString());
             }
 
-            directoriesToCreate.Add(stringBuilder.ToString());
-        }
-
-        foreach (string directory in directoriesToCreate)
-        {
-            if (Directory.Exists(directory) == false)
+            foreach (string directory in directoriesToCreate)
             {
+                if (Directory.Exists(directory) == false)
+                {
 #if NET8_0_OR_GREATER
                 if (OperatingSystem.IsWindows())
                 {
@@ -101,44 +101,45 @@ public bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFile
                     Directory.CreateDirectory(directory, unixFileMode);
                 }
 #else
-                Directory.CreateDirectory(directory);
+                    Directory.CreateDirectory(directory);
 #endif
+                }
             }
         }
-    }
     
-    /// <summary>
-    /// Deletes a parent directory of a directory.
-    /// </summary>
-    /// <param name="directory">The directory to get the parent directory of.</param>
-    /// <param name="deleteEmptyDirectory">Whether to delete the parent directory if is empty or not.</param>
-    /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist or could not be located.</exception>
-    public void DeleteParentDirectory(string directory, bool deleteEmptyDirectory)
-    {
-        if (Directory.Exists(directory))
+        /// <summary>
+        /// Deletes a parent directory of a directory.
+        /// </summary>
+        /// <param name="directory">The directory to get the parent directory of.</param>
+        /// <param name="deleteEmptyDirectory">Whether to delete the parent directory if is empty or not.</param>
+        /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist or could not be located.</exception>
+        public void DeleteParentDirectory(string directory, bool deleteEmptyDirectory)
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(directory);
-            
-            if (directoryInfo.IsDirectoryEmpty() && deleteEmptyDirectory || directoryInfo.IsDirectoryEmpty() == false)
+            if (Directory.Exists(directory))
             {
-                string? parentDirectory = Directory.GetParent(directory)?.FullName;
-
-                try
+                DirectoryInfo directoryInfo = new DirectoryInfo(directory);
+            
+                if (directoryInfo.IsDirectoryEmpty() && deleteEmptyDirectory || directoryInfo.IsDirectoryEmpty() == false)
                 {
-                    if (parentDirectory == null)
+                    string? parentDirectory = Directory.GetParent(directory)?.FullName;
+
+                    try
                     {
-                        throw new NullReferenceException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));        
-                    }
+                        if (parentDirectory == null)
+                        {
+                            throw new NullReferenceException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));        
+                        }
 
-                    Directory.Delete(parentDirectory);
-                }
-                catch(Exception ex)
-                {
-                    throw new Exception(ex.Message, ex);
+                        Directory.Delete(parentDirectory);
+                    }
+                    catch(Exception ex)
+                    {
+                        throw new Exception(ex.Message, ex);
+                    }
                 }
             }
-        }
 
-        throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));
+            throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));
+        }
     }
 }

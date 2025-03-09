@@ -13,74 +13,81 @@ using System.Linq;
 
 using AlastairLundy.Extensions.IO.Files.Abstractions;
 
-namespace AlastairLundy.Extensions.IO.Files;
-
-public class FilePathResolver : IFilePathResolver
+namespace AlastairLundy.Extensions.IO.Files
 {
-    /// <summary>
-    /// Resolves the file path to a specific file.
-    /// </summary>
-    /// <param name="inputFilePath">The input file path to resolve.</param>
-    /// <param name="resolvedFilePath">The resolved file path.</param>
-    /// <exception cref="FileNotFoundException">Thrown if the input file path is null or empty.</exception>
-    public void ResolveFilePath(string inputFilePath, out string resolvedFilePath)
+    public class FilePathResolver : IFilePathResolver
     {
-        int recursionNumber = 0;
-        
-        string newPath = string.Join(string.Empty, inputFilePath.Where(x => Path.GetInvalidPathChars().Contains(x) == false && Path.GetInvalidFileNameChars().Contains(x) == false)
-            .ToArray()); 
-            
-        while (recursionNumber < 3)
+        /// <summary>
+        /// Resolves the file path to a specific file.
+        /// </summary>
+        /// <param name="inputFilePath">The input file path to resolve.</param>
+        /// <param name="resolvedFilePath">The resolved file path.</param>
+        /// <exception cref="FileNotFoundException">Thrown if the input file path is null or empty.</exception>
+        public void ResolveFilePath(string inputFilePath, out string resolvedFilePath)
         {
+            int recursionNumber = 0;
+        
+            string newPath = string.Join(string.Empty, inputFilePath.Where(x => Path.GetInvalidPathChars().Contains(x) == false && Path.GetInvalidFileNameChars().Contains(x) == false)
+                .ToArray()); 
+            
+            while (recursionNumber < 3)
+            {
 #if NET6_0_OR_GREATER || NETSTANDARD2_1
-            if (Path.IsPathFullyQualified(newPath))
+                if (Path.IsPathFullyQualified(newPath))
 #else
             if(Path.IsPathRooted(newPath))
 #endif
-            {
-                resolvedFilePath = newPath;
-                return;
-            }
+                {
+                    resolvedFilePath = newPath;
+                    return;
+                }
 
 #if NET6_0_OR_GREATER
-            if (Path.Exists(Path.GetFullPath(inputFilePath)) == false)
+                if (Path.Exists(Path.GetFullPath(inputFilePath)) == false)
 #else
             if (File.Exists(Path.GetFullPath(inputFilePath)) == false)
 #endif
-            {
-                string[] directoryComponents = Path.GetFullPath(inputFilePath).Split(Path.DirectorySeparatorChar);
+                {
+                    string[] directoryComponents = Path.GetFullPath(inputFilePath).Split(Path.DirectorySeparatorChar);
 
+#if NET8_0_OR_GREATER || NETSTANDARD2_1
+                    string lastDirectory = Directory.Exists(directoryComponents.Last())
+                        ? directoryComponents.Last()
+                        : directoryComponents.SkipLast(1).Last();
+#else
                 string lastDirectory = Directory.Exists(directoryComponents.Last())
                     ? directoryComponents.Last()
-                    : directoryComponents.SkipLast(1).Last();
+                    : directoryComponents[directoryComponents.Length - 1];
+#endif
                 
-                string targetFileName = Path.GetFileName(newPath);
+                    string targetFileName = Path.GetFileName(newPath);
                 
-                if (Directory.Exists(Path.GetFullPath(lastDirectory)))
-                {
-                    string[] files = Directory.EnumerateFiles(Path.GetFullPath(inputFilePath)).ToArray();
-
-                    foreach (string file in files)
+                    if (Directory.Exists(Path.GetFullPath(lastDirectory)))
                     {
-                        FileInfo fileInfo = new(file);
+                        string[] files = Directory.EnumerateFiles(Path.GetFullPath(inputFilePath)).ToArray();
 
-                        if (fileInfo.FullName.Equals(Path.GetFullPath(lastDirectory)) ||
-                            fileInfo.Name.Equals(targetFileName)){
-                            resolvedFilePath = fileInfo.FullName;
-                            return;
+                        foreach (string file in files)
+                        {
+                            FileInfo fileInfo = new(file);
+
+                            if (fileInfo.FullName.Equals(Path.GetFullPath(lastDirectory)) ||
+                                fileInfo.Name.Equals(targetFileName)){
+                                resolvedFilePath = fileInfo.FullName;
+                                return;
+                            }
                         }
                     }
-                }
                 
-                recursionNumber += 1;
+                    recursionNumber += 1;
+                }
+                else
+                {
+                    resolvedFilePath = Path.GetFullPath(newPath);
+                    return;
+                }
             }
-            else
-            {
-                resolvedFilePath = Path.GetFullPath(newPath);
-                return;
-            }
-        }
         
-        resolvedFilePath = newPath;
+            resolvedFilePath = newPath;
+        }
     }
 }

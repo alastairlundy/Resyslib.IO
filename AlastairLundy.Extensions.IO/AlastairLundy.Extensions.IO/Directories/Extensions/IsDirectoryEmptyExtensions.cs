@@ -11,26 +11,27 @@ using System.IO;
 
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 
-namespace AlastairLundy.Extensions.IO.Directories;
-
-public static class IsDirectoryEmptyExtensions
+namespace AlastairLundy.Extensions.IO.Directories
 {
-    ///<summary>
-    /// Checks if a Directory is empty or not.
-     /// </summary>
-    /// <param name="directory">The directory to be searched.</param>
-    /// <returns>True if the directory is empty; false otherwise.</returns>
-    /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
-    public static bool IsDirectoryEmpty(this DirectoryInfo directory)
+    public static class IsDirectoryEmptyExtensions
     {
-        if (Directory.Exists(directory.FullName))
+        ///<summary>
+        /// Checks if a Directory is empty or not.
+        /// </summary>
+        /// <param name="directory">The directory to be searched.</param>
+        /// <returns>True if the directory is empty; false otherwise.</returns>
+        /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist.</exception>
+        public static bool IsDirectoryEmpty(this DirectoryInfo directory)
         {
-            return directory.GetFiles().Length == 0 && directory.GetDirectories().Length == 0;
+            if (Directory.Exists(directory.FullName))
+            {
+                return directory.GetFiles().Length == 0 && directory.GetDirectories().Length == 0;
+            }
+            else
+            {
+                throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
+            }
         }
-        else
-        {
-            throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory.FullName));
-        }
-    }
 
+    }
 }

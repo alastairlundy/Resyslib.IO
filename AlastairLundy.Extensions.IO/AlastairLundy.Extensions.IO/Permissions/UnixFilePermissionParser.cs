@@ -13,10 +13,10 @@ using System.IO;
 
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 
-namespace AlastairLundy.Extensions.IO.Permissions;
-
-public static class UnixFilePermissionParser
+namespace AlastairLundy.Extensions.IO.Permissions
 {
+    public static class UnixFilePermissionParser
+    {
 #if NET6_0_OR_GREATER 
     /// <summary>
     /// Parse a Unix file permission in octal notation to a UnixFileMode enum.
@@ -161,15 +161,15 @@ public static class UnixFilePermissionParser
         }
     }
 #endif
-    /// <summary>
-    /// Detects whether a Unix Octal file permission notation is valid.
-    /// </summary>
-    /// <param name="notation">The numeric notation to be compared.</param>
-    /// <returns>True if a valid unix file permission octal notation has been provided; false otherwise.</returns>
-    public static bool IsNumericNotation(string notation)
-    {
-        if (notation.Length == 4 && int.TryParse(notation, out int result))
+        /// <summary>
+        /// Detects whether a Unix Octal file permission notation is valid.
+        /// </summary>
+        /// <param name="notation">The numeric notation to be compared.</param>
+        /// <returns>True if a valid unix file permission octal notation has been provided; false otherwise.</returns>
+        public static bool IsNumericNotation(string notation)
         {
+            if (notation.Length == 4 && int.TryParse(notation, out int result))
+            {
 #if NET6_0_OR_GREATER
             return result switch
             {
@@ -188,20 +188,20 @@ public static class UnixFilePermissionParser
                        result == 740 ||
                        result == 777;
 #endif
+            }
+
+            return false;
         }
 
-        return false;
-    }
-
-    /// <summary>
-    /// Detects whether a Unix symbolic file permission is valid.
-    /// </summary>
-    /// <param name="notation">The symbolic notation to be compared.</param>
-    /// <returns>True if a valid unix file permission symbolic notation has been provided; false otherwise.</returns>
-    public static bool IsSymbolicNotation(string notation)
-    {
-        if (notation.Length == 10)
+        /// <summary>
+        /// Detects whether a Unix symbolic file permission is valid.
+        /// </summary>
+        /// <param name="notation">The symbolic notation to be compared.</param>
+        /// <returns>True if a valid unix file permission symbolic notation has been provided; false otherwise.</returns>
+        public static bool IsSymbolicNotation(string notation)
         {
+            if (notation.Length == 10)
+            {
 #if NET6_0_OR_GREATER
             return notation switch
             {
@@ -231,8 +231,9 @@ public static class UnixFilePermissionParser
                        notation == "-rwxrwx---" ||
                        notation == "-rwxrwxrwx";
 #endif
-        }
+            }
 
-        return false;
+            return false;
+        }
     }
 }

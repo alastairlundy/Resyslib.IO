@@ -10,18 +10,19 @@
 
 using System.IO;
 
-namespace AlastairLundy.Extensions.IO.Directories.Abstractions;
-
-public interface IParentDirectoryManager
+namespace AlastairLundy.Extensions.IO.Directories.Abstractions
 {
+    public interface IParentDirectoryManager
+    {
 #if NET8_0_OR_GREATER
-    public bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFileMode);
-    public void CreateParentDirectory(string parentDirectory, UnixFileMode unixFileMode);
+     bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFileMode);
+     void CreateParentDirectory(string parentDirectory, UnixFileMode unixFileMode);
 #else
-    public bool TryCreateParentDirectory(string directoryPath);
-    public void CreateParentDirectory(string parentDirectory);
+         bool TryCreateParentDirectory(string directoryPath);
+        void CreateParentDirectory(string parentDirectory);
 #endif
     
-    void DeleteParentDirectory(string directory, bool deleteEmptyDirectory);
+        void DeleteParentDirectory(string directory, bool deleteEmptyDirectory);
 
+    }
 }

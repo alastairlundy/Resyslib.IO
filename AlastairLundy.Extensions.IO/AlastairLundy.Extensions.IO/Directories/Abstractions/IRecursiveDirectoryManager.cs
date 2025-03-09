@@ -9,22 +9,23 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.IO.Directories.Abstractions;
-
-public interface IRecursiveDirectoryManager
+namespace AlastairLundy.Extensions.IO.Directories.Abstractions
 {
-    bool AreSubdirectoriesEmpty(string directory);
+    public interface IRecursiveDirectoryManager
+    {
+        bool AreSubdirectoriesEmpty(string directory);
 
-    (IEnumerable<string> files, IEnumerable<string> directories) GetRecursiveDirectoryContents(string directory);
+        (IEnumerable<string> files, IEnumerable<string> directories) GetRecursiveDirectoryContents(string directory);
 
-    (IEnumerable<string> files, IEnumerable<string> directories, IEnumerable<string> emptyDirectories) GetRecursiveDirectoryContents(string directory, bool includeEmptyDirectories);
+        (IEnumerable<string> files, IEnumerable<string> directories, IEnumerable<string> emptyDirectories) GetRecursiveDirectoryContents(string directory, bool includeEmptyDirectories);
 
-    IEnumerable<string> GetRecursiveEmptyDirectories(string directory);
+        IEnumerable<string> GetRecursiveEmptyDirectories(string directory);
 
-    IEnumerable<string> GetFilesRecursively(string directory);
-    IEnumerable<string> GetFolderRecursively(string directory);
+        IEnumerable<string> GetFilesRecursively(string directory);
+        IEnumerable<string> GetFolderRecursively(string directory);
     
-    void DeleteDirectoryRecursively(string directory, bool deleteEmptyDirectory);
+        void DeleteDirectoryRecursively(string directory, bool deleteEmptyDirectory);
     
-    bool TryDeleteDirectoryRecursively(string directory, bool deleteEmptyDirectories);
+        bool TryDeleteDirectoryRecursively(string directory, bool deleteEmptyDirectories);
+    }
 }
