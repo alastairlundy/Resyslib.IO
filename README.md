@@ -88,10 +88,10 @@ Builds should generally always include SourceLink and symbol packages if intende
 ## How to Contribute to IOExtensions
 Thank you in advance for considering contributing to IOExtensions.
 
-Please see the [CONTRIBUTING.md file](https://github.com/alastairlundy/IOExtensions/blob/main/CONTRIBUTING.md) for code and localization contributions.
+Please see the [CONTRIBUTING.md file](https://github.com/alastairlundy/Extensions.IO/blob/main/CONTRIBUTING.md) for code and localization contributions.
 
-If you want to file a bug report or suggest a potential feature to add, please check out the [GitHub issues page](https://github.com/alastairlundy/IOExtensions/issues/) to see if a similar or identical issue is already open.
-If there is not already a relevant issue filed, please [file one here](https://github.com/alastairlundy/IOExtensions/issues/new) and follow the respective guidance from the appropriate issue template.
+If you want to file a bug report or suggest a potential feature to add, please check out the [GitHub issues page](https://github.com/alastairlundy/Extensions.IO/issues/) to see if a similar or identical issue is already open.
+If there is not already a relevant issue filed, please [file one here](https://github.com/alastairlundy/Extensions.IO/issues/new) and follow the respective guidance from the appropriate issue template.
 
 Thanks.
 
