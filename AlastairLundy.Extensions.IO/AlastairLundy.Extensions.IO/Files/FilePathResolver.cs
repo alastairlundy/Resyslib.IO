@@ -11,7 +11,6 @@
 using System.IO;
 using System.Linq;
 
-using AlastairLundy.Extensions.IO.Files.Abstractions;
 
 namespace AlastairLundy.Extensions.IO.Files
 {

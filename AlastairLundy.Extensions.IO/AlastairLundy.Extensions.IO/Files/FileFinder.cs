@@ -9,7 +9,6 @@
 
 using System.IO;
 
-using AlastairLundy.Extensions.IO.Files.Abstractions;
 
 // ReSharper disable UseIndexFromEndExpression
 

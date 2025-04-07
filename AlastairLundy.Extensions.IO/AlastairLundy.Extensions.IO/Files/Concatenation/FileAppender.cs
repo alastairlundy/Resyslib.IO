@@ -15,8 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-using AlastairLundy.Extensions.IO.Files.Abstractions;
-using AlastairLundy.Extensions.IO.Files.Concatenation.Abstractions;
+
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 
 // ReSharper disable RedundantIfElseBlock

@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-using AlastairLundy.Extensions.IO.Directories.Abstractions;
 
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 
