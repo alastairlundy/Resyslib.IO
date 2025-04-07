@@ -23,6 +23,11 @@
         <PackageReleaseNotes>## Changes
 * Removed dependency on Polyfill</PackageReleaseNotes>
     </PropertyGroup>
+    
+    
+    <ItemGroup>
+       <!-- <PackageReference Include="AlastairLundy.Extensions.IO.Abstractions" Version="[2.2.0, 3.0.0)"/> !-->
+    </ItemGroup>
 
     <ItemGroup>
       <Compile Update="Internal\Localizations\Resources.Designer.cs">
@@ -47,7 +52,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Extensions\" />
+      <Folder Include="Paths\" />
     </ItemGroup>
 
 </Project>
