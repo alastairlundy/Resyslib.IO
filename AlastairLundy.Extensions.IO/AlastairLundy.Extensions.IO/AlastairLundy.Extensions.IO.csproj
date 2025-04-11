@@ -17,7 +17,7 @@
         <Title>AlastairLundy.Extensions.IO</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
-        <PackageTags>IO</PackageTags>
+        <PackageTags>IO,</PackageTags>
         <PackageVersion>2.2.0</PackageVersion>
         <Description> A library to make programmatic directory deletion and creation in .NET easier. </Description>
         <PackageReleaseNotes>## Changes
@@ -26,9 +26,10 @@
     
     
     <ItemGroup>
+        <PackageReference Include="AlastairLundy.Resyslib.IO" Version="[1.0.0, 2.0.0)"/>
        <!-- <PackageReference Include="AlastairLundy.Extensions.IO.Abstractions" Version="[2.2.0, 3.0.0)"/> !-->
     </ItemGroup>
-
+    
     <ItemGroup>
       <Compile Update="Internal\Localizations\Resources.Designer.cs">
         <DesignTime>True</DesignTime>
