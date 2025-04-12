@@ -12,8 +12,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-using AlastairLundy.Extensions.IO.Directories.Abstractions;
+using AlastairLundy.DotExtensions.IO.Directories;
 
+using AlastairLundy.Extensions.IO.Abstractions.Directories;
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 
 namespace AlastairLundy.Extensions.IO.Directories

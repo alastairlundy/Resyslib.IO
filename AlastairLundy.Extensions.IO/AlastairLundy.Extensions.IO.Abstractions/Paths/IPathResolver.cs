@@ -7,7 +7,9 @@
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-using AlastairLundy.Extensions.IO.Abstractions.Files;
+
+using AlastairLundy.Resyslib.IO.Files;
+using AlastairLundy.Resyslib.IO.Paths;
 
 namespace AlastairLundy.Extensions.IO.Abstractions.Paths
 {
@@ -31,7 +33,7 @@ namespace AlastairLundy.Extensions.IO.Abstractions.Paths
         string GetPathExtension(string path);
     
         string CombinePaths(string path1, string path2);
-    
+        
         string ExpandEnvironmentVariablesInPath(string path);
     }
 }

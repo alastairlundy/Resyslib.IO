@@ -1,46 +1,23 @@
-# AlastairLundy.Extensions.IO
- Implementations of Interfaces that make working with Files and Directories easier. 
+﻿# AlastairLundy.Extensions.IO.Abstractions
+This package provides IO focussed abstractions that aim to make File Finding, File Appending, Directory Management, and other IO operations easier. 
 
-[![NuGet](https://img.shields.io/nuget/v/AlastairLundy.Extensions.IO.svg)](https://www.nuget.org/packages/AlastairLundy.Extensions.IO/)
-[![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.Extensions.IO.svg)](https://www.nuget.org/packages/AlastairLundy.Extensions.IO/)
+[![NuGet](https://img.shields.io/nuget/v/AlastairLundy.Extensions.IO.Abstractions.svg)](https://www.nuget.org/packages/AlastairLundy.Extensions.IO.Abstractions/)
+[![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.Extensions.IO.Abstractions.svg)](https://www.nuget.org/packages/AlastairLundy.Extensions.IO.Abstractions/)
 
-## Table of Contents
-* [Features](#features)
-* [Installing IOExtensions](#how-to-install-and-use-ioextensions)
-    * [Compatibility](#compatibility)
-* [Examples](#examples)
-* [Contributing to IOExtensions](#how-to-contribute-to-IOExtensions)
-* [Roadmap](#ioextensions-roadmap)
-* [License](#license)
-* [Acknowledgements](#acknowledgements)
+## How to install and use AlastairLundy.Extensions.IO.Abstractions
+Extensions.IO.Abstractions can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
 
-## Features
-* Support for creating, deleting (including recursively), or finding parent or recursive directories
-* Support for determining if a path is a file path
-* Support for checking if a directory is empty
-* Support for appending files
-* Support for concatenating files
-* Support for parsing and converting Unix File Permission notations
+| Nuget Link                                                                                                            | .NET SDK CLI command                                            |
+|-----------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| [AlastairLundy.Extensions.IO.Abstractions Nuget](https://nuget.org/packages/AlastairLundy.Extensions.IO.Abstractions) | ``dotnet add package AlastairLundy.Extensions.IO.Abstractions`` |
 
-## How to install and use IOExtensions
-IOExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
+## Usage
+To use the DI extension method call the IServiceCollection ``AddIOExtensions`` extension method.
 
-| Package Name                | Nuget Link                                                                                  | .NET SDK CLI command                               |
-|-----------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------|
-| AlastairLundy.Extensions.IO | [AlastairLundy.Extensions.IO Nuget](https://nuget.org/packages/AlastairLundy.Extensions.IO) | ``dotnet add package AlastairLundy.Extensions.IO`` |
-
-
-### Compatibility
-
-| IO Extensions Version series | .NET Targets supported                                     | 
-|------------------------------|------------------------------------------------------------|
-| 1.2 >=                       | .NET Standard 2.0, .NET Standard 2.1, and .NET 8 and newer |
-| <= 1.1                       | .NET 8 and newer                                           |
-
-## How to Build IOExtensions's code
+## How to Build the code
 
 ### Requirements
-IOExtensions requires the latest .NET release SDK to be installed to target all supported TFM (Target Framework Moniker) build targets.
+Extensions.IO.Abstractions requires the latest .NET release SDK to be installed to target all supported TFM (Target Framework Moniker) build targets.
 
 Currently, the required .NET SDK is .NET 9.
 
@@ -71,10 +48,10 @@ Releases that add major breaking changes or significantly affect the API should 
 ### Building for Testing
 You can build for testing by building the project within your IDE or VS Code, or manually by entering the following command: ``dotnet build -c Debug``.
 
-If you encounter any bugs or issues, try testing your code with breakpoints in the affected code where appropriate. Failing that, please [report the issue](https://github.com/alastairlundy/IOExtensions/issues/new/) if one doesn't already exist for the bug(s).
+If you encounter any bugs or issues, try testing your code with breakpoints in the affected code where appropriate. Failing that, please [report the issue](https://github.com/alastairlundy/Extensions.IO/issues/new/) if one doesn't already exist for the bug(s).
 
 ### Building for Release
-Before building a release build, ensure you apply the relevant changes to the ``AlastairLundy.Extensions.IO.csproj`` file:
+Before building a release build, ensure you apply the relevant changes to the ``AlastairLundy.Extensions.IO.Abstractions.csproj`` file:
 * Update the Package Version variable
 * Update the project file's Changelog
 
@@ -94,16 +71,6 @@ If you want to file a bug report or suggest a potential feature to add, please c
 If there is not already a relevant issue filed, please [file one here](https://github.com/alastairlundy/Extensions.IO/issues/new) and follow the respective guidance from the appropriate issue template.
 
 Thanks.
-
-## IOExtensions' Roadmap
-IOExtensions aims to make working with files and directories in C# easier.
-
-All stable releases must be stable and should not contain regressions.
-
-Future updates should aim focus on one or more of the following:
-* Adding extension methods that improve ease of use
-* Adding new interfaces or classes that add useful directory or file related features that aren't an exact copy of an existing feature in .NET .
-* Enhancing existing extension methods, classes, or interfaces.
 
 ## License
 
