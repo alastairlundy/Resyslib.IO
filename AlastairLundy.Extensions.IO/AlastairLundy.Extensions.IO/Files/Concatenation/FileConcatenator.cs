@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+using AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation;
+
 
 // ReSharper disable UnusedType.Global
 

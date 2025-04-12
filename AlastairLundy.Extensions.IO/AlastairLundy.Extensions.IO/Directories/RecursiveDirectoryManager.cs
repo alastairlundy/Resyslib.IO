@@ -10,7 +10,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using AlastairLundy.DotExtensions.IO.Directories;
+using AlastairLundy.Extensions.IO.Abstractions.Directories;
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 // ReSharper disable RedundantBoolCompare
 

@@ -26,8 +26,9 @@
     
     
     <ItemGroup>
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="[6.4.0, 7.0.0)"/>
+        <PackageReference Include="AlastairLundy.Extensions.IO.Abstractions" Version="3.0.0-preview.1"/>
         <PackageReference Include="AlastairLundy.Resyslib.IO" Version="[1.0.0, 2.0.0)"/>
-       <!-- <PackageReference Include="AlastairLundy.Extensions.IO.Abstractions" Version="[2.2.0, 3.0.0)"/> !-->
     </ItemGroup>
     
     <ItemGroup>
@@ -50,10 +51,6 @@
         <Link>README.md</Link>
           <PackagePath>README.md</PackagePath>
       </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Paths\" />
     </ItemGroup>
 
 </Project>
