@@ -21,10 +21,18 @@ Moved primitives to Resyslib.Primitives</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>Abstractions and common types for AlastairLundy.Extensions.IO </Description>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
     
     <ItemGroup>
         <PackageReference Include="AlastairLundy.Resyslib.IO" Version="[1.0.0, 2.0.0)"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\..\README.md">
+            <Link>README.md</Link>
+            <PackagePath>README.md</PackagePath>
+        </Content>
     </ItemGroup>
 
 </Project>
