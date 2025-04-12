@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 
 using AlastairLundy.Extensions.IO.Abstractions.Files;
 using AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation;
+
 using AlastairLundy.Extensions.IO.Internal.Localizations;
 
 using AlastairLundy.Resyslib.IO.Files;
