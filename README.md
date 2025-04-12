@@ -1,5 +1,5 @@
 # AlastairLundy.Extensions.IO
- Classes, Interfaces, and extension methods that make working with Files and Directories easier. 
+ Implementations of Interfaces that make working with Files and Directories easier. 
 
 [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.Extensions.IO.svg)](https://www.nuget.org/packages/AlastairLundy.Extensions.IO/)
 [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.Extensions.IO.svg)](https://www.nuget.org/packages/AlastairLundy.Extensions.IO/)
