@@ -13,25 +13,25 @@ namespace AlastairLundy.Extensions.IO.Paths.Abstractions
 {
     public interface IPathResolver
     {
-        public bool DoesPathHaveExtension(string path);
+         bool DoesPathHaveExtension(string path);
     
-        public PathType GetPathType(string path);
+         PathType GetPathType(string path);
     
-        public bool DoesPathExist(string path);
-        public bool IsPathFullyQualified(string path);
+         bool DoesPathExist(string path);
+         bool IsPathFullyQualified(string path);
     
-        public string ToRelativePath(string path);
-        public string ToAbsolutePath(string path);
+         string ToRelativePath(string path);
+         string ToAbsolutePath(string path);
 
-        public string NormalizePath(string path);
+         string NormalizePath(string path);
 
-        public FileModel GetFile(string path);
-        public string GetFileNameWithoutExtension(string path);
-        public string GetFileName(string path);
-        public string GetPathExtension(string path);
+         FileModel GetFile(string path);
+         string GetFileNameWithoutExtension(string path);
+         string GetFileName(string path);
+         string GetPathExtension(string path);
     
-        public string CombinePaths(string path1, string path2);
+         string CombinePaths(string path1, string path2);
     
-        public string ExpandEnvironmentVariablesInPath(string path);
+         string ExpandEnvironmentVariablesInPath(string path);
     }
 }
