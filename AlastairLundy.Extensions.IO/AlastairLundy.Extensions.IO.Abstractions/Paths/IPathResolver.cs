@@ -102,7 +102,7 @@ namespace AlastairLundy.Extensions.IO.Abstractions.Paths
         string CombinePaths(string path1, string path2);
 
         /// <summary>
-        /// Expands any environment variables in a given file or directory path.
+        /// Expands all environment variables in a given file or directory path.
         /// </summary>
         /// <param name="path">The file or directory path to be expanded.</param>
         /// <returns>The path with expanded environment variables.</returns>
