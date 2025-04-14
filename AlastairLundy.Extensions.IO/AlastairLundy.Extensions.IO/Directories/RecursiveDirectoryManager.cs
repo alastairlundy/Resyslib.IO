@@ -17,6 +17,9 @@ using AlastairLundy.Extensions.IO.Internal.Localizations;
 
 namespace AlastairLundy.Extensions.IO.Directories
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class RecursiveDirectoryManager : IRecursiveDirectoryManager
     {
         /// <summary>
