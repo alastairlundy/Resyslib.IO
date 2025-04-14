@@ -18,23 +18,26 @@ using AlastairLundy.Extensions.IO.Internal.Localizations;
 
 namespace AlastairLundy.Extensions.IO.Directories
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ParentDirectoryManager : IParentDirectoryManager
     {
     
 #if NET8_0_OR_GREATER 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="directoryPath"></param>
-    /// <param name="unixFileMode"></param>
-    /// <returns></returns>    
-public bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFileMode)
+        /// <summary>
+        /// Attempts to create a Parent Directory.
+        /// </summary>
+        /// <param name="directoryPath">The parent directory to be created.</param>
+        /// <param name="unixFileMode">The Unix file mode to use when creating the directory.</param>
+        /// <returns>True if the parent directory was successfully created; false otherwise.</returns>    
+        public bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFileMode)
 #else
         /// <summary>
-        /// 
+        /// Attempts to create a Parent Directory.
         /// </summary>
-        /// <param name="directoryPath"></param>
-        /// <returns></returns>
+        /// <param name="directoryPath">The parent directory to be created.</param>
+        /// <returns>True if the parent directory was successfully created; false otherwise.</returns>    
         public bool TryCreateParentDirectory(string directoryPath)
 #endif
         {
@@ -61,7 +64,7 @@ public bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFile
     /// Recursively creates the parent directory as needed.
     /// </summary>
     /// <param name="parentDirectory">The parent directory to be created.</param>
-    /// <param name="unixFileMode"></param>
+    /// <param name="unixFileMode">The Unix file mode to use when creating the directory.</param>
     public void CreateParentDirectory(string parentDirectory, UnixFileMode unixFileMode)
 #else
         /// <summary>

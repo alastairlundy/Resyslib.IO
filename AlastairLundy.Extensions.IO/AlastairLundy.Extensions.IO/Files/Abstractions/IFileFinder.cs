@@ -11,6 +11,11 @@ namespace AlastairLundy.Extensions.IO.Files.Abstractions
 {
     public interface IFileFinder
     {
+        /// <summary>
+        /// Determines whether a string is the name of a file.
+        /// </summary>
+        /// <param name="filePath">The string to be searched.</param>
+        /// <returns>True if the string is a file; false otherwise.</returns>
          bool IsAFile(string filePath);
     }
 }
