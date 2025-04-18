@@ -12,16 +12,48 @@ using System.IO;
 
 namespace AlastairLundy.Extensions.IO.Abstractions.Directories
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IParentDirectoryManager
     {
 #if NET8_0_OR_GREATER
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <param name="unixFileMode"></param>
+        /// <returns></returns>
         bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFileMode);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parentDirectory"></param>
+        /// <param name="unixFileMode"></param>
         void CreateParentDirectory(string parentDirectory, UnixFileMode unixFileMode);
 #else
+        
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <returns></returns>
         bool TryCreateParentDirectory(string directoryPath);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parentDirectory"></param>
         void CreateParentDirectory(string parentDirectory);
 #endif
     
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="directory"></param>
+        /// <param name="deleteEmptyDirectory"></param>
         void DeleteParentDirectory(string directory, bool deleteEmptyDirectory);
 
     }
