@@ -18,10 +18,10 @@
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <PackageTags>IO</PackageTags>
-        <PackageVersion>2.2.0</PackageVersion>
+        <PackageVersion>2.2.1</PackageVersion>
         <Description> A library to make programmatic directory deletion and creation in .NET easier. </Description>
-        <PackageReleaseNotes>## Changes
-* Removed dependency on Polyfill</PackageReleaseNotes>
+        <PackageReleaseNotes>### Changes since 2.2.0
+* Improved performance of ``FilePathResolver``</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
