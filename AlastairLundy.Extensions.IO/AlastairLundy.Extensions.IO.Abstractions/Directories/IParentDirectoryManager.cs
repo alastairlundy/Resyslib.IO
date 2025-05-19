@@ -17,6 +17,7 @@ namespace AlastairLundy.Extensions.IO.Abstractions.Directories
     /// </summary>
     public interface IParentDirectoryManager
     {
+        
 #if NET8_0_OR_GREATER
         /// <summary>
         /// 
