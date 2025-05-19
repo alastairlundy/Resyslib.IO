@@ -10,7 +10,7 @@
 namespace AlastairLundy.Extensions.IO.Abstractions.Files
 {
     /// <summary>
-    /// 
+    /// Defines an interface for finding files and determining whether a specific file path is a file.
     /// </summary>
     public interface IFileFinder
     {

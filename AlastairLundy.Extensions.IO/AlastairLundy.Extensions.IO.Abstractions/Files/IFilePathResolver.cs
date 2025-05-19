@@ -12,7 +12,7 @@ using System.IO;
 namespace AlastairLundy.Extensions.IO.Abstractions.Files
 {
     /// <summary>
-    /// 
+    /// Defines an interface for resolving file paths to absolute paths.
     /// </summary>
     public interface IFilePathResolver
     {
