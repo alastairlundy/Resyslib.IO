@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
 using AlastairLundy.Resyslib.IO.Files;
 
 namespace AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation
@@ -78,7 +79,7 @@ namespace AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation
         /// </summary>
         /// <param name="filesToBeAppended">The files to be appended to the existing file contents.
         /// If no existing file contents exist,
-        /// this will become the contents appended to in the future.</param>
+        /// this will become the content appended to in the future.</param>
         /// <returns>True if the files were successfully appended; false otherwise.</returns>
         bool TryAppendFiles(IEnumerable<string> filesToBeAppended);
 
