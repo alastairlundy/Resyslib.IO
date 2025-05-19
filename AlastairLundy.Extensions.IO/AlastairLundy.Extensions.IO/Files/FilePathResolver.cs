@@ -8,6 +8,7 @@
  */
 
 
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -27,8 +28,13 @@ namespace AlastairLundy.Extensions.IO.Files
         {
             int recursionNumber = 0;
         
-            string newPath = string.Join(string.Empty, inputFilePath.Where(x => Path.GetInvalidPathChars().Contains(x) == false && Path.GetInvalidFileNameChars().Contains(x) == false)
-                .ToArray()); 
+            string newPath = string.Join(string.Empty,
+                inputFilePath.Where(x => Path.GetInvalidPathChars()
+                                             .Contains(x) ==
+                                         false &&
+                                         Path.GetInvalidFileNameChars()
+                                             .Contains(x) ==
+                                         false)); 
             
             while (recursionNumber < 3)
             {
@@ -64,7 +70,7 @@ namespace AlastairLundy.Extensions.IO.Files
                 
                     if (Directory.Exists(Path.GetFullPath(lastDirectory)))
                     {
-                        string[] files = Directory.EnumerateFiles(Path.GetFullPath(inputFilePath)).ToArray();
+                        IEnumerable<string> files = Directory.EnumerateFiles(Path.GetFullPath(inputFilePath));
 
                         foreach (string file in files)
                         {
