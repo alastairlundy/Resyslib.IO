@@ -155,11 +155,11 @@ namespace AlastairLundy.Extensions.IO.Directories
 
 
         /// <summary>
-        /// Attempts to delete a directory recursively by deleting sub-folders and files before deleting the directory.
+        /// Attempts to delete a directory recursively by deleting subfolders and files before deleting the directory.
         /// </summary>
         /// <param name="directory">The parent directory to be deleted.</param>
-        /// <param name="deleteEmptyDirectories">Whether to delete empty sub-folders or not.</param>
-        /// <returns>True if the directory was recursively deleted successfully; returns false otherwise.</returns>
+        /// <param name="deleteEmptyDirectories">Whether to delete empty subfolders or not.</param>
+        /// <returns>True, if the directory was recursively deleted successfully, returns false otherwise.</returns>
         public bool TryDeleteDirectoryRecursively(string directory, bool deleteEmptyDirectories)
         {
             try
