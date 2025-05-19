@@ -12,6 +12,9 @@ using System.Collections.Generic;
 
 namespace AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IFileConcatenator
     {
         /// <summary>

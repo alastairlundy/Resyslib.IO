@@ -15,6 +15,9 @@ using AlastairLundy.Resyslib.IO.Files;
 
 namespace AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IFileAppender
     {
         /// <summary>

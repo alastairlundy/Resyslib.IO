@@ -9,6 +9,9 @@
 
 namespace AlastairLundy.Extensions.IO.Abstractions.Files
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IFileFinder
     {
         /// <summary>

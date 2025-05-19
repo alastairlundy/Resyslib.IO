@@ -11,6 +11,9 @@ using System.IO;
 
 namespace AlastairLundy.Extensions.IO.Abstractions.Files
 {
+    /// <summary>
+    /// An interface for resolving file paths.
+    /// </summary>
     public interface IFilePathResolver
     {
         /// <summary>
