@@ -26,19 +26,21 @@ namespace AlastairLundy.Extensions.IO.Directories
     {
     
 #if NET8_0_OR_GREATER 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="directoryPath"></param>
-    /// <param name="unixFileMode"></param>
-    /// <returns></returns>    
+        /// <summary>
+        /// Attempts to create a parent directory with the specified Unix file mode at the specified location.
+        /// If successful, returns true; otherwise, returns false.
+        /// </summary>
+        /// <param name="directoryPath">The path where the parent directory should be created.</param>
+        /// <param name="unixFileMode">The desired Unix file mode for the new directory.</param>
+        /// <returns>True if creation was successful; false otherwise.</returns> 
 public bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFileMode)
 #else
         /// <summary>
-        /// 
+        /// Attempts to create a parent directory at the specified location.
+        /// If successful, returns true; otherwise, returns false.
         /// </summary>
-        /// <param name="directoryPath"></param>
-        /// <returns></returns>
+        /// <param name="directoryPath">The path where the parent directory should be created.</param>
+        /// <returns>True if creation was successful; false otherwise.</returns>
         public bool TryCreateParentDirectory(string directoryPath)
 #endif
         {
@@ -61,17 +63,17 @@ public bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFile
 
 
 #if NET8_0_OR_GREATER
-    /// <summary>
-    /// Recursively creates the parent directory as needed.
-    /// </summary>
-    /// <param name="parentDirectory">The parent directory to be created.</param>
-    /// <param name="unixFileMode"></param>
+        /// <summary>
+        /// Creates a parent directory with the specified Unix file mode at the specified location without checking for existence.
+        /// </summary>
+        /// <param name="parentDirectory">The path where the parent directory should be created.</param>
+        /// <param name="unixFileMode">The desired Unix file mode for the new directory.</param>
     public void CreateParentDirectory(string parentDirectory, UnixFileMode unixFileMode)
 #else
         /// <summary>
-        /// Recursively creates the parent directory as needed.
+        /// Creates a parent directory at the specified location without checking for existence.
         /// </summary>
-        /// <param name="parentDirectory">The parent directory to be created.</param>
+        /// <param name="parentDirectory">The path where the parent directory should be created.</param>
         public void CreateParentDirectory(string parentDirectory)
 #endif
         {
