@@ -5,7 +5,7 @@
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>2.1.0</Version>
+        <Version>3.0.0</Version>
         <Title>AlastairLundy.Extensions.IO.DependencyInjection</Title>
         <Authors>AlastairLundy</Authors>
         <Description>Enables easier setup of IO Extensions' interfaces for dependency injection when using Microsoft.Extensions.DependencyInjection.</Description>
@@ -13,7 +13,7 @@
         <RepositoryUrl>https://github.com/alastairlundy/Extensions.IO/</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>io, files, directories, directory, extension-methods </PackageTags>
-        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageReleaseNotes>Update to Extensions.IO 3.0.0</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
