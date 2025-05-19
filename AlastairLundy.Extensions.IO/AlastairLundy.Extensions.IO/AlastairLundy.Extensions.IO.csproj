@@ -18,10 +18,14 @@
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <PackageTags>IO,</PackageTags>
-        <PackageVersion>2.2.0</PackageVersion>
+        <PackageVersion>3.0.0</PackageVersion>
         <Description> A library to make programmatic directory deletion and creation in .NET easier. </Description>
-        <PackageReleaseNotes>## Changes
-* Removed dependency on Polyfill</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 2.x
+
+## 🚀 Features
+
+- Add missing xml doc comments for abstractions @alastairlundy (#2)
+- Reduce interface duplication @alastairlundy (#1)</PackageReleaseNotes>
     </PropertyGroup>
     
     

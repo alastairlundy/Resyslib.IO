@@ -10,14 +10,19 @@
         <IncludeSymbols>true</IncludeSymbols>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <Version>3.0.0-preview.1</Version>
+        <Version>3.0.0</Version>
         <Title>AlastairLundy.Extensions.IO.Abstractions</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/Extensions.IO</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>Initial Release as separate package.
-Moved primitives to Resyslib.Primitives</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes
+
+## 🚀 Features
+
+- Removed ``IPathResolver``. This will be reintroduced in a future version.
+- Add missing xml doc comments @alastairlundy (#2)
+- Reduce interface duplication @alastairlundy (#1)</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>Abstractions and common types for AlastairLundy.Extensions.IO </Description>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
