@@ -24,8 +24,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AlastairLundy.Extensions.IO" Version="[2.1.0, 3.0.0)"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[9.0.2, 10.0.0)"/>
+        <PackageReference Include="AlastairLundy.Extensions.IO.Abstractions" Version="3.0.0"/>
+        <PackageReference Include="AlastairLundy.Extensions.IO" Version="3.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5"/>
     </ItemGroup>
 
     <ItemGroup>
