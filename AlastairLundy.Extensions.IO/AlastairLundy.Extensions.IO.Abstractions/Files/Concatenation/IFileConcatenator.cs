@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation
 {
     /// <summary>
-    /// 
+    /// Defines an interface for concatenating the contents of multiple files into one file.
     /// </summary>
     public interface IFileConcatenator
     {

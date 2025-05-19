@@ -11,12 +11,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
 using AlastairLundy.Resyslib.IO.Files;
 
 namespace AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation
 {
     /// <summary>
-    /// 
+    /// Defines an interface for appending files to a buffer, that can then be saved to file or output to the console.
     /// </summary>
     public interface IFileAppender
     {
@@ -49,12 +50,14 @@ namespace AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation
         /// <summary>
         /// Attempts to append the contents of a file to an existing list.
         /// </summary>
-        /// <param name="fileToBeAppended">The file to have its contents appended to the existing file contents. If no existing file contents exists, this will become the contents appended to in the future.</param>
+        /// <param name="fileToBeAppended">The file to have its contents appended to the existing file contents.
+        /// If no existing file contents exist,
+        /// this will become the contents appended to in the future.</param>
         /// <returns>True if the file was successfully appended; false otherwise.</returns>
         bool TryAppendFile(string fileToBeAppended);
         
         /// <summary>
-        /// Append the contents of an ordered enumerable of files to an existing list.
+        /// Append the contents of an Ordered enumerable of files to an existing list.
         /// </summary>
         /// <param name="filesToBeAppended">The files to be appended to the existing appended content.</param>
         void AppendFiles(IOrderedEnumerable<string> filesToBeAppended);
@@ -74,14 +77,16 @@ namespace AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation
         /// <summary>
         /// Attempts to append the contents of files to an existing list.
         /// </summary>
-        /// <param name="filesToBeAppended">The files to be appended to the existing file contents. If no existing file contents exists, this will become the contents appended to in the future.</param>
+        /// <param name="filesToBeAppended">The files to be appended to the existing file contents.
+        /// If no existing file contents exist,
+        /// this will become the content appended to in the future.</param>
         /// <returns>True if the files were successfully appended; false otherwise.</returns>
         bool TryAppendFiles(IEnumerable<string> filesToBeAppended);
 
         /// <summary>
         /// Returns the appended contents as an IEnumerable.
         /// </summary>
-        /// <returns>The list of appended strings as an enumerable.</returns>
+        /// <returns>The list of appended strings as an IEnumerable.</returns>
         IEnumerable<string> ToEnumerable();
         
         /// <summary>
