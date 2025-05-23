@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.Extensions.IO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.Extensions.IO.Abstractions", "AlastairLundy.Extensions.IO.Abstractions\AlastairLundy.Extensions.IO.Abstractions.csproj", "{006B63F8-1004-49DF-AFE4-57CB3E54141A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3BCEF571-91FF-44DF-8072-5011D1F55B68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.IO.Tests", "Extensions.IO.Tests\Extensions.IO.Tests.csproj", "{AB27029C-11BA-4EB6-982A-913B22FB6649}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,12 @@ Global
 		{006B63F8-1004-49DF-AFE4-57CB3E54141A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{006B63F8-1004-49DF-AFE4-57CB3E54141A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{006B63F8-1004-49DF-AFE4-57CB3E54141A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB27029C-11BA-4EB6-982A-913B22FB6649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB27029C-11BA-4EB6-982A-913B22FB6649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB27029C-11BA-4EB6-982A-913B22FB6649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB27029C-11BA-4EB6-982A-913B22FB6649}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AB27029C-11BA-4EB6-982A-913B22FB6649} = {3BCEF571-91FF-44DF-8072-5011D1F55B68}
 	EndGlobalSection
 EndGlobal
