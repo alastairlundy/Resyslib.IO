@@ -31,15 +31,9 @@ namespace AlastairLundy.Extensions.IO.Files
         public void ResolveFilePath(string inputFilePath, out string resolvedFilePath)
         {
             int recursionNumber = 0;
-        
-            string newPath = string.Join(string.Empty,
-                inputFilePath.Where(x => Path.GetInvalidPathChars()
-                                             .Contains(x) ==
-                                         false &&
-                                         Path.GetInvalidFileNameChars()
-                                             .Contains(x) ==
-                                         false)); 
-            
+
+            string newPath = inputFilePath;
+     
             while (recursionNumber < 3)
             {
 #if NET6_0_OR_GREATER || NETSTANDARD2_1
@@ -52,11 +46,12 @@ namespace AlastairLundy.Extensions.IO.Files
                     return;
                 }
 
-#if NET6_0_OR_GREATER
-                if (Path.Exists(Path.GetFullPath(inputFilePath)) == false)
-#else
-            if (File.Exists(Path.GetFullPath(inputFilePath)) == false)
-#endif
+                if (File.Exists(Path.GetFullPath(newPath)))
+                {
+                    resolvedFilePath = newPath;
+                    return;
+                }
+                else
                 {
                     string[] directoryComponents = Path.GetFullPath(inputFilePath).Split(Path.DirectorySeparatorChar);
 
@@ -89,11 +84,6 @@ namespace AlastairLundy.Extensions.IO.Files
                     }
                 
                     recursionNumber += 1;
-                }
-                else
-                {
-                    resolvedFilePath = Path.GetFullPath(newPath);
-                    return;
                 }
             }
         
