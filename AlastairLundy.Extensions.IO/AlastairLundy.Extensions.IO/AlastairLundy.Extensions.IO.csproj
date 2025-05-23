@@ -18,14 +18,10 @@
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <PackageTags>IO,</PackageTags>
-        <PackageVersion>3.0.0</PackageVersion>
+        <PackageVersion>3.0.1</PackageVersion>
         <Description> A library to make programmatic directory deletion and creation in .NET easier. </Description>
-        <PackageReleaseNotes>## Changes since 2.x
-
-## 🚀 Features
-
-- Add missing xml doc comments for abstractions @alastairlundy (#2)
-- Reduce interface duplication @alastairlundy (#1)</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 3.0.0
+* Fixed an issue where resolved file path would wrongly remove path separators and other characters.</PackageReleaseNotes>
     </PropertyGroup>
     
     <ItemGroup>
