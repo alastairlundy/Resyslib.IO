@@ -18,10 +18,10 @@
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <PackageTags>IO</PackageTags>
-        <PackageVersion>2.2.1</PackageVersion>
+        <PackageVersion>2.2.2</PackageVersion>
         <Description> A library to make programmatic directory deletion and creation in .NET easier. </Description>
-        <PackageReleaseNotes>### Changes since 2.2.0
-* Improved performance of ``FilePathResolver``</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes since 2.2.1
+* Fixed an issue where resolved file paths would wrongly remove path separators and other characters.</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
