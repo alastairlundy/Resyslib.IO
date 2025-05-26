@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <LangVersion>13</LangVersion>
@@ -25,7 +25,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="AlastairLundy.DotExtensions" Version="6.8.0" />
+        <PackageReference Include="AlastairLundy.DotExtensions" Version="7.0.0" />
         <PackageReference Include="AlastairLundy.Extensions.IO.Abstractions" Version="3.0.0" />
         <PackageReference Include="AlastairLundy.Resyslib.IO" Version="1.1.0" />
     </ItemGroup>
