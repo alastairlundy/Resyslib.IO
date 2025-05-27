@@ -18,10 +18,11 @@
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <PackageTags>IO,</PackageTags>
-        <PackageVersion>3.0.1</PackageVersion>
+        <PackageVersion>3.1.0</PackageVersion>
         <Description> A library to make programmatic directory deletion and creation in .NET easier. </Description>
-        <PackageReleaseNotes>## Changes since 3.0.0
-* Fixed an issue where resolved file path would wrongly remove path separators and other characters.</PackageReleaseNotes>
+        <PackageReleaseNotes>## Changes
+
+- Update AlastairLundy.DotExtensions and 4 other dependencies @[dependabot[bot]](https://github.com/apps/dependabot) (#3)</PackageReleaseNotes>
     </PropertyGroup>
     
     <ItemGroup>
