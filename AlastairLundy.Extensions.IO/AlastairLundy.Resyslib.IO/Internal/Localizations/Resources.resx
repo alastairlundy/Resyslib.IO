@@ -117,31 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Exceptions_IO_DirectoryNotFound" xml:space="preserve">
+  <data name="Exceptions.IO.DirectoryNotFound" xml:space="preserve">
     <value>Unable to find directory with file path of {x}.</value>
   </data>
-  <data name="Exceptions_IO_FileNotFound" xml:space="preserve">
+  <data name="Exceptions.IO.FileNotFound" xml:space="preserve">
     <value>Unable to find file with file path of {x}.</value>
   </data>
-  <data name="Exceptions_IO_TargetFile_NullOrEmpty" xml:space="preserve">
+  <data name="Exceptions.IO.TargetFile.NullOrEmpty" xml:space="preserve">
     <value>The target file path of {x} was null or empty.</value>
   </data>
-  <data name="IO_File_Deleted" xml:space="preserve">
+  <data name="IO.File.Deleted" xml:space="preserve">
     <value>File {x} was deleted.</value>
   </data>
-  <data name="Exceptions_Permissions_InvalidSymbolicNotation" xml:space="preserve">
+  <data name="Exceptions.Permissions.InvalidSymbolicNotation" xml:space="preserve">
     <value>An Invalid Unix Symbolic file permission notation of {x} was provided.</value>
   </data>
-  <data name="Exceptions_Permisions_InvalidNumericNotation" xml:space="preserve">
+  <data name="Exceptions.Permissions.InvalidNumericNotation" xml:space="preserve">
     <value>An Invalid Unix Numeric file permission notation of {x} was provided.</value>
   </data>
-  <data name="IO_Directory_Deleted" xml:space="preserve">
+  <data name="IO.Directory.Deleted" xml:space="preserve">
     <value>Directory {x} was deleted.</value>
   </data>
-  <data name="IO_EmptyDirectory_Deleted" xml:space="preserve">
+  <data name="IO.EmptyDirectory.Deleted" xml:space="preserve">
     <value>Directory {x}, which was empty, was deleted.</value>
   </data>
-  <data name="Exceptions_IO_NoFileProfiled" xml:space="preserve">
+  <data name="Exceptions.IO.NoFileProfiled" xml:space="preserve">
     <value>A file was expected but not provided.</value>
   </data>
 </root>

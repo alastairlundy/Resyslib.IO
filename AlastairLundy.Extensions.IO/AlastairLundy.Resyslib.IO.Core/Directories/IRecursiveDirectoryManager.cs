@@ -9,7 +9,7 @@
 
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.IO.Abstractions.Directories
+namespace AlastairLundy.Resyslib.IO.Core.Directories
 {
     /// <summary>
     /// Defines an interface for deleting directories recursively,

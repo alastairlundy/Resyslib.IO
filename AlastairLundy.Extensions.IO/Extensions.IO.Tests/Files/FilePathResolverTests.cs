@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Versioning;
-using AlastairLundy.Extensions.IO.Abstractions.Files;
-using AlastairLundy.Extensions.IO.Files;
+using AlastairLundy.Resyslib.IO.Core.Files;
+using AlastairLundy.Resyslib.IO.Files;
 using Extensions.IO.Tests.Data;
 
 namespace Extensions.IO.Tests.Files;

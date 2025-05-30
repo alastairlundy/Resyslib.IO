@@ -12,13 +12,12 @@ using System.IO;
 using System.Linq;
 
 using AlastairLundy.DotExtensions.IO.Directories;
+using AlastairLundy.Resyslib.IO.Core.Directories;
+using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
-using AlastairLundy.Extensions.IO.Abstractions.Directories;
-
-using AlastairLundy.Extensions.IO.Internal.Localizations;
 // ReSharper disable RedundantBoolCompare
 
-namespace AlastairLundy.Extensions.IO.Directories
+namespace AlastairLundy.Resyslib.IO.Directories
 {
     /// <summary>
     /// 

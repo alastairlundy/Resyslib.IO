@@ -12,9 +12,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-using AlastairLundy.Resyslib.IO.Files;
+using AlastairLundy.Resyslib.IO.Core.Primitives.Files;
 
-namespace AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation
+namespace AlastairLundy.Resyslib.IO.Core.Files.Concatenation
 {
     /// <summary>
     /// Defines an interface for appending files to a buffer, that can then be saved to file or output to the console.

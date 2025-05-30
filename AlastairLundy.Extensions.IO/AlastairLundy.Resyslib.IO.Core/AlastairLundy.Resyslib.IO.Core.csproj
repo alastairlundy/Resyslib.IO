@@ -28,16 +28,20 @@
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
-    
-    <ItemGroup>
-        <PackageReference Include="AlastairLundy.Resyslib.IO" Version="1.1.0"/>
-    </ItemGroup>
 
     <ItemGroup>
         <Content Include="README.md">
             <Link>README.md</Link>
             <PackagePath>README.md</PackagePath>
         </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Primitives\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Bcl.HashCode" Version="6.0.0" />
     </ItemGroup>
 
 </Project>

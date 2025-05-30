@@ -9,12 +9,12 @@
 
 using System.IO;
 
-using AlastairLundy.Extensions.IO.Abstractions.Files;
+using AlastairLundy.Resyslib.IO.Core.Files;
 
 
 // ReSharper disable UseIndexFromEndExpression
 
-namespace AlastairLundy.Extensions.IO.Files
+namespace AlastairLundy.Resyslib.IO.Files
 {
     /// <summary>
     /// 

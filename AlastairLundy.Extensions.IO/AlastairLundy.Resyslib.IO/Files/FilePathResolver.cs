@@ -12,9 +12,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-using AlastairLundy.Extensions.IO.Abstractions.Files;
+using AlastairLundy.Resyslib.IO.Core.Files;
 
-namespace AlastairLundy.Extensions.IO.Files
+namespace AlastairLundy.Resyslib.IO.Files
 {
     /// <summary>
     /// 

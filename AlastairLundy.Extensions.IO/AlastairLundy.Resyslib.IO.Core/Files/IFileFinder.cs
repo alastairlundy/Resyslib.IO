@@ -7,7 +7,7 @@
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-namespace AlastairLundy.Extensions.IO.Abstractions.Files
+namespace AlastairLundy.Resyslib.IO.Core.Files
 {
     /// <summary>
     /// Defines an interface for finding files and determining whether a specific file path is a file.

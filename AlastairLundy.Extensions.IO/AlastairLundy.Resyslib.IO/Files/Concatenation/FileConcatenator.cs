@@ -11,12 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation;
+using AlastairLundy.Resyslib.IO.Core.Files.Concatenation;
 
 
 // ReSharper disable UnusedType.Global
 
-namespace AlastairLundy.Extensions.IO.Files.Concatenation
+namespace AlastairLundy.Resyslib.IO.Files.Concatenation
 {
     /// <summary>
     /// Syntactic sugar around the FileAppender class.

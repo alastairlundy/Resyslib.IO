@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using AlastairLundy.Extensions.IO.Abstractions.Files;
-using AlastairLundy.Extensions.IO.Files;
+using AlastairLundy.Resyslib.IO.Core.Files;
+using AlastairLundy.Resyslib.IO.Files;
 
 namespace Extensions.IO.Tests.Data
 {

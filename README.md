@@ -1,6 +1,11 @@
 # AlastairLundy.Extensions.IO
  Implementations of Interfaces that make working with Files and Directories easier. 
 
+It also provides:
+* ``UnixFilePermissionConverter`` - A static class that can convert between symbolic unix file permission notation and numeric notation.
+* ``UnixFilePermissionParser`` - A static class that can parse Unix File Permission notation in Symbolic or Numeric form to ``UnixFileMode`` enum.
+
+
 [![NuGet](https://img.shields.io/nuget/v/AlastairLundy.Extensions.IO.svg)](https://www.nuget.org/packages/AlastairLundy.Extensions.IO/)
 [![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.Extensions.IO.svg)](https://www.nuget.org/packages/AlastairLundy.Extensions.IO/)
 

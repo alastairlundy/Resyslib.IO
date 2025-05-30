@@ -10,7 +10,7 @@
 
 using System.IO;
 
-namespace AlastairLundy.Extensions.IO.Abstractions.Directories
+namespace AlastairLundy.Resyslib.IO.Core.Directories
 {
     /// <summary>
     /// Defines an interface for creating and deleting parent directories.

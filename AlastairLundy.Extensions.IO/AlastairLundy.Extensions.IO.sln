@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.Extensions.IO", "AlastairLundy.Extensions.IO\AlastairLundy.Extensions.IO.csproj", "{3FEADAE7-6CCE-4016-875B-41F2351737C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.Resyslib.IO", "AlastairLundy.Resyslib.IO\AlastairLundy.Resyslib.IO.csproj", "{3FEADAE7-6CCE-4016-875B-41F2351737C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.Extensions.IO.DependencyInjection", "AlastairLundy.Extensions.IO.DependencyInjection\AlastairLundy.Extensions.IO.DependencyInjection.csproj", "{4DE922A6-4368-41C1-972F-C250B5D62D13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.Extensions.IO.Abstractions", "AlastairLundy.Extensions.IO.Abstractions\AlastairLundy.Extensions.IO.Abstractions.csproj", "{006B63F8-1004-49DF-AFE4-57CB3E54141A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlastairLundy.Resyslib.IO.Core", "AlastairLundy.Resyslib.IO.Core\AlastairLundy.Resyslib.IO.Core.csproj", "{006B63F8-1004-49DF-AFE4-57CB3E54141A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3BCEF571-91FF-44DF-8072-5011D1F55B68}"
 EndProject

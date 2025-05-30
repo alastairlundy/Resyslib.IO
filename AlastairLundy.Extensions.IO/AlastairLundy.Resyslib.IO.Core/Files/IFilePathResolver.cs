@@ -9,7 +9,7 @@
 
 using System.IO;
 
-namespace AlastairLundy.Extensions.IO.Abstractions.Files
+namespace AlastairLundy.Resyslib.IO.Core.Files
 {
     /// <summary>
     /// Defines an interface for resolving file paths to absolute paths.

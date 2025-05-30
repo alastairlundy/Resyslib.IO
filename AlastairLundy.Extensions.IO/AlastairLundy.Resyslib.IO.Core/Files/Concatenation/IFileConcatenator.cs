@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation
+namespace AlastairLundy.Resyslib.IO.Core.Files.Concatenation
 {
     /// <summary>
     /// Defines an interface for concatenating the contents of multiple files into one file.

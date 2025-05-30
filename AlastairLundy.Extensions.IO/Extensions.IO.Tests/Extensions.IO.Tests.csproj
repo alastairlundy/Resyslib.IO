@@ -20,8 +20,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AlastairLundy.Extensions.IO.Abstractions\AlastairLundy.Extensions.IO.Abstractions.csproj" />
-      <ProjectReference Include="..\AlastairLundy.Extensions.IO\AlastairLundy.Extensions.IO.csproj" />
+      <ProjectReference Include="..\AlastairLundy.Resyslib.IO.Core\AlastairLundy.Resyslib.IO.Core.csproj" />
+      <ProjectReference Include="..\AlastairLundy.Resyslib.IO\AlastairLundy.Resyslib.IO.csproj" />
     </ItemGroup>
 
 </Project>

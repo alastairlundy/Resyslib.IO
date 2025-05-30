@@ -7,16 +7,17 @@
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-using AlastairLundy.Extensions.IO.Directories;
-using AlastairLundy.Extensions.IO.Abstractions.Directories;
 
-using AlastairLundy.Extensions.IO.Files;
-using AlastairLundy.Extensions.IO.Files.Concatenation;
+using AlastairLundy.Resyslib.IO.Core.Directories;
+using AlastairLundy.Resyslib.IO.Core.Files;
+using AlastairLundy.Resyslib.IO.Core.Files.Concatenation;
 
-using AlastairLundy.Extensions.IO.Abstractions.Files;
-using AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation;
+using AlastairLundy.Resyslib.IO.Directories;
+using AlastairLundy.Resyslib.IO.Files;
+using AlastairLundy.Resyslib.IO.Files.Concatenation;
 
 using Microsoft.Extensions.DependencyInjection;
+
 // ReSharper disable InconsistentNaming
 
 namespace AlastairLundy.Extensions.IO.DependencyInjection

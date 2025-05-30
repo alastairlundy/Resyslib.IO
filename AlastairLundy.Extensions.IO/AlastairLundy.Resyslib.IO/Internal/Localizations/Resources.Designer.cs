@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlastairLundy.Extensions.IO.Internal.Localizations {
+namespace AlastairLundy.Resyslib.IO.Internal.Localizations {
     using System;
     
     
@@ -64,7 +64,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         /// </summary>
         internal static string Exceptions_IO_DirectoryNotFound {
             get {
-                return ResourceManager.GetString("Exceptions_IO_DirectoryNotFound", resourceCulture);
+                return ResourceManager.GetString("Exceptions.IO.DirectoryNotFound", resourceCulture);
             }
         }
         
@@ -73,7 +73,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         /// </summary>
         internal static string Exceptions_IO_FileNotFound {
             get {
-                return ResourceManager.GetString("Exceptions_IO_FileNotFound", resourceCulture);
+                return ResourceManager.GetString("Exceptions.IO.FileNotFound", resourceCulture);
             }
         }
         
@@ -82,7 +82,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         /// </summary>
         internal static string Exceptions_IO_NoFileProfiled {
             get {
-                return ResourceManager.GetString("Exceptions_IO_NoFileProfiled", resourceCulture);
+                return ResourceManager.GetString("Exceptions.IO.NoFileProfiled", resourceCulture);
             }
         }
         
@@ -91,16 +91,16 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         /// </summary>
         internal static string Exceptions_IO_TargetFile_NullOrEmpty {
             get {
-                return ResourceManager.GetString("Exceptions_IO_TargetFile_NullOrEmpty", resourceCulture);
+                return ResourceManager.GetString("Exceptions.IO.TargetFile.NullOrEmpty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to An Invalid Unix Numeric file permission notation of {x} was provided..
         /// </summary>
-        internal static string Exceptions_Permisions_InvalidNumericNotation {
+        internal static string Exceptions_Permissions_InvalidNumericNotation {
             get {
-                return ResourceManager.GetString("Exceptions_Permisions_InvalidNumericNotation", resourceCulture);
+                return ResourceManager.GetString("Exceptions.Permissions.InvalidNumericNotation", resourceCulture);
             }
         }
         
@@ -109,7 +109,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         /// </summary>
         internal static string Exceptions_Permissions_InvalidSymbolicNotation {
             get {
-                return ResourceManager.GetString("Exceptions_Permissions_InvalidSymbolicNotation", resourceCulture);
+                return ResourceManager.GetString("Exceptions.Permissions.InvalidSymbolicNotation", resourceCulture);
             }
         }
         
@@ -118,7 +118,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         /// </summary>
         internal static string IO_Directory_Deleted {
             get {
-                return ResourceManager.GetString("IO_Directory_Deleted", resourceCulture);
+                return ResourceManager.GetString("IO.Directory.Deleted", resourceCulture);
             }
         }
         
@@ -127,7 +127,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         /// </summary>
         internal static string IO_EmptyDirectory_Deleted {
             get {
-                return ResourceManager.GetString("IO_EmptyDirectory_Deleted", resourceCulture);
+                return ResourceManager.GetString("IO.EmptyDirectory.Deleted", resourceCulture);
             }
         }
         
@@ -136,7 +136,7 @@ namespace AlastairLundy.Extensions.IO.Internal.Localizations {
         /// </summary>
         internal static string IO_File_Deleted {
             get {
-                return ResourceManager.GetString("IO_File_Deleted", resourceCulture);
+                return ResourceManager.GetString("IO.File.Deleted", resourceCulture);
             }
         }
     }

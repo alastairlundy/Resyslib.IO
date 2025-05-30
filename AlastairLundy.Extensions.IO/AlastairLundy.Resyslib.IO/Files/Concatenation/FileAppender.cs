@@ -15,16 +15,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-using AlastairLundy.Extensions.IO.Abstractions.Files;
-using AlastairLundy.Extensions.IO.Abstractions.Files.Concatenation;
 
-using AlastairLundy.Extensions.IO.Internal.Localizations;
+using AlastairLundy.Resyslib.IO.Core.Files;
+using AlastairLundy.Resyslib.IO.Core.Files.Concatenation;
+using AlastairLundy.Resyslib.IO.Core.Primitives.Files;
 
-using AlastairLundy.Resyslib.IO.Files;
+using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
 // ReSharper disable RedundantIfElseBlock
 
-namespace AlastairLundy.Extensions.IO.Files.Concatenation
+namespace AlastairLundy.Resyslib.IO.Files.Concatenation
 {
     /// <summary>
     /// A class to append the contents of files.
