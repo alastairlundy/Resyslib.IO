@@ -1,5 +1,5 @@
 ﻿/*
-    AlastairLundy.Extensions.IO 
+    Resyslib.IO 
     Copyright (c) 2024-2025 Alastair Lundy
 
     This Source Code Form is subject to the terms of the Mozilla Public
@@ -20,7 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 // ReSharper disable InconsistentNaming
 
-namespace AlastairLundy.Extensions.IO.DependencyInjection
+namespace AlastairLundy.Resyslib.IO.Extensions
 {
     public static class DependencyInjectionExtensions
     {

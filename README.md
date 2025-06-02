@@ -1,4 +1,4 @@
-# AlastairLundy.Extensions.IO
+# AlastairLundy.Resyslib.IO
  Implementations of Interfaces that make working with Files and Directories easier. 
 
 It also provides:
@@ -6,8 +6,8 @@ It also provides:
 * ``UnixFilePermissionParser`` - A static class that can parse Unix File Permission notation in Symbolic or Numeric form to ``UnixFileMode`` enum.
 
 
-[![NuGet](https://img.shields.io/nuget/v/AlastairLundy.Extensions.IO.svg)](https://www.nuget.org/packages/AlastairLundy.Extensions.IO/)
-[![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.Extensions.IO.svg)](https://www.nuget.org/packages/AlastairLundy.Extensions.IO/)
+[![NuGet](https://img.shields.io/nuget/v/AlastairLundy.Resyslib.IO.svg)](https://www.nuget.org/packages/AlastairLundy.Resyslib.IO/)
+[![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.Resyslib.IO.svg)](https://www.nuget.org/packages/AlastairLundy.Resyslib.IO/)
 
 ## Table of Contents
 * [Features](#features)
@@ -32,7 +32,7 @@ IOExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code e
 
 | Package Name                | Nuget Link                                                                                  | .NET SDK CLI command                               |
 |-----------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------|
-| AlastairLundy.Extensions.IO | [AlastairLundy.Extensions.IO Nuget](https://nuget.org/packages/AlastairLundy.Extensions.IO) | ``dotnet add package AlastairLundy.Extensions.IO`` |
+| AlastairLundy.Resyslib.IO | [AlastairLundy.Resyslib.IO Nuget](https://nuget.org/packages/AlastairLundy.Resyslib.IO) | ``dotnet add package AlastairLundy.Resyslib.IO`` |
 
 
 ### Compatibility
@@ -79,7 +79,7 @@ You can build for testing by building the project within your IDE or VS Code, or
 If you encounter any bugs or issues, try testing your code with breakpoints in the affected code where appropriate. Failing that, please [report the issue](https://github.com/alastairlundy/IOExtensions/issues/new/) if one doesn't already exist for the bug(s).
 
 ### Building for Release
-Before building a release build, ensure you apply the relevant changes to the ``AlastairLundy.Extensions.IO.csproj`` file:
+Before building a release build, ensure you apply the relevant changes to the ``AlastairLundy.Resyslib.IO.csproj`` file:
 * Update the Package Version variable
 * Update the project file's Changelog
 
@@ -93,10 +93,10 @@ Builds should generally always include SourceLink and symbol packages if intende
 ## How to Contribute to IOExtensions
 Thank you in advance for considering contributing to IOExtensions.
 
-Please see the [CONTRIBUTING.md file](https://github.com/alastairlundy/Extensions.IO/blob/main/CONTRIBUTING.md) for code and localization contributions.
+Please see the [CONTRIBUTING.md file](https://github.com/alastairlundy/Resyslib.IO/blob/main/CONTRIBUTING.md) for code and localization contributions.
 
-If you want to file a bug report or suggest a potential feature to add, please check out the [GitHub issues page](https://github.com/alastairlundy/Extensions.IO/issues/) to see if a similar or identical issue is already open.
-If there is not already a relevant issue filed, please [file one here](https://github.com/alastairlundy/Extensions.IO/issues/new) and follow the respective guidance from the appropriate issue template.
+If you want to file a bug report or suggest a potential feature to add, please check out the [GitHub issues page](https://github.com/alastairlundy/Resyslib.IO/issues/) to see if a similar or identical issue is already open.
+If there is not already a relevant issue filed, please [file one here](https://github.com/alastairlundy/Resyslib.IO/issues/new) and follow the respective guidance from the appropriate issue template.
 
 Thanks.
 

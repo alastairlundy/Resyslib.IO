@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net8.0;net9.0;</TargetFrameworks>
+        <LangVersion>13</LangVersion>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <IncludeSymbols>true</IncludeSymbols>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <Version>3.1.0</Version>
+        <Title>Resyslib.IO.Core</Title>
+        <Authors>AlastairLundy</Authors>
+        <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/Resyslib.IO</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>## Changes
+Initial Release under new name and package</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Description>Abstractions and common types for Resyslib.IO </Description>
+        <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <AssemblyName>AlastairLundy.Resyslib.IO.Core</AssemblyName>
+        <PackageId>AlastairLundy.Resyslib.IO.Core</PackageId>
+        <RootNamespace>AlastairLundy.Resyslib.IO.Core</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="README.md">
+            <Link>README.md</Link>
+            <PackagePath>README.md</PackagePath>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Primitives\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Bcl.HashCode" Version="6.0.0" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+        <ProjectType>Exe</ProjectType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="coverlet.collector" Version="6.0.4"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.0"/>
+        <PackageReference Include="xunit.v3" Version="2.0.2"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="3.1.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Using Include="Xunit"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Resyslib.IO.Core\Resyslib.IO.Core.csproj" />
+      <ProjectReference Include="..\Resyslib.IO\Resyslib.IO.csproj" />
+    </ItemGroup>
+
+</Project>

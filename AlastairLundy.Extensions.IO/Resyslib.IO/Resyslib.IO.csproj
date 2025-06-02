@@ -52,7 +52,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\AlastairLundy.Resyslib.IO.Core\AlastairLundy.Resyslib.IO.Core.csproj" />
+      <ProjectReference Include="..\Resyslib.IO.Core\Resyslib.IO.Core.csproj" />
     </ItemGroup>
 
 </Project>
