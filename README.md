@@ -11,11 +11,11 @@ It also provides:
 
 ## Table of Contents
 * [Features](#features)
-* [Installing IOExtensions](#how-to-install-and-use-ioextensions)
+* [Installing Resyslib.IO](#how-to-install-and-use-Resyslib.IO)
     * [Compatibility](#compatibility)
 * [Examples](#examples)
-* [Contributing to IOExtensions](#how-to-contribute-to-IOExtensions)
-* [Roadmap](#ioextensions-roadmap)
+* [Contributing to Resyslib.IO](#how-to-contribute-to-Resyslib.IO)
+* [Roadmap](#roadmap)
 * [License](#license)
 * [Acknowledgements](#acknowledgements)
 
@@ -27,8 +27,8 @@ It also provides:
 * Support for concatenating files
 * Support for parsing and converting Unix File Permission notations
 
-## How to install and use IOExtensions
-IOExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
+## How to install and use Resyslib.IO
+Resyslib.IO can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
 
 | Package Name                | Nuget Link                                                                                  | .NET SDK CLI command                               |
 |-----------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------|
@@ -42,10 +42,10 @@ IOExtensions can be installed via the .NET SDK CLI, Nuget via your IDE or code e
 | 1.2 >=                       | .NET Standard 2.0, .NET Standard 2.1, and .NET 8 and newer |
 | <= 1.1                       | .NET 8 and newer                                           |
 
-## How to Build IOExtensions's code
+## How to Build Resyslib.IO's code
 
 ### Requirements
-IOExtensions requires the latest .NET release SDK to be installed to target all supported TFM (Target Framework Moniker) build targets.
+Resyslib.IO requires the latest .NET release SDK to be installed to target all supported TFM (Target Framework Moniker) build targets.
 
 Currently, the required .NET SDK is .NET 9.
 
@@ -58,7 +58,7 @@ The current build targets include:
 Any version of the .NET 9 SDK can be used, but using the latest version is preferred.
 
 ### Versioning new releases
-IOExtensions aims to follow Semantic versioning with ```[Major].[Minor].[Build]``` for most circumstances and an optional ``.[Revision]`` when only a configuration change is made, or a new build of a preview release is made.
+Resyslib.IO aims to follow Semantic versioning with ```[Major].[Minor].[Build]``` for most circumstances and an optional ``.[Revision]`` when only a configuration change is made, or a new build of a preview release is made.
 
 #### Pre-releases
 Pre-release versions should have a suffix of -alpha, -beta, -rc, or -preview followed by a ``.`` and what pre-release version number they are. The number should be incremented by 1 after each release unless it only contains a configuration change, or another packaging, or build change. An example pre-release version may look like 1.1.0-alpha.2 , this version string would indicate it is the 2nd alpha pre-release version of 1.1.0 .
@@ -76,7 +76,7 @@ Releases that add major breaking changes or significantly affect the API should 
 ### Building for Testing
 You can build for testing by building the project within your IDE or VS Code, or manually by entering the following command: ``dotnet build -c Debug``.
 
-If you encounter any bugs or issues, try testing your code with breakpoints in the affected code where appropriate. Failing that, please [report the issue](https://github.com/alastairlundy/IOExtensions/issues/new/) if one doesn't already exist for the bug(s).
+If you encounter any bugs or issues, try testing your code with breakpoints in the affected code where appropriate. Failing that, please [report the issue](https://github.com/alastairlundy/Resyslib.IO/issues/new/) if one doesn't already exist for the bug(s).
 
 ### Building for Release
 Before building a release build, ensure you apply the relevant changes to the ``AlastairLundy.Resyslib.IO.csproj`` file:
@@ -90,8 +90,8 @@ To manually build for release, enter ``dotnet build -c Release /p:ContinuousInte
 
 Builds should generally always include SourceLink and symbol packages if intended for wider distribution.
 
-## How to Contribute to IOExtensions
-Thank you in advance for considering contributing to IOExtensions.
+## How to Contribute to Resyslib.IO
+Thank you in advance for considering contributing to Resyslib.IO.
 
 Please see the [CONTRIBUTING.md file](https://github.com/alastairlundy/Resyslib.IO/blob/main/CONTRIBUTING.md) for code and localization contributions.
 
@@ -100,8 +100,8 @@ If there is not already a relevant issue filed, please [file one here](https://g
 
 Thanks.
 
-## IOExtensions' Roadmap
-IOExtensions aims to make working with files and directories in C# easier.
+## Roadmap
+Resyslib.IO aims to make working with files and directories in C# easier.
 
 All stable releases must be stable and should not contain regressions.
 
