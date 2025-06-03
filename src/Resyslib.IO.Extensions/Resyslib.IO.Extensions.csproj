@@ -8,12 +8,12 @@
         <Version>3.1.0</Version>
         <Title>AlastairLundy.Resyslib.IO.Extensions</Title>
         <Authors>AlastairLundy</Authors>
-        <Description>Enables easier setup of IO Extensions' interfaces for dependency injection when using Microsoft.Extensions.DependencyInjection.</Description>
+        <Description>Enables easier setup of Resyslib.IO's interfaces for dependency injection when using Microsoft.Extensions.DependencyInjection.</Description>
         <Copyright>Copyright (c) Alastair Lundy 2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/Resyslib.IO/</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>io, files, directories, directory, extension-methods </PackageTags>
-        <PackageReleaseNotes>Updated to use Extensions.IO 3.1.0</PackageReleaseNotes>
+        <PackageReleaseNotes>Updated to use Resyslib.IO 3.1.0</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -27,18 +27,15 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5"/>
+        <PackageReference Include="AlastairLundy.Resyslib.IO.Core" Version="3.1.0"/>
+        <PackageReference Include="AlastairLundy.Resyslib.IO" Version="3.1.0"/>
     </ItemGroup>
-
+    
     <ItemGroup>
       <None Remove="README.md" />
         <Content Include="README.md" >
             <PackagePath>README.md</PackagePath>
         </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Resyslib.IO.Core\Resyslib.IO.Core.csproj" />
-      <ProjectReference Include="..\Resyslib.IO\Resyslib.IO.csproj" />
     </ItemGroup>
     
 </Project>
