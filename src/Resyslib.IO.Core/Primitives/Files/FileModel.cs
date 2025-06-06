@@ -36,7 +36,6 @@ namespace AlastairLundy.Resyslib.IO.Core.Primitives.Files
         /// </summary>
         public string FilePath { get; }
         
-
         /// <summary>
         /// A model to represent a File.
         /// </summary>
