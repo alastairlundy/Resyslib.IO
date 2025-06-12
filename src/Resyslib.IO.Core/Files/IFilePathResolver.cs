@@ -16,6 +16,7 @@ namespace AlastairLundy.Resyslib.IO.Core.Files
     /// </summary>
     public interface IFilePathResolver
     {
+        
         /// <summary>
         /// Resolves the file path to a specific file.
         /// </summary>
