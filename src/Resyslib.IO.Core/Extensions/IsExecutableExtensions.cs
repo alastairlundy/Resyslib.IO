@@ -7,7 +7,10 @@
     file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+#if NET5_0_OR_GREATER
 using System;
+#endif
+
 using System.IO;
 using System.Runtime.InteropServices;
 
