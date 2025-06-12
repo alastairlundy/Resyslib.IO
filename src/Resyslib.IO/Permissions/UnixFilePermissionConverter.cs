@@ -55,7 +55,7 @@ namespace AlastairLundy.Resyslib.IO.Permissions
         /// <exception cref="ArgumentException">Thrown if an invalid octal notation is specified.</exception>
         public static string ToSymbolicNotation(string numericNotation)
         {
-            if (numericNotation.Length == 4 && int.TryParse(numericNotation, out int result))
+            if (numericNotation.Length == 3 && int.TryParse(numericNotation, out int result))
             {
                 return result switch
                 {
