@@ -8,6 +8,7 @@
  */
 
 using System;
+
 using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
 // ReSharper disable UnusedMember.Global
@@ -76,5 +77,7 @@ namespace AlastairLundy.Resyslib.IO.Permissions
 
             throw new ArgumentException(Resources.Exceptions_Permissions_InvalidNumericNotation.Replace("{x}", numericNotation));
         }
+        
+        
     }
 }
