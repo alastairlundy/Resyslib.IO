@@ -10,7 +10,6 @@
 
 using System;
 using System.IO;
-using AlastairLundy.Resyslib.IO.Core.Primitives.Permissions;
 using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -54,16 +53,6 @@ public static class UnixFilePermissionParser
         }
 
         throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation);
-    }
-
-    public static UnixFilePermission ParseNumericNotationAsPermission(string permissionNotation)
-    {
-        if (IsNumericNotation(permissionNotation) == false)
-        {
-            throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation);
-        }
-        
-        
     }
 
     /// <summary>
@@ -177,37 +166,6 @@ public static class UnixFilePermissionParser
         }
     }
 #endif
-
-    public static bool TryParse(string permissionNotation, out UnixFilePermission? filePermission)
-    {
-        UnixFilePermission? permission;
-        
-        bool isNumericNotation = IsNumericNotation(permissionNotation);
-        bool isSymbolicNotation = IsSymbolicNotation(permissionNotation);
-
-        try
-        {
-            if (isNumericNotation && !isSymbolicNotation)
-            {
-                permission = ParseNumericNotationAsPermission(permissionNotation);
-            }
-            else if (isSymbolicNotation && !isNumericNotation)
-            {
-                permission = ParseSymbolicValue(permissionNotation);
-            }
-            else
-            {
-                permission = UnixFilePermission.UserRead & UnixFilePermission.UserWrite;
-            }
-
-            return true;
-        }
-        catch
-        {
-            permission = null;
-            return false;
-        }
-    }
     
     /// <summary>
     /// Detects whether a Unix Octal file permission notation is valid.
@@ -224,6 +182,8 @@ public static class UnixFilePermissionParser
                 0 or 111 or 222 or 333 or 444 or 555 or 666 or 700 or 740 or 777 => true,
                 _ => false
             };
+            
+            return result.len
 #else
                 return result == 0 ||
                        result == 111 ||
@@ -248,24 +208,25 @@ public static class UnixFilePermissionParser
     /// <returns>True if a valid unix file permission symbolic notation has been provided; false otherwise.</returns>
     public static bool IsSymbolicNotation(string notation)
     {
-        if (notation.Length == 10)
-        {
+        if (notation.Length != 10) 
+            return false;
+        
 #if NET6_0_OR_GREATER
-            return notation switch
-            {
-                "----------" or
-                    "---x--x--x" or
-                    "--w--w--w-" or
-                    "--wx-wx-wx" or
-                    "-r--r--r--" or
-                    "-r-xr-xr-x" or
-                    "-rw-rw-rw-" or
-                    "-rwx------" or
-                    "-rwxr-----" or
-                    "-rwxrwx---" or
-                    "-rwxrwxrwx" => true,
-                _ => false
-            };
+        return notation switch
+        {
+            "----------" or
+                "---x--x--x" or
+                "--w--w--w-" or
+                "--wx-wx-wx" or
+                "-r--r--r--" or
+                "-r-xr-xr-x" or
+                "-rw-rw-rw-" or
+                "-rwx------" or
+                "-rwxr-----" or
+                "-rwxrwx---" or
+                "-rwxrwxrwx" => true,
+            _ => false
+        };
 #else
                 return notation == "----------" ||
                        notation == "---x--x--x" ||
@@ -279,8 +240,6 @@ public static class UnixFilePermissionParser
                        notation == "-rwxrwx---" ||
                        notation == "-rwxrwxrwx";
 #endif
-        }
 
-        return false;
     }
 }
