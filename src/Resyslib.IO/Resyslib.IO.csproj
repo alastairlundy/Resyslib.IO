@@ -30,7 +30,8 @@ This package now contains the former Extensions.IO code along with some former R
     
     <ItemGroup>
         <PackageReference Include="AlastairLundy.DotExtensions" Version="7.1.1" />
-        <PackageReference Include="AlastairLundy.Resyslib.IO.Core" Version="3.1.0"/>
+        <PackageReference Include="Polyfill" Version="8.0.1" PrivateAssets="All"
+                          Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netstandard2.1'"/>
     </ItemGroup>
     
     <ItemGroup>
@@ -53,6 +54,10 @@ This package now contains the former Extensions.IO code along with some former R
         <Link>README.md</Link>
           <PackagePath>README.md</PackagePath>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Resyslib.IO.Core\Resyslib.IO.Core.csproj" />
     </ItemGroup>
 
 </Project>
