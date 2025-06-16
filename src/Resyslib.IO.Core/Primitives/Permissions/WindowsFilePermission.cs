@@ -17,22 +17,76 @@ namespace AlastairLundy.Resyslib.IO.Core.Primitives.Permissions;
 [Flags]
 public enum WindowsFilePermission
 {
+    /// <summary>
+    /// 
+    /// </summary>
     SystemFullControl,
+    /// <summary>
+    /// 
+    /// </summary>
     SystemModify,
+    /// <summary>
+    /// 
+    /// </summary>
     SystemRead,
+    /// <summary>
+    /// 
+    /// </summary>
     SystemWrite,
+    /// <summary>
+    /// 
+    /// </summary>
     SystemReadAndExecute,
+    /// <summary>
+    /// 
+    /// </summary>
     SystemListFolderContents,
+    /// <summary>
+    /// 
+    /// </summary>
     UserFullControl,
+    /// <summary>
+    /// 
+    /// </summary>
     UserModify,
+    /// <summary>
+    /// 
+    /// </summary>
     UserRead,
+    /// <summary>
+    /// 
+    /// </summary>
     UserWrite,
+    /// <summary>
+    /// 
+    /// </summary>
     UserReadAndExecute,
+    /// <summary>
+    /// 
+    /// </summary>
     UserListFolderContents,
+    /// <summary>
+    /// 
+    /// </summary>
     GroupFullControl,
+    /// <summary>
+    /// 
+    /// </summary>
     GroupModify,
+    /// <summary>
+    /// 
+    /// </summary>
     GroupRead,
+    /// <summary>
+    /// 
+    /// </summary>
     GroupWrite,
+    /// <summary>
+    /// 
+    /// </summary>
     GroupReadAndExecute,
+    /// <summary>
+    /// 
+    /// </summary>
     GroupListFolderContents,
 }

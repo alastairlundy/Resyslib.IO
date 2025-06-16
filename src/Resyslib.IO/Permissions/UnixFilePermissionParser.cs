@@ -10,14 +10,15 @@
 
 using System;
 using System.IO;
+using AlastairLundy.Resyslib.IO.Core.Primitives.Permissions;
 using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace AlastairLundy.Resyslib.IO.Permissions
+namespace AlastairLundy.Resyslib.IO.Permissions;
+
+public static class UnixFilePermissionParser
 {
-    public static class UnixFilePermissionParser
-    {
 #if NET8_0_OR_GREATER 
     /// <summary>
     /// Parse a Unix file permission in octal notation to a UnixFileMode enum.
@@ -25,9 +26,11 @@ namespace AlastairLundy.Resyslib.IO.Permissions
     /// <param name="permissionNotation">The octal notation to be parsed.</param>
     /// <returns>The UnixFileMode enum equivalent to the specified octal notation.</returns>
     /// <exception cref="ArgumentException">Thrown if an invalid octal notation is specified.</exception>
+    // TODO: Rename to ParseNumericNotation in v8.0
     public static UnixFileMode ParseNumericValue(string permissionNotation)
     {
-        if (IsNumericNotation(permissionNotation) && int.TryParse(permissionNotation, out int result))
+        if (IsNumericNotation(permissionNotation) 
+            && int.TryParse(permissionNotation, out int result))
         {
             return result switch
             {
@@ -51,6 +54,16 @@ namespace AlastairLundy.Resyslib.IO.Permissions
         }
 
         throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation);
+    }
+
+    public static UnixFilePermission ParseNumericNotationAsPermission(string permissionNotation)
+    {
+        if (IsNumericNotation(permissionNotation) == false)
+        {
+            throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation);
+        }
+        
+        
     }
 
     /// <summary>
@@ -79,6 +92,7 @@ namespace AlastairLundy.Resyslib.IO.Permissions
     /// <param name="permissionNotation">The symbolic notation to be compared.</param>
     /// <returns>The UnixFileMode enum equivalent to the specified symbolic notation.</returns>
     /// <exception cref="ArgumentException">Thrown if an invalid symbolic notation is specified.</exception>
+    // TODO: Rename to ParseSymbolicNotation in v8
     public static UnixFileMode ParseSymbolicValue(string permissionNotation)
     {
         if (IsSymbolicNotation(permissionNotation))
@@ -113,6 +127,7 @@ namespace AlastairLundy.Resyslib.IO.Permissions
     /// <param name="permissionNotation">The Unix file permission symbolic notation to be parsed.</param>
     /// <param name="fileMode">The UnixFileMode equivalent value to the symbolic notation if a valid symbolic notation was specified; null otherwise.</param>
     /// <returns>True if a valid Unix file permission symbolic notation was specified; false otherwise.</returns>
+    // TODO: Rename to TryParseSymbolicNotation in v8
     public static bool TryParseSymbolicValue(string permissionNotation, out UnixFileMode? fileMode)
     {
         try
@@ -162,15 +177,47 @@ namespace AlastairLundy.Resyslib.IO.Permissions
         }
     }
 #endif
-        /// <summary>
-        /// Detects whether a Unix Octal file permission notation is valid.
-        /// </summary>
-        /// <param name="notation">The numeric notation to be compared.</param>
-        /// <returns>True if a valid unix file permission octal notation has been provided; false otherwise.</returns>
-        public static bool IsNumericNotation(string notation)
+
+    public static bool TryParse(string permissionNotation, out UnixFilePermission? filePermission)
+    {
+        UnixFilePermission? permission;
+        
+        bool isNumericNotation = IsNumericNotation(permissionNotation);
+        bool isSymbolicNotation = IsSymbolicNotation(permissionNotation);
+
+        try
         {
-            if (notation.Length == 4 && int.TryParse(notation, out int result))
+            if (isNumericNotation && !isSymbolicNotation)
             {
+                permission = ParseNumericNotationAsPermission(permissionNotation);
+            }
+            else if (isSymbolicNotation && !isNumericNotation)
+            {
+                permission = ParseSymbolicValue(permissionNotation);
+            }
+            else
+            {
+                permission = UnixFilePermission.UserRead & UnixFilePermission.UserWrite;
+            }
+
+            return true;
+        }
+        catch
+        {
+            permission = null;
+            return false;
+        }
+    }
+    
+    /// <summary>
+    /// Detects whether a Unix Octal file permission notation is valid.
+    /// </summary>
+    /// <param name="notation">The numeric notation to be compared.</param>
+    /// <returns>True if a valid unix file permission octal notation has been provided; false otherwise.</returns>
+    public static bool IsNumericNotation(string notation)
+    {
+        if (notation.Length == 4 && int.TryParse(notation, out int result))
+        {
 #if NET6_0_OR_GREATER
             return result switch
             {
@@ -189,20 +236,20 @@ namespace AlastairLundy.Resyslib.IO.Permissions
                        result == 740 ||
                        result == 777;
 #endif
-            }
-
-            return false;
         }
 
-        /// <summary>
-        /// Detects whether a Unix symbolic file permission is valid.
-        /// </summary>
-        /// <param name="notation">The symbolic notation to be compared.</param>
-        /// <returns>True if a valid unix file permission symbolic notation has been provided; false otherwise.</returns>
-        public static bool IsSymbolicNotation(string notation)
+        return false;
+    }
+
+    /// <summary>
+    /// Detects whether a Unix symbolic file permission is valid.
+    /// </summary>
+    /// <param name="notation">The symbolic notation to be compared.</param>
+    /// <returns>True if a valid unix file permission symbolic notation has been provided; false otherwise.</returns>
+    public static bool IsSymbolicNotation(string notation)
+    {
+        if (notation.Length == 10)
         {
-            if (notation.Length == 10)
-            {
 #if NET6_0_OR_GREATER
             return notation switch
             {
@@ -232,9 +279,8 @@ namespace AlastairLundy.Resyslib.IO.Permissions
                        notation == "-rwxrwx---" ||
                        notation == "-rwxrwxrwx";
 #endif
-            }
-
-            return false;
         }
+
+        return false;
     }
 }

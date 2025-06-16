@@ -8,20 +8,19 @@
  */
 
 
-namespace AlastairLundy.Resyslib.IO.Core.Primitives.Paths
+namespace AlastairLundy.Resyslib.IO.Core.Primitives.Paths;
+
+/// <summary>
+/// An enum representing the types of paths.
+/// </summary>
+public enum PathType
 {
     /// <summary>
-    /// An enum representing the types of paths.
+    /// A path type that represents a file.
     /// </summary>
-    public enum PathType
-    {
-        /// <summary>
-        /// A path type that represents a file.
-        /// </summary>
-        File,
-        /// <summary>
-        /// A path type that represents a directory.
-        /// </summary>
-        Directory
-    }
+    File,
+    /// <summary>
+    /// A path type that represents a directory.
+    /// </summary>
+    Directory
 }
