@@ -8,73 +8,133 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Text;
+
+using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+
 using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedType.Global
 
-namespace AlastairLundy.Resyslib.IO.Permissions
+namespace AlastairLundy.Resyslib.IO.Permissions;
+
+public static class UnixFilePermissionConverter
 {
-    public static class UnixFilePermissionConverter
+    /// <summary>
+    /// Converts a Unix file permission in symbolic notation to Octal notation.
+    /// </summary>
+    /// <param name="symbolicNotation">The symbolic notation to be converted to octal notation.</param>
+    /// <returns>The octal notation equivalent of the specified symbolic notation.</returns>
+    /// <exception cref="ArgumentException">Thrown if an invalid symbolic notation is specified.</exception>
+    public static string ToNumericNotation(string symbolicNotation)
     {
-        /// <summary>
-        /// Converts a Unix file permission in symbolic notation to Octal notation.
-        /// </summary>
-        /// <param name="symbolicNotation">The symbolic notation to be converted to octal notation.</param>
-        /// <returns>The octal notation equivalent of the specified symbolic notation.</returns>
-        /// <exception cref="ArgumentException">Thrown if an invalid symbolic notation is specified.</exception>
-        public static string ToNumericNotation(string symbolicNotation)
+        StringBuilder stringBuilder = new StringBuilder();
+
+        if (symbolicNotation.Length == 10)
         {
-            if (symbolicNotation.Length == 10)
+            IEnumerable<IEnumerable<char>> parts = symbolicNotation.ToLower()
+                .SplitByCount(3);
+
+            foreach (IEnumerable<char> substring in parts)
             {
-                return symbolicNotation switch
+                string s = string.Join("", substring);
+
+                switch (s)
                 {
-                    "----------" => "0000",
-                    "---x--x--x" => "0111",
-                    "--w--w--w-" => "0222",
-                    "--wx-wx-wx" => "0333",
-                    "-r--r--r--" => "0444",
-                    "-r-xr-xr-x" => "0555",
-                    "-rw-rw-rw-" => "0666",
-                    "-rwx------" => "0700",
-                    "-rwxr-----" => "0740",
-                    "-rwxrwx---" => "0770",
-                    "-rwxrwxrwx" => "0777",
-                    _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", symbolicNotation))
-                };
+                    case "---":
+                        stringBuilder.Append($"0");
+                        break;
+                    case "--x":
+                        stringBuilder.Append($"1");
+                        break;
+                    case "-w-":
+                        stringBuilder.Append($"2");
+                        break;
+                    case "-wx":
+                        stringBuilder.Append($"3");
+                        break;
+                    case "r--":
+                        stringBuilder.Append($"4");
+                        break;
+                    case "r-x":
+                        stringBuilder.Append($"5");
+                        break;
+                    case "rw-":
+                        stringBuilder.Append($"6");
+                        break;
+                    case "rwx":
+                        stringBuilder.Append($"7");
+                        break;
+                    default:
+                        throw new ArgumentException(
+                            Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}",
+                                symbolicNotation));
+                }
             }
 
-            throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", symbolicNotation));
+            return stringBuilder.ToString();
         }
 
-        /// <summary>
-        /// Converts a Unix file permission in octal notation to symbolic notation.
-        /// </summary>
-        /// <param name="numericNotation">The octal notation to be converted to symbolic notation.</param>
-        /// <returns>The symbolic notation equivalent of the specified octal notation.</returns>
-        /// <exception cref="ArgumentException">Thrown if an invalid octal notation is specified.</exception>
-        public static string ToSymbolicNotation(string numericNotation)
+        throw new ArgumentException(
+            Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", symbolicNotation));
+    }
+
+    /// <summary>
+    /// Converts a Unix file permission in octal notation to symbolic notation.
+    /// </summary>
+    /// <param name="numericNotation">The octal notation to be converted to symbolic notation.</param>
+    /// <returns>The symbolic notation equivalent of the specified octal notation.</returns>
+    /// <exception cref="ArgumentException">Thrown if the octal notation specified is invalid.</exception>
+    public static string ToSymbolicNotation(string numericNotation)
+    {
+        if (numericNotation.Length < 3 || numericNotation.Length > 4 ||
+            int.TryParse(numericNotation, out int result) == false)
         {
-            if (numericNotation.Length == 4 && int.TryParse(numericNotation, out int result))
-            {
-                return result switch
-                {
-                    0 => "----------",
-                    111 => "---x--x--x",
-                    222 => "--w--w--w-",
-                    333 => "--wx-wx-wx",
-                    444 => "-r--r--r--",
-                    555 => "-r-xr-xr-x",
-                    666 => "-rw-rw-rw-",
-                    700 => "-rwx------",
-                    740 => "-rwxr-----",
-                    770 => "-rwxrwx---",
-                    777 => "-rwxrwxrwx",
-                    _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation.Replace("{x}", numericNotation))
-                };
-            }
-
-            throw new ArgumentException(Resources.Exceptions_Permissions_InvalidNumericNotation.Replace("{x}", numericNotation));
+            throw new ArgumentException(
+                Resources.Exceptions_Permissions_InvalidNumericNotation.Replace("{x}", numericNotation));
         }
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        char[] parts = numericNotation.ToLower().ToCharArray();
+
+        foreach (char c in parts)
+        {
+            switch (c)
+            {
+                case '0':
+                    stringBuilder.Append("---");
+                    break;
+                case '1':
+                    stringBuilder.Append("--x");
+                    break;
+                case '2':
+                    stringBuilder.Append("-w-");
+                    break;
+                case '3':
+                    stringBuilder.Append("-wx");
+                    break;
+                case '4':
+                    stringBuilder.Append("r--");
+                    break;
+                case '5':
+                    stringBuilder.Append("r-x");
+                    break;
+                case '6':
+                    stringBuilder.Append("rw-");
+                    break;
+                case '7':
+                    stringBuilder.Append("rwx");
+                    break;
+                default:
+                    throw new ArgumentException(
+                        Resources.Exceptions_Permissions_InvalidNumericNotation.Replace("{x}",
+                            numericNotation));
+            }
+        }
+
+        return stringBuilder.ToString();
     }
 }

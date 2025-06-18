@@ -10,14 +10,18 @@
 
 using System;
 using System.IO;
+using AlastairLundy.Resyslib.IO.Core.Extensions;
 using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-namespace AlastairLundy.Resyslib.IO.Permissions
+namespace AlastairLundy.Resyslib.IO.Permissions;
+
+/// <summary>
+/// 
+/// </summary>
+public static class UnixFilePermissionParser
 {
-    public static class UnixFilePermissionParser
-    {
 #if NET8_0_OR_GREATER 
     /// <summary>
     /// Parse a Unix file permission in octal notation to a UnixFileMode enum.
@@ -25,9 +29,11 @@ namespace AlastairLundy.Resyslib.IO.Permissions
     /// <param name="permissionNotation">The octal notation to be parsed.</param>
     /// <returns>The UnixFileMode enum equivalent to the specified octal notation.</returns>
     /// <exception cref="ArgumentException">Thrown if an invalid octal notation is specified.</exception>
+    // TODO: Rename to ParseNumericNotation in v8.0
     public static UnixFileMode ParseNumericValue(string permissionNotation)
     {
-        if (IsNumericNotation(permissionNotation) && int.TryParse(permissionNotation, out int result))
+        if (IsNumericNotation(permissionNotation) 
+            && int.TryParse(permissionNotation, out int result))
         {
             return result switch
             {
@@ -79,6 +85,7 @@ namespace AlastairLundy.Resyslib.IO.Permissions
     /// <param name="permissionNotation">The symbolic notation to be compared.</param>
     /// <returns>The UnixFileMode enum equivalent to the specified symbolic notation.</returns>
     /// <exception cref="ArgumentException">Thrown if an invalid symbolic notation is specified.</exception>
+    // TODO: Rename to ParseSymbolicNotation in v8
     public static UnixFileMode ParseSymbolicValue(string permissionNotation)
     {
         if (IsSymbolicNotation(permissionNotation))
@@ -113,6 +120,7 @@ namespace AlastairLundy.Resyslib.IO.Permissions
     /// <param name="permissionNotation">The Unix file permission symbolic notation to be parsed.</param>
     /// <param name="fileMode">The UnixFileMode equivalent value to the symbolic notation if a valid symbolic notation was specified; null otherwise.</param>
     /// <returns>True if a valid Unix file permission symbolic notation was specified; false otherwise.</returns>
+    // TODO: Rename to TryParseSymbolicNotation in v8
     public static bool TryParseSymbolicValue(string permissionNotation, out UnixFileMode? fileMode)
     {
         try
@@ -162,79 +170,18 @@ namespace AlastairLundy.Resyslib.IO.Permissions
         }
     }
 #endif
-        /// <summary>
-        /// Detects whether a Unix Octal file permission notation is valid.
-        /// </summary>
-        /// <param name="notation">The numeric notation to be compared.</param>
-        /// <returns>True if a valid unix file permission octal notation has been provided; false otherwise.</returns>
-        public static bool IsNumericNotation(string notation)
-        {
-            if (notation.Length == 4 && int.TryParse(notation, out int result))
-            {
-#if NET6_0_OR_GREATER
-            return result switch
-            {
-                0 or 111 or 222 or 333 or 444 or 555 or 666 or 700 or 740 or 777 => true,
-                _ => false
-            };
-#else
-                return result == 0 ||
-                       result == 111 ||
-                       result == 222 ||
-                       result == 333 ||
-                       result == 444 ||
-                       result == 555 ||
-                       result == 666 ||
-                       result == 700 ||
-                       result == 740 ||
-                       result == 777;
-#endif
-            }
+    
+    /// <summary>
+    /// Detects whether a Unix Octal file permission notation is valid.
+    /// </summary>
+    /// <param name="notation">The numeric notation to be compared.</param>
+    /// <returns>True if a valid unix file permission octal notation has been provided; false otherwise.</returns>
+    public static bool IsNumericNotation(string notation) => notation.IsNumericNotation();
 
-            return false;
-        }
-
-        /// <summary>
-        /// Detects whether a Unix symbolic file permission is valid.
-        /// </summary>
-        /// <param name="notation">The symbolic notation to be compared.</param>
-        /// <returns>True if a valid unix file permission symbolic notation has been provided; false otherwise.</returns>
-        public static bool IsSymbolicNotation(string notation)
-        {
-            if (notation.Length == 10)
-            {
-#if NET6_0_OR_GREATER
-            return notation switch
-            {
-                "----------" or
-                    "---x--x--x" or
-                    "--w--w--w-" or
-                    "--wx-wx-wx" or
-                    "-r--r--r--" or
-                    "-r-xr-xr-x" or
-                    "-rw-rw-rw-" or
-                    "-rwx------" or
-                    "-rwxr-----" or
-                    "-rwxrwx---" or
-                    "-rwxrwxrwx" => true,
-                _ => false
-            };
-#else
-                return notation == "----------" ||
-                       notation == "---x--x--x" ||
-                       notation == "--w--w--w-" ||
-                       notation == "--wx-wx-wx" ||
-                       notation == "-r--r--r--" ||
-                       notation == "-r-xr-xr-x" ||
-                       notation == "-rw-rw-rw-" ||
-                       notation == "-rwx------" ||
-                       notation == "-rwxr-----" ||
-                       notation == "-rwxrwx---" ||
-                       notation == "-rwxrwxrwx";
-#endif
-            }
-
-            return false;
-        }
-    }
+    /// <summary>
+    /// Detects whether a Unix symbolic file permission is valid.
+    /// </summary>
+    /// <param name="notation">The symbolic notation to be compared.</param>
+    /// <returns>True if a valid unix file permission symbolic notation has been provided; false otherwise.</returns>
+    public static bool IsSymbolicNotation(string notation) => notation.IsSymbolicNotation();
 }
