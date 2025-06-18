@@ -20,6 +20,9 @@ using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
 namespace AlastairLundy.Resyslib.IO.Permissions;
 
+/// <summary>
+///
+/// </summary>
 public static class UnixFilePermissionConverter
 {
     /// <summary>
