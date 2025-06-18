@@ -1,15 +1,15 @@
-﻿# Resyslib.IO.Abstractions
+﻿# Resyslib.IO.Core
 This package provides IO focussed abstractions that aim to make File Finding, File Appending, Directory Management, and other IO operations easier. 
 
-[![NuGet](https://img.shields.io/nuget/v/AlastairLundy.Resyslib.IO.Abstractions.svg)](https://www.nuget.org/packages/AlastairLundy.Resyslib.IO.Abstractions/)
-[![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.Resyslib.IO.Abstractions.svg)](https://www.nuget.org/packages/AlastairLundy.Resyslib.IO.Abstractions/)
+[![NuGet](https://img.shields.io/nuget/v/AlastairLundy.Resyslib.IO.Core.svg)](https://www.nuget.org/packages/AlastairLundy.Resyslib.IO.Core/)
+[![NuGet](https://img.shields.io/nuget/dt/AlastairLundy.Resyslib.IO.Core.svg)](https://www.nuget.org/packages/AlastairLundy.Resyslib.IO.Core/)
 
 ## How to install and use AlastairLundy.Resyslib.IO.Core
 Resyslib.IO.Core can be installed via the .NET SDK CLI, Nuget via your IDE or code editor's package interface, or via the Nuget website.
 
-| Nuget Link                                                                                                | .NET SDK CLI command                                          |
-|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|
-| [AlastairLundy.Resyslib.IO.Core Nuget](https://nuget.org/packages/AlastairLundy.Resyslib.IO.Abstractions) | ``dotnet add package AlastairLundy.Resyslib.IO.Abstractions`` |
+| Nuget Link                                                                                        | .NET SDK CLI command                                  |
+|---------------------------------------------------------------------------------------------------|-------------------------------------------------------|
+| [AlastairLundy.Resyslib.IO.Core Nuget](https://nuget.org/packages/AlastairLundy.Resyslib.IO.Core) | ``dotnet add package AlastairLundy.Resyslib.IO.Core`` |
 
 ## Usage
 To use the DI extension method call the IServiceCollection ``AddIOExtensions`` extension method.
