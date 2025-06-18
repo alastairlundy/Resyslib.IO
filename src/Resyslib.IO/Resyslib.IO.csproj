@@ -18,19 +18,19 @@
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <PackageTags>IO,</PackageTags>
-        <PackageVersion>3.1.0</PackageVersion>
+        <PackageVersion>3.2.0</PackageVersion>
         <Description> A library to make programmatic directory deletion and creation in .NET easier. </Description>
         <PackageReleaseNotes>## Changes
-Initial release under new package and new name
-This package now contains the former Extensions.IO code along with some former Resyslib.IO code
-* Updated DotExtensions to 7.1.1 from 7.0.0</PackageReleaseNotes>
+
+- Add ``UnixFileModeParser``  to replace ``UnixFilePermissionParser`` @alastairlundy (#5)
+- Bump AlastairLundy.DotExtensions from 7.1.1 to 7.2.0</PackageReleaseNotes>
         <RootNamespace>AlastairLundy.Resyslib.IO</RootNamespace>
         <AssemblyName>AlastairLundy.Resyslib.IO</AssemblyName>
     </PropertyGroup>
     
     <ItemGroup>
         <PackageReference Include="AlastairLundy.DotExtensions" Version="7.2.0" />
-     <!--   <PackageReference Include="AlastairLundy.Resyslib.IO.Core" Version="3.1.0"/> -->
+        <PackageReference Include="AlastairLundy.Resyslib.IO.Core" Version="3.2.0"/>
     </ItemGroup>
     
     <ItemGroup>
