@@ -17,12 +17,13 @@ using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
 namespace AlastairLundy.Resyslib.IO.Permissions;
 
+#if NET8_0_OR_GREATER 
+
 /// <summary>
 /// A class to parse Numeric or Symbolic notation to UnixFileMode.
 /// </summary>
 public static class UnixFileModeParser
 {
-    #if NET8_0_OR_GREATER 
     /// <summary>
     /// Parse a Unix file permission in octal notation to a UnixFileMode enum.
     /// </summary>
@@ -84,7 +85,7 @@ public static class UnixFileModeParser
         return output;
     }
     
-        /// <summary>
+    /// <summary>
     /// Parse a Unix file permission in symbolic notation to a UnixFileMode enum.
     /// </summary>
     /// <param name="permissionNotation">The symbolic notation to be compared.</param>
@@ -172,5 +173,5 @@ public static class UnixFileModeParser
             return false;
         }
     }
-#endif
 }
+#endif
