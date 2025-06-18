@@ -19,28 +19,10 @@ public static class UnixFilePermissionNotationDetectionExtensions
     /// <returns>True if a valid unix file permission octal notation has been provided; false otherwise.</returns>
     public static bool IsNumericNotation(this string notation)
     {
-        if (notation.Length != 4 || !int.TryParse(notation, out int result)) 
+        if (notation.Length is >= 3 and <= 4 || int.TryParse(notation, out int result) == false) 
             return false;
         
-#if NET6_0_OR_GREATER
-            return result switch
-            {
-                0 or 111 or 222 or 333 or 444 or 555 or 666 or 700 or 740 or 777 => true,
-                _ => false
-            };
-#else
-        return result == 0 ||
-               result == 111 ||
-               result == 222 ||
-               result == 333 ||
-               result == 444 ||
-               result == 555 ||
-               result == 666 ||
-               result == 700 ||
-               result == 740 ||
-               result == 777;
-#endif
-
+        return result is >= 0 and <= 777 && notation.Length is >= 3 and <= 4;
     }
     
     /// <summary>
@@ -82,6 +64,5 @@ public static class UnixFilePermissionNotationDetectionExtensions
                notation == "-rwxrwx---" ||
                notation == "-rwxrwxrwx";
 #endif
-
     }
 }

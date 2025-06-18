@@ -10,14 +10,14 @@
         <IncludeSymbols>true</IncludeSymbols>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <Version>3.1.0</Version>
+        <Version>3.2.0</Version>
         <Title>Resyslib.IO.Core</Title>
         <Authors>AlastairLundy</Authors>
         <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/Resyslib.IO</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReleaseNotes>## Changes
-Initial Release under new name and package</PackageReleaseNotes>
+* Added ``IsSymbolicNotation`` and ``IsNumericNotation`` extensions</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>Abstractions and common types for Resyslib.IO </Description>
         <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>

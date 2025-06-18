@@ -10,7 +10,6 @@
 
 using System;
 using System.IO;
-
 using AlastairLundy.Resyslib.IO.Core.Primitives.Permissions;
 using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
