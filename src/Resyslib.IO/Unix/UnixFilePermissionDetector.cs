@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using AlastairLundy.Resyslib.IO.Core.Primitives.Permissions;
 
 using AlastairLundy.Resyslib.IO.Core.Unix;
+using AlastairLundy.Resyslib.IO.Permissions;
 
 namespace AlastairLundy.Resyslib.IO.Unix;
 
@@ -113,6 +114,6 @@ public class UnixFilePermissionDetector : IUnixFilePermissionDetector
     {
         int permission = await GetUnixFilePermissionAsOctalAsync(filePath, cancellationToken);
         
-        
+        return UnixFilePermissionParser.ParseNumericNotation(permission.ToString());
     }
 }
