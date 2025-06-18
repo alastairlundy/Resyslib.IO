@@ -10,7 +10,9 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using AlastairLundy.Resyslib.IO.Core.Extensions;
+using AlastairLundy.Resyslib.IO.Core.Primitives.Permissions;
 using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -22,54 +24,78 @@ namespace AlastairLundy.Resyslib.IO.Permissions;
 /// </summary>
 public static class UnixFilePermissionParser
 {
-#if NET8_0_OR_GREATER 
     /// <summary>
-    /// Parse a Unix file permission in octal notation to a UnixFileMode enum.
+    /// Parse a Unix file permission in octal notation to a UnixFilePermission enum.
     /// </summary>
     /// <param name="permissionNotation">The octal notation to be parsed.</param>
-    /// <returns>The UnixFileMode enum equivalent to the specified octal notation.</returns>
+    /// <returns>The UnixFilePermission enum equivalent to the specified octal notation.</returns>
     /// <exception cref="ArgumentException">Thrown if an invalid octal notation is specified.</exception>
-    // TODO: Rename to ParseNumericNotation in v8.0
-    public static UnixFileMode ParseNumericValue(string permissionNotation)
+    public static UnixFilePermission ParseNumericNotation(string permissionNotation)
     {
-        if (IsNumericNotation(permissionNotation) 
-            && int.TryParse(permissionNotation, out int result))
-        {
-            return result switch
-            {
-                0 => UnixFileMode.None,
-                111 => UnixFileMode.UserExecute,
-                222 => UnixFileMode.UserWrite,
-                333 => UnixFileMode.UserWrite & UnixFileMode.UserExecute,
-                444 => UnixFileMode.UserRead,
-                555 => UnixFileMode.UserRead & UnixFileMode.UserExecute,
-                666 => UnixFileMode.UserRead & UnixFileMode.UserWrite,
-                700 => UnixFileMode.UserRead & UnixFileMode.UserWrite & UnixFileMode.UserExecute,
-                740 => UnixFileMode.UserExecute & UnixFileMode.UserWrite & UnixFileMode.UserRead &
-                       UnixFileMode.GroupRead,
-                770 => UnixFileMode.UserRead & UnixFileMode.UserWrite & UnixFileMode.UserExecute &
-                       UnixFileMode.GroupRead & UnixFileMode.GroupWrite & UnixFileMode.GroupExecute,
-                777 => UnixFileMode.UserRead & UnixFileMode.UserWrite & UnixFileMode.UserExecute &
-                       UnixFileMode.GroupRead & UnixFileMode.GroupWrite & UnixFileMode.GroupExecute &
-                       UnixFileMode.OtherRead & UnixFileMode.OtherWrite & UnixFileMode.OtherExecute,
-                _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidNumericNotation)
-            };
-        }
+            if (permissionNotation.IsNumericNotation() == false
+            || int.TryParse(permissionNotation, out int result) == false)
+            throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation);
+        
+            if(permissionNotation.StartsWith("0"))
+                permissionNotation =  permissionNotation.Remove(0, 1);
+        
+            int user = int.Parse(permissionNotation.First().ToString());
+            int group = int.Parse(permissionNotation[^2].ToString());
+            int others = int.Parse(permissionNotation.Last().ToString());
 
-        throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation);
+            UnixFilePermission output = user switch
+            {
+                0 => UnixFilePermission.None,
+                1 => UnixFilePermission.UserExecute,
+                2 => UnixFilePermission.UserWrite,
+                3 => UnixFilePermission.UserWrite & UnixFilePermission.UserExecute,
+                4 => UnixFilePermission.UserRead,
+                5 => UnixFilePermission.UserRead & UnixFilePermission.UserExecute,
+                6 => UnixFilePermission.UserRead & UnixFilePermission.UserWrite,
+                7 => UnixFilePermission.UserRead & UnixFilePermission.UserWrite & UnixFilePermission.UserExecute,
+                _ => throw new ArgumentException()
+            };
+         
+            output = group switch
+            {
+                0 => output & UnixFilePermission.None,
+                1 => output & UnixFilePermission.GroupExecute,
+                2 => output & UnixFilePermission.GroupWrite,
+                3 => output & UnixFilePermission.GroupWrite & UnixFilePermission.GroupExecute,
+                4 => output & UnixFilePermission.GroupRead,
+                5 => output & UnixFilePermission.GroupRead & UnixFilePermission.GroupExecute,
+                6 => output & UnixFilePermission.GroupRead & UnixFilePermission.GroupWrite,
+                7 => output & UnixFilePermission.GroupRead & UnixFilePermission.GroupWrite & UnixFilePermission.GroupExecute,
+                _ => throw new ArgumentException()
+            };
+        
+            output = others switch
+            {
+                0 => output & UnixFilePermission.None,
+                1 => output & UnixFilePermission.OtherExecute,
+                2 => output & UnixFilePermission.OtherWrite,
+                3 => output & UnixFilePermission.OtherWrite & UnixFilePermission.OtherExecute,
+                4 => output & UnixFilePermission.OtherRead,
+                5 => output & UnixFilePermission.OtherRead & UnixFilePermission.OtherExecute,
+                6 => output & UnixFilePermission.OtherRead & UnixFilePermission.OtherWrite,
+                7 => output & UnixFilePermission.OtherRead & UnixFilePermission.OtherWrite & UnixFilePermission.OtherExecute,
+                _ => throw new ArgumentException()
+            };
+        
+            return output;
     }
 
     /// <summary>
-    /// Attempts to parse a Unix file permission in Octal notation to a UnixFileMode enum. 
+    /// Attempts to parse a Unix file permission in Octal notation to a UnixFilePermission enum. 
     /// </summary>
     /// <param name="permissionNotation">The Unix file permission octal notation to be parsed.</param>
-    /// <param name="fileMode">The UnixFileMode equivalent value to the octal notation if a valid octal notation was specified; null otherwise.</param>
+    /// <param name="fileMode">The UnixFilePermission equivalent value to the octal notation if a valid octal notation was specified; null otherwise.</param>
     /// <returns>True if a valid Unix file permission octal notation was specified; false otherwise.</returns>
-    public static bool TryParseNumericValue(string permissionNotation, out UnixFileMode? fileMode)
+    public static bool TryParseNumericNotation(string permissionNotation, out UnixFilePermission? fileMode)
     {
         try
         {
-            fileMode = ParseNumericValue(permissionNotation);
+            fileMode = ParseNumericNotation(permissionNotation);
             return true;
         }
         catch
@@ -80,52 +106,56 @@ public static class UnixFilePermissionParser
     }
 
     /// <summary>
-    /// Parse a Unix file permission in symbolic notation to a UnixFileMode enum.
+    /// Parse a Unix file permission in symbolic notation to a UnixFilePermission enum.
     /// </summary>
     /// <param name="permissionNotation">The symbolic notation to be compared.</param>
-    /// <returns>The UnixFileMode enum equivalent to the specified symbolic notation.</returns>
+    /// <returns>The UnixFilePermission enum equivalent to the specified symbolic notation.</returns>
     /// <exception cref="ArgumentException">Thrown if an invalid symbolic notation is specified.</exception>
-    // TODO: Rename to ParseSymbolicNotation in v8
-    public static UnixFileMode ParseSymbolicValue(string permissionNotation)
+    public static UnixFilePermission ParseSymbolicNotation(string permissionNotation)
     {
-        if (IsSymbolicNotation(permissionNotation))
+        if (permissionNotation.IsSymbolicNotation() == false)
+            throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation);
+        
+        return permissionNotation.ToLower() switch
         {
-            return permissionNotation.ToLower() switch
-            {
-                "----------" => UnixFileMode.None,
-                "---x--x--x" => UnixFileMode.UserExecute,
-                "--w--w--w-" => UnixFileMode.UserWrite,
-                "--wx-wx-wx" => UnixFileMode.UserWrite & UnixFileMode.UserExecute,
-                "-r--r--r--" => UnixFileMode.UserRead,
-                "-r-xr-xr-x" => UnixFileMode.UserRead & UnixFileMode.UserExecute,
-                "-rw-rw-rw-" => UnixFileMode.UserRead & UnixFileMode.UserWrite,
-                "-rwx------" => UnixFileMode.UserRead & UnixFileMode.UserWrite & UnixFileMode.UserExecute,
-                "-rwxr-----" => UnixFileMode.UserExecute & UnixFileMode.UserWrite & UnixFileMode.UserRead &
-                                UnixFileMode.GroupRead,
-                "-rwxrwx---" => UnixFileMode.UserRead & UnixFileMode.UserWrite & UnixFileMode.UserExecute &
-                                UnixFileMode.GroupRead & UnixFileMode.GroupWrite & UnixFileMode.GroupExecute,
-                "-rwxrwxrwx" => UnixFileMode.UserRead & UnixFileMode.UserWrite & UnixFileMode.UserExecute &
-                                UnixFileMode.GroupRead & UnixFileMode.GroupWrite & UnixFileMode.GroupExecute &
-                                UnixFileMode.OtherRead & UnixFileMode.OtherWrite & UnixFileMode.OtherExecute,
-                _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation)
-            };
-        }
+            "----------" => UnixFilePermission.None,
+            "---x--x--x" => UnixFilePermission.UserExecute,
+            "--w--w--w-" => UnixFilePermission.UserWrite,
+            "--wx-wx-wx" => UnixFilePermission.UserWrite & UnixFilePermission.UserExecute,
+            "-r--r--r--" => UnixFilePermission.UserRead,
+            "-r-xr-xr-x" => UnixFilePermission.UserRead & UnixFilePermission.UserExecute,
+            "-rw-rw-rw-" => UnixFilePermission.UserRead & UnixFilePermission.UserWrite,
+            "-rwx------" => UnixFilePermission.UserRead & UnixFilePermission.UserWrite &
+                            UnixFilePermission.UserExecute,
+            "-rwxr-----" => UnixFilePermission.UserExecute & UnixFilePermission.UserWrite &
+                            UnixFilePermission.UserRead &
+                            UnixFilePermission.GroupRead,
+            "-rwxrwx---" => UnixFilePermission.UserRead & UnixFilePermission.UserWrite &
+                            UnixFilePermission.UserExecute &
+                            UnixFilePermission.GroupRead & UnixFilePermission.GroupWrite &
+                            UnixFilePermission.GroupExecute,
+            "-rwxrwxrwx" => UnixFilePermission.UserRead & UnixFilePermission.UserWrite &
+                            UnixFilePermission.UserExecute &
+                            UnixFilePermission.GroupRead & UnixFilePermission.GroupWrite &
+                            UnixFilePermission.GroupExecute &
+                            UnixFilePermission.OtherRead & UnixFilePermission.OtherWrite &
+                            UnixFilePermission.OtherExecute,
+            _ => throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation)
+        };
 
-        throw new ArgumentException(Resources.Exceptions_Permissions_InvalidSymbolicNotation);
     }
 
     /// <summary>
-    /// Attempts to parse a Unix file permission in Symbolic notation to a UnixFileMode enum. 
+    /// Attempts to parse a Unix file permission in Symbolic notation to a UnixFilePermission enum. 
     /// </summary>
     /// <param name="permissionNotation">The Unix file permission symbolic notation to be parsed.</param>
-    /// <param name="fileMode">The UnixFileMode equivalent value to the symbolic notation if a valid symbolic notation was specified; null otherwise.</param>
+    /// <param name="fileMode">The UnixFilePermission equivalent value to the symbolic notation if a valid symbolic notation was specified; null otherwise.</param>
     /// <returns>True if a valid Unix file permission symbolic notation was specified; false otherwise.</returns>
-    // TODO: Rename to TryParseSymbolicNotation in v8
-    public static bool TryParseSymbolicValue(string permissionNotation, out UnixFileMode? fileMode)
+    public static bool TryParseSymbolicNotation(string permissionNotation, out UnixFilePermission? fileMode)
     {
         try
         {
-            fileMode = ParseSymbolicValue(permissionNotation);
+            fileMode = ParseSymbolicNotation(permissionNotation);
             return true;
         }
         catch
@@ -136,52 +166,38 @@ public static class UnixFilePermissionParser
     }
 
     /// <summary>
-    /// Attempts to parse a Unix file permission in either Numeric or Symbolic notation to a UnixFileMode enum. 
+    /// Attempts to parse a Unix file permission in either Numeric or Symbolic notation to a UnixFilePermission enum. 
     /// </summary>
     /// <param name="permissionNotation">The Unix file permission symbolic notation to be parsed.</param>
-    /// <param name="fileMode">The unix file mode if a valid permission notation was parsed; null otherwise.</param>
+    /// <param name="filePermission">The unix file mode if a valid permission notation was parsed; null otherwise.</param>
     /// <returns>True if the file mode notation was parsed successfully; false otherwise.</returns>
-    public static bool TryParse(string permissionNotation, out UnixFileMode? fileMode)
+    public static bool TryParse(string permissionNotation, out UnixFilePermission? filePermission)
     {
-        bool isNumericNotation = IsNumericNotation(permissionNotation);
-        bool isSymbolicNotation = IsSymbolicNotation(permissionNotation);
+        bool isNumericNotation = permissionNotation.IsNumericNotation();
+        bool isSymbolicNotation = permissionNotation.IsSymbolicNotation();
 
         try
         {
             if (isNumericNotation && !isSymbolicNotation)
             {
-                fileMode = ParseNumericValue(permissionNotation);
+                filePermission = ParseNumericNotation(permissionNotation);
             }
             else if (isSymbolicNotation && !isNumericNotation)
             {
-                fileMode = ParseSymbolicValue(permissionNotation);
+                filePermission = ParseSymbolicNotation(permissionNotation);
             }
             else
             {
-                fileMode = UnixFileMode.UserRead & UnixFileMode.UserWrite;
+                filePermission = null;
+                return false;
             }
 
             return true;
         }
         catch
         {
-            fileMode = null;
+            filePermission = null;
             return false;
         }
-    }
-#endif
-    
-    /// <summary>
-    /// Detects whether a Unix Octal file permission notation is valid.
-    /// </summary>
-    /// <param name="notation">The numeric notation to be compared.</param>
-    /// <returns>True if a valid unix file permission octal notation has been provided; false otherwise.</returns>
-    public static bool IsNumericNotation(string notation) => notation.IsNumericNotation();
-
-    /// <summary>
-    /// Detects whether a Unix symbolic file permission is valid.
-    /// </summary>
-    /// <param name="notation">The symbolic notation to be compared.</param>
-    /// <returns>True if a valid unix file permission symbolic notation has been provided; false otherwise.</returns>
-    public static bool IsSymbolicNotation(string notation) => notation.IsSymbolicNotation();
+    }    
 }
