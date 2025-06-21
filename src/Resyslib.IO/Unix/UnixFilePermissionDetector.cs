@@ -19,7 +19,10 @@ using OperatingSystem = Polyfills.OperatingSystemPolyfill;
 
 using System.Threading;
 using System.Threading.Tasks;
-
+using AlastairLundy.CliInvoke.Core.Abstractions;
+using AlastairLundy.CliInvoke.Core.Builders;
+using AlastairLundy.CliInvoke.Core.Builders.Abstractions;
+using AlastairLundy.CliInvoke.Core.Primitives.Results;
 using AlastairLundy.Resyslib.IO.Core.Primitives.Permissions;
 
 using AlastairLundy.Resyslib.IO.Core.Unix;
@@ -29,6 +32,12 @@ namespace AlastairLundy.Resyslib.IO.Unix;
 
 public class UnixFilePermissionDetector : IUnixFilePermissionDetector
 {
+    private readonly IProcessFactory _processFactory;
+
+    public UnixFilePermissionDetector(IProcessFactory processFactory)
+    {
+        _processFactory = processFactory;
+    }
     
     /// <summary>
     /// 
@@ -58,43 +67,33 @@ public class UnixFilePermissionDetector : IUnixFilePermissionDetector
         {
             throw new FileNotFoundException(filePath);
         }
-        
-        Process process = new Process()
+
+        ProcessStartInfo startInfo = new ProcessStartInfo()
         {
-            StartInfo = new ProcessStartInfo()
-            {
-                FileName = "stat",
-                Arguments = $"-c %a {Path.GetFullPath(filePath)}",
-                RedirectStandardOutput = true,
-                RedirectStandardInput = false,
-                UseShellExecute = false,
-                CreateNoWindow = true,
-            }
+            FileName = "stat",
+            Arguments = $"-c %a ",
+            RedirectStandardOutput = true,
+            RedirectStandardInput = false,
+            UseShellExecute = false,
+            CreateNoWindow = true,
         };
-        
-        process.Start();
-        
-        await process.WaitForExitAsync(cancellationToken);
-        
-        string output = await process.StandardOutput.ReadToEndAsync(cancellationToken);
 
-        if (process.ExitCode != 0)
+        Process process = _processFactory.StartNew(startInfo);
+
+        // We don't need to dispose of the Process afterwards since ProcessFactory does that for us.
+        BufferedProcessResult processResult = await _processFactory.ContinueWhenExitBufferedAsync(process, 
+            ProcessResultValidation.None, cancellationToken);
+
+        string result = processResult.StandardOutput;
+
+        if (processResult.ExitCode != 0)
         {
             return -1;
         }
         
-        process.Dispose();
-        
-        bool isInputValid = int.TryParse(output, out int result);
+        bool isInputValid = int.TryParse(result, out int output);
 
-        if (isInputValid)
-        {
-            return result;
-        }
-        else
-        {
-            return -1;
-        }
+        return isInputValid ? output : -1;
     }
 
     /// <summary>
