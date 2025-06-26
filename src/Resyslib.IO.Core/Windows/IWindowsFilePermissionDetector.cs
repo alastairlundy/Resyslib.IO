@@ -12,6 +12,7 @@ using System.Runtime.Versioning;
 #endif
 
 using System.Threading.Tasks;
+
 using AlastairLundy.Resyslib.IO.Core.Primitives.Permissions;
 
 namespace AlastairLundy.Resyslib.IO.Core.Windows;

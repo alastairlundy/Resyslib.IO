@@ -21,7 +21,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using AlastairLundy.CliInvoke.Core.Abstractions;
 using AlastairLundy.CliInvoke.Core.Primitives.Results;
-using AlastairLundy.Resyslib.IO.Core.Primitives.Permissions;
 
 using AlastairLundy.Resyslib.IO.Core.Unix;
 using AlastairLundy.Resyslib.IO.Permissions;
