@@ -25,4 +25,8 @@
       <ProjectReference Include="..\..\src\Resyslib.IO\Resyslib.IO.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Files\" />
+    </ItemGroup>
+
 </Project>
