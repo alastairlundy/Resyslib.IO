@@ -38,7 +38,6 @@ namespace AlastairLundy.Resyslib.IO.Extensions.DependencyInjection
             {
                 case ServiceLifetime.Singleton:
                     services.AddSingleton<IFileFinder, FileFinder>();
-                    services.AddSingleton<IFilePathResolver, FilePathResolver>();
                     services.AddSingleton<IFileAppender, FileAppender>();
                     services.AddSingleton<IFileConcatenator, FileConcatenator>();
                     services.AddSingleton<IRecursiveDirectoryManager, RecursiveDirectoryManager>();
@@ -46,7 +45,6 @@ namespace AlastairLundy.Resyslib.IO.Extensions.DependencyInjection
                     break;
                 case ServiceLifetime.Scoped:
                     services.AddScoped<IFileFinder, FileFinder>();
-                    services.AddScoped<IFilePathResolver, FilePathResolver>();
                     services.AddScoped<IFileAppender, FileAppender>();
                     services.AddScoped<IFileConcatenator, FileConcatenator>();
                     services.AddScoped<IRecursiveDirectoryManager, RecursiveDirectoryManager>();
@@ -54,7 +52,6 @@ namespace AlastairLundy.Resyslib.IO.Extensions.DependencyInjection
                     break;
                 case ServiceLifetime.Transient:
                     services.AddTransient<IFileFinder, FileFinder>();
-                    services.AddTransient<IFilePathResolver, FilePathResolver>();
                     services.AddTransient<IFileAppender, FileAppender>();
                     services.AddTransient<IFileConcatenator, FileConcatenator>();
                     services.AddTransient<IRecursiveDirectoryManager, RecursiveDirectoryManager>();
