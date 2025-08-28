@@ -15,10 +15,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using AlastairLundy.DotPrimitives.IO.Files;
 
-using AlastairLundy.Resyslib.IO.Core.Files;
 using AlastairLundy.Resyslib.IO.Core.Files.Concatenation;
-using AlastairLundy.Resyslib.IO.Core.Primitives.Files;
 
 using AlastairLundy.Resyslib.IO.Internal.Localizations;
 
@@ -39,7 +38,6 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
         /// <param name="fileFinder">The file finder instance to be used.</param>
         public FileAppender()
         {
-            _fileFinder = fileFinder;
             _appendedFileContents = new StringBuilder();
         }
     
@@ -54,28 +52,19 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
         {
             if (File.Exists(fileToBeAppended.FilePath) == false)
             {
-                try
-                {
-#if NET6_0_OR_GREATER
-                string[] lines = await File.ReadAllLinesAsync(fileToBeAppended.FilePath, cancellationToken);
-#else
-                    string[] lines = await Task.FromResult(File.ReadAllLines(fileToBeAppended.FilePath));
-#endif
-                
-                    foreach (string line in lines)
-                    {
-                        _appendedFileContents.AppendLine(line);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    throw new Exception(exception.Message, exception);
-                }
-            }
-            else
-            {
                 throw new FileNotFoundException(Resources.Exceptions_IO_FileNotFound, fileToBeAppended.FileName);
             }
+            
+#if NET6_0_OR_GREATER
+            string[] lines = await File.ReadAllLinesAsync(fileToBeAppended.FilePath, cancellationToken);
+#else
+            string[] lines = await FilePolyfill.ReadAllLinesAsync(fileToBeAppended.FilePath, cancellationToken);
+#endif
+
+                foreach (string line in lines)
+                {
+                    _appendedFileContents.AppendLine(line);
+                }
         }
 
         /// <summary>
@@ -109,23 +98,14 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
         {
             if (File.Exists(fileToBeAppended.FilePath) == false)
             {
-                try
-                {
-                    string[] lines = File.ReadAllLines(fileToBeAppended.FilePath);
-
-                    foreach (string line in lines)
-                    {
-                        _appendedFileContents.AppendLine(line);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    throw new Exception(exception.Message, exception);
-                }
-            }
-            else
-            {
                 throw new FileNotFoundException(Resources.Exceptions_IO_FileNotFound, fileToBeAppended.FileName);
+            }
+            
+            string[] lines = File.ReadAllLines(fileToBeAppended.FilePath);
+
+            foreach (string line in lines)
+            {
+                _appendedFileContents.AppendLine(line);
             }
         }
 
@@ -140,28 +120,19 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
         {
             if (File.Exists(fileToBeAppended) == false)
             {
-                try
-                {
+                throw new FileNotFoundException(Resources.Exceptions_IO_FileNotFound, fileToBeAppended);
+            }
+            
 #if NET6_0_OR_GREATER
                 string[] lines = await File.ReadAllLinesAsync(fileToBeAppended, cancellationToken);
 #else
-                    string[] lines = await Task.FromResult(File.ReadAllLines(fileToBeAppended));
+                string[] lines = await Task.FromResult(File.ReadAllLines(fileToBeAppended));
 #endif
-                
-                    foreach (string line in lines)
-                    {
-                        _appendedFileContents.AppendLine(line);
-                    }
-                }
-                catch (Exception exception)
+
+                foreach (string line in lines)
                 {
-                    throw new Exception(exception.Message, exception);
+                    _appendedFileContents.AppendLine(line);
                 }
-            }
-            else
-            {
-                throw new FileNotFoundException(Resources.Exceptions_IO_FileNotFound, fileToBeAppended);
-            }
         }
 
         /// <summary>
@@ -174,23 +145,14 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
         {
             if (File.Exists(fileToBeAppended) == false)
             {
-                try
-                {
-                    string[] lines = File.ReadAllLines(fileToBeAppended);
-
-                    foreach (string line in lines)
-                    {
-                        _appendedFileContents.AppendLine(line);
-                    }
-                }
-                catch (Exception exception)
-                {
-                    throw new Exception(exception.Message, exception);
-                }
-            }
-            else
-            {
                 throw new FileNotFoundException(Resources.Exceptions_IO_FileNotFound, fileToBeAppended);
+            }
+
+            string[] lines = File.ReadAllLines(fileToBeAppended);
+
+            foreach (string line in lines)
+            {
+                _appendedFileContents.AppendLine(line);
             }
         }
 
@@ -292,28 +254,15 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
         {
             if (File.Exists(filePath) == false)
             {
-                try
-                {
-                    if (File.Exists(filePath))
-                    {
-                        File.Delete(filePath);
-                    }
-
-                    File.WriteAllLines(filePath, ToEnumerable());
-                }
-                catch (FileNotFoundException exception)
-                {
-                    throw new FileNotFoundException(exception.Message, filePath, exception);
-                }
-                catch (Exception exception)
-                {
-                    throw new Exception(exception.Message, exception);
-                }
-            }
-            else
-            {
                 throw new ArgumentException(Resources.Exceptions_IO_NoFileProfiled, filePath);
             }
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            File.WriteAllLines(filePath, ToEnumerable());
         }
     }
 }
