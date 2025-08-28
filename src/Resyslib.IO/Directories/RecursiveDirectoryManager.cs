@@ -32,32 +32,18 @@ public class RecursiveDirectoryManager : IRecursiveDirectoryManager
     /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist or could not be located.</exception>
     public bool AreSubdirectoriesEmpty(string directory)
     {
-        if (!Directory.Exists(directory))
+        if (Directory.Exists(directory) == false)
         {
-            throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));
+            throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}",
+                directory));
         }
         
         string[] subDirectories = Directory.GetDirectories(directory);
                 
-        bool[] allowRecursiveEmptyDirectoryDeletion = new bool[subDirectories.Length];
-
-        for (int i = 0; i < subDirectories.Length; i++)
-        {
-            string dir = subDirectories[i];
-                    
-            DirectoryInfo directoryInfo = new DirectoryInfo(dir);
-            
-            if (directoryInfo.IsDirectoryEmpty())
-            {
-                allowRecursiveEmptyDirectoryDeletion[i] = true;
-            }
-            else
-            {
-                allowRecursiveEmptyDirectoryDeletion[i] = false;
-            }
-        }
-
-        return allowRecursiveEmptyDirectoryDeletion.All(x => x == true);
+        bool result = subDirectories.Select(x => new DirectoryInfo(x))
+            .All(x => x.IsDirectoryEmpty());
+        
+        return result;
     }
     
     /// <summary>
@@ -67,7 +53,8 @@ public class RecursiveDirectoryManager : IRecursiveDirectoryManager
     /// <returns>The directories and files within a parent directory.</returns>
     public (IEnumerable<string> files, IEnumerable<string> directories) GetRecursiveDirectoryContents(string directory)
     {
-        var output = GetRecursiveDirectoryContents(directory, true);
+        (IEnumerable<string> files, IEnumerable<string> directories, IEnumerable<string> emptyDirectories) 
+            output = GetRecursiveDirectoryContents(directory, true);
         return (output.files, output.directories);
     }
 
@@ -85,46 +72,41 @@ public class RecursiveDirectoryManager : IRecursiveDirectoryManager
         List<string> files = new List<string>();
         List<string> directories = new List<string>();
         List<string> emptyDirectories = new List<string>();
-        
+
         if (Directory.Exists(directory))
         {
-            if (Directory.GetDirectories(directory).Length > 0)
-            {
-                foreach (string subDirectory in Directory.GetDirectories(directory))
-                {
-                    if (Directory.GetFiles(subDirectory).Length > 0)
-                    {
-                        foreach (string file in Directory.GetFiles(subDirectory))
-                        {
-                            files.Add(file);
-                        }
-                    }
-
-                    int numberOfFiles = Directory.GetFiles(subDirectory).Length;
-
-                    DirectoryInfo directoryInfo = new DirectoryInfo(subDirectory);
-                    
-                    if (numberOfFiles > 0)
-                    {
-                        directories.Add(subDirectory);
-                    }
-                    else if (includeEmptyDirectories == true && directoryInfo.IsDirectoryEmpty())
-                    {
-                        emptyDirectories.Add(subDirectory);
-                    }
-                }
-            }
-            else
+            if (Directory.GetDirectories(directory).Length == 0)
             {
                 if (includeEmptyDirectories)
                 {
                     emptyDirectories.Add(directory);
                 }
+                
+                return (files, directories, emptyDirectories);
+            }
+
+            foreach (string subDirectory in Directory.GetDirectories(directory))
+            {
+                if (Directory.GetFiles(subDirectory).Length > 0)
+                {
+                    foreach (string file in Directory.GetFiles(subDirectory))
+                    {
+                        files.Add(file);
+                    }
+                }
+
+                int numberOfFiles = Directory.GetFiles(subDirectory).Length;
+
+                DirectoryInfo directoryInfo = new DirectoryInfo(subDirectory);
+
+                if (numberOfFiles > 0 || (includeEmptyDirectories == true && directoryInfo.IsDirectoryEmpty()))
+                {
+                    directories.Add(subDirectory);
+                }
             }
 
             return (files, directories, emptyDirectories);
         }
-
         throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));
     }
 
@@ -186,37 +168,35 @@ public class RecursiveDirectoryManager : IRecursiveDirectoryManager
     /// <exception cref="DirectoryNotFoundException">Thrown if the directory does not exist or could not be located.</exception>
     public void DeleteDirectoryRecursively(string directory, bool deleteEmptyDirectory)
     {
-        if (Directory.Exists(directory))
+        if (Directory.Exists(directory) == false)
+            throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));
+        
+        if (Directory.GetDirectories(directory).Length > 0)
         {
-            if (Directory.GetDirectories(directory).Length > 0)
+            foreach (string subDirectory in Directory.GetDirectories(directory))
             {
-                foreach (string subDirectory in Directory.GetDirectories(directory))
+                if (Directory.GetFiles(subDirectory).Length > 0)
                 {
-                    if (Directory.GetFiles(subDirectory).Length > 0)
+                    foreach (string file in Directory.GetFiles(subDirectory))
                     {
-                        foreach (string file in Directory.GetFiles(subDirectory))
-                        {
-                            File.Delete(file);
-                        }
-                    }
-
-                    int numberOfFiles = Directory.GetFiles(directory).Length;
-
-                    if (deleteEmptyDirectory == true && numberOfFiles == 0 || numberOfFiles > 0)
-                    {
-                        Directory.Delete(subDirectory);
+                        File.Delete(file);
                     }
                 }
-            }
-            else
-            {
-                if (deleteEmptyDirectory)
+
+                int numberOfFiles = Directory.GetFiles(directory).Length;
+
+                if (deleteEmptyDirectory == true && numberOfFiles == 0 || numberOfFiles > 0)
                 {
-                    Directory.Delete(directory);
+                    Directory.Delete(subDirectory);
                 }
             }
         }
-
-        throw new DirectoryNotFoundException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));
+        else
+        {
+            if (deleteEmptyDirectory)
+            {
+                Directory.Delete(directory);
+            }
+        }
     }
 }

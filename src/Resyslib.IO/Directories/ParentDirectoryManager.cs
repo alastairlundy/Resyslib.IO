@@ -25,7 +25,6 @@ namespace AlastairLundy.Resyslib.IO.Directories;
 public class ParentDirectoryManager : IParentDirectoryManager
 {
     
-#if NET8_0_OR_GREATER 
     /// <summary>
     /// Attempts to create a parent directory with the specified Unix file mode at the specified location.
     /// If successful, returns true; otherwise, returns false.
@@ -34,23 +33,10 @@ public class ParentDirectoryManager : IParentDirectoryManager
     /// <param name="unixFileMode">The desired Unix file mode for the new directory.</param>
     /// <returns>True if creation was successful; false otherwise.</returns> 
     public bool TryCreateParentDirectory(string directoryPath, UnixFileMode unixFileMode)
-#else
-        /// <summary>
-        /// Attempts to create a parent directory at the specified location.
-        /// If successful, returns true; otherwise, returns false.
-        /// </summary>
-        /// <param name="directoryPath">The path where the parent directory should be created.</param>
-        /// <returns>True if creation was successful; false otherwise.</returns>
-        public bool TryCreateParentDirectory(string directoryPath)
-#endif
     {
         try
         {
-#if NET8_0_OR_GREATER
             CreateParentDirectory(directoryPath, unixFileMode);
-#else
-                CreateParentDirectory(directoryPath);
-#endif
 
             return true;
         }
@@ -62,20 +48,12 @@ public class ParentDirectoryManager : IParentDirectoryManager
 
 
 
-#if NET8_0_OR_GREATER
     /// <summary>
     /// Creates a parent directory with the specified Unix file mode at the specified location without checking for existence.
     /// </summary>
     /// <param name="parentDirectory">The path where the parent directory should be created.</param>
     /// <param name="unixFileMode">The desired Unix file mode for the new directory.</param>
     public void CreateParentDirectory(string parentDirectory, UnixFileMode unixFileMode)
-#else
-        /// <summary>
-        /// Creates a parent directory at the specified location without checking for existence.
-        /// </summary>
-        /// <param name="parentDirectory">The path where the parent directory should be created.</param>
-        public void CreateParentDirectory(string parentDirectory)
-#endif
     {
         string[] directories = parentDirectory.Split(Path.DirectorySeparatorChar);
 
@@ -97,7 +75,6 @@ public class ParentDirectoryManager : IParentDirectoryManager
         {
             if (Directory.Exists(directory) == false)
             {
-#if NET8_0_OR_GREATER
                 if (OperatingSystem.IsWindows())
                 {
                     Directory.CreateDirectory(directory);
@@ -106,9 +83,6 @@ public class ParentDirectoryManager : IParentDirectoryManager
                 {
                     Directory.CreateDirectory(directory, unixFileMode);
                 }
-#else
-                    Directory.CreateDirectory(directory);
-#endif
             }
         }
     }
@@ -129,19 +103,13 @@ public class ParentDirectoryManager : IParentDirectoryManager
             {
                 string? parentDirectory = Directory.GetParent(directory)?.FullName;
 
-                try
-                {
+
                     if (parentDirectory == null)
                     {
                         throw new NullReferenceException(Resources.Exceptions_IO_DirectoryNotFound.Replace("{x}", directory));        
                     }
 
                     Directory.Delete(parentDirectory);
-                }
-                catch(Exception ex)
-                {
-                    throw new Exception(ex.Message, ex);
-                }
             }
         }
 
