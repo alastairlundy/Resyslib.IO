@@ -33,13 +33,11 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
     {
         private readonly StringBuilder _appendedFileContents;
         
-        private readonly IFileFinder _fileFinder;
-    
         /// <summary>
         /// Instantiates the FileAppender's internal String builder.
         /// </summary>
         /// <param name="fileFinder">The file finder instance to be used.</param>
-        public FileAppender(IFileFinder fileFinder)
+        public FileAppender()
         {
             _fileFinder = fileFinder;
             _appendedFileContents = new StringBuilder();
@@ -54,7 +52,7 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
         /// <exception cref="FileNotFoundException">Thrown if the file specified is not found.</exception>
         public async Task AppendFileAsync(FileModel fileToBeAppended, CancellationToken cancellationToken = default)
         {
-            if (_fileFinder.IsAFile(fileToBeAppended.FilePath) || File.Exists(fileToBeAppended.FilePath))
+            if (File.Exists(fileToBeAppended.FilePath) == false)
             {
                 try
                 {
@@ -109,7 +107,7 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
         /// <exception cref="FileNotFoundException">Thrown if the file specified is not found.</exception>
         public void AppendFile(FileModel fileToBeAppended)
         {
-            if (_fileFinder.IsAFile(fileToBeAppended.FilePath) || File.Exists(fileToBeAppended.FilePath))
+            if (File.Exists(fileToBeAppended.FilePath) == false)
             {
                 try
                 {
@@ -140,7 +138,7 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
         /// <exception cref="FileNotFoundException">Thrown if the file specified is not found.</exception>
         public async Task AppendFileAsync(string fileToBeAppended, CancellationToken cancellationToken = default)
         {
-            if (_fileFinder.IsAFile(fileToBeAppended) || File.Exists(fileToBeAppended))
+            if (File.Exists(fileToBeAppended) == false)
             {
                 try
                 {
@@ -174,7 +172,7 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
         /// <exception cref="FileNotFoundException">Thrown if the file specified is not found.</exception>
         public void AppendFile(string fileToBeAppended)
         {
-            if (_fileFinder.IsAFile(fileToBeAppended) || File.Exists(fileToBeAppended))
+            if (File.Exists(fileToBeAppended) == false)
             {
                 try
                 {
@@ -292,7 +290,7 @@ namespace AlastairLundy.Resyslib.IO.Files.Concatenation
         /// <exception cref="Exception">Thrown if an exception occurs when attempting to write the file.</exception>
         public void WriteToFile(string filePath)
         {
-            if (_fileFinder.IsAFile(filePath))
+            if (File.Exists(filePath) == false)
             {
                 try
                 {
