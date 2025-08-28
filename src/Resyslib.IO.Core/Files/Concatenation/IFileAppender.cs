@@ -11,8 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AlastairLundy.DotPrimitives.IO.Files;
 
-using AlastairLundy.Resyslib.IO.Core.Primitives.Files;
 
 namespace AlastairLundy.Resyslib.IO.Core.Files.Concatenation;
 
