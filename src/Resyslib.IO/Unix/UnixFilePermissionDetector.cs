@@ -11,11 +11,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-#if NET5_0_OR_GREATER
 using System.Runtime.Versioning;
-#else
-using OperatingSystem = Polyfills.OperatingSystemPolyfill;
-#endif
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,7 +19,6 @@ using AlastairLundy.CliInvoke.Core.Abstractions;
 using AlastairLundy.CliInvoke.Core.Primitives.Results;
 
 using AlastairLundy.Resyslib.IO.Core.Unix;
-using AlastairLundy.Resyslib.IO.Permissions;
 
 namespace AlastairLundy.Resyslib.IO.Unix;
 

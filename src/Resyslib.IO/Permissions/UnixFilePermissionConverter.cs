@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using AlastairLundy.DotExtensions.Collections.Generic.Enumerables;
+using AlastairLundy.EnhancedLinq.Deferred;
 
 using AlastairLundy.Resyslib.IO.Internal.Localizations;
 

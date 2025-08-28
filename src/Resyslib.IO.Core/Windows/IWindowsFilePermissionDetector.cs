@@ -13,7 +13,7 @@ using System.Runtime.Versioning;
 
 using System.Threading.Tasks;
 
-using AlastairLundy.Resyslib.IO.Core.Primitives.Permissions;
+using AlastairLundy.DotPrimitives.IO.Permissions;
 
 namespace AlastairLundy.Resyslib.IO.Core.Windows;
 
